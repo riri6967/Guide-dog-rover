@@ -51,7 +51,8 @@ _cane_later/        Haptic handle code — written, not yet wired in
 
 | | |
 |---|---|
-| **[INTEGRATION.md](INTEGRATION.md)** | ROS topic contract. **Read first** if you are writing Pi-side nodes |
+| **[BUILD.md](BUILD.md)** | Full handbook — status, setup, running it, troubleshooting. **Start here** |
+| **[INTEGRATION.md](INTEGRATION.md)** | ROS topic contract. Read before writing Pi-side nodes |
 | [WIRING.md](WIRING.md) | Pin map, power, L298N jumpers |
 | [MICROROS.md](MICROROS.md) | Toolchain versions, agent build, the DTR/RTS trap |
 | [WIRELESS.md](WIRELESS.md) | Phone control via `rover_control` |
