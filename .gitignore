@@ -1,0 +1,28 @@
+# Arduino / arduino-cli build output
+build/
+*.elf
+*.bin
+*.map
+*.hex
+
+# Packaged handoff archives — rebuild rather than version them
+*.zip
+
+# OpenSCAD exports
+*.stl
+*.3mf
+*.gcode
+
+# Editor and OS noise
+.vscode/
+.idea/
+*.swp
+*~
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
