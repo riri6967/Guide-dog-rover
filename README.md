@@ -34,6 +34,7 @@ rover_control/      Standalone WiFi + phone web UI. No ROS. Useful for testing.
 rover_base/         Serial keyboard control over USB. Bench testing.
 motor_smoketest/    Raw diagnostic — no PWM, no logic. For when nothing works.
 encoder_test/       Encoder calibration. Measures ticks per revolution.
+drive_and_measure/  Drives motors AND reads encoders together. No ROS needed.
 
 pi_scripts/         Runs on the Raspberry Pi
   start_agent.sh      self-healing micro-ROS agent launcher
@@ -129,12 +130,12 @@ agent auto-recovery.
 
 Outstanding:
 
-- **Encoder discs not fitted.** Sensors read nothing from actual wheel rotation
-  until a slotted disc spins through each gate.
-- **Four calibration constants unmeasured** at the top of `rover_microros.ino`.
-  `/odom` is fiction until they are real. Raw tick topics are unaffected.
-- **Motor EMI** drops the micro-ROS session under load. 100 nF across each
-  motor's terminals is the fix.
+- **Motor EMI** is the top blocker. It drops the micro-ROS session *and* injects
+  false encoder pulses, so counts taken while driving are inflated several-fold.
+  100 nF across each motor's terminals is the fix.
+- **Three calibration constants still unmeasured** — wheel diameter, track width,
+  top speed. `TICKS_PER_REV = 140` is measured and in. Raw tick topics are
+  unaffected by the rest.
 - **L298N has a ~23 % deadband**, so small velocity commands do nothing. Matters
   for nav2 tuning. A MOSFET driver (BTS7960) would remove it.
 - Navigation stack, haptic handle, and autonomous behaviour not started.

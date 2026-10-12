@@ -44,7 +44,7 @@
 // Pulses per ONE full wheel revolution. Get this from encoder_test.ino:
 // press 'c', turn one wheel exactly 10 turns by hand, divide the count by 10.
 // Do not trust the slot count printed on the disc.
-const float TICKS_PER_REV = 20.0f;          // <-- MEASURE
+const float TICKS_PER_REV = 140.0f;        // MEASURED: 1392/1402 pulses over 10 wheel turns
 
 // Wheel diameter in metres. 65 mm = 0.065
 const float WHEEL_DIAMETER_M = 0.065f;      // <-- MEASURE

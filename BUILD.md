@@ -60,6 +60,9 @@ easier to write, tune and debug.
 | Agent auto-recovery | reconnects after link loss |
 | Phone web control (`rover_control`) | drove the rover over WiFi |
 | TFT status display | live system stats on a 2.4" ILI9341 |
+| **Encoder discs on the shaft** | printed slots, sensors read real rotation |
+| **`TICKS_PER_REV` measured** | **140** — 1392 and 1402 pulses over ten hand-turned wheel revolutions |
+| Motors + encoders together | `drive_and_measure` drives and reports RPM in one sketch |
 
 ### Built but not yet tested on hardware
 
@@ -70,9 +73,8 @@ easier to write, tune and debug.
 
 | | Impact |
 |---|---|
-| **Encoder discs not fitted** | sensors read nothing from actual wheel rotation. Blocks everything downstream |
-| **Four calibration constants unmeasured** | `/odom` is fiction. Raw tick topics unaffected |
-| **Motor EMI drops the micro-ROS session** | stutters under load. Fix: 100 nF across each motor |
+| **Motor EMI — now the top blocker** | drops the micro-ROS session *and* injects false encoder pulses. Counts taken while driving are inflated several-fold and cannot be trusted. Fix: 100 nF across each motor |
+| **Three calibration constants still unmeasured** | wheel diameter, track width, top speed. `/odom` distances wrong until measured. Raw tick topics unaffected |
 | **L298N ~23 % deadband** | small velocity commands produce no movement. Matters for nav2 tuning |
 | **Battery protection trips under load** | needs the 3S LiPo, not a 2S pack |
 
@@ -134,6 +136,7 @@ Full detail including the mistakes that cost the most time: **WIRING.md**
 | `rover_base/` | Serial keyboard control over USB. Bench testing |
 | `motor_smoketest/` | Raw `digitalWrite` diagnostic — no PWM, no logic. For when nothing works |
 | `encoder_test/` | Measures ticks per revolution |
+| `drive_and_measure/` | **Drives the motors and reports encoder RPM together.** No ROS, no Pi — the quickest way to prove the drivetrain and sensors cooperate, and where the calibration constants come from |
 
 Each is a self-contained Arduino sketch. `rover_microros` and `rover_control`
 have several files that **must stay in their folder together** — the IDE
@@ -419,6 +422,28 @@ Check `cmd` in `rover_monitor.py`. If it reads `+0.00`, nothing is publishing �
 
 If `cmd` is non-zero and ticks stay flat, it is voltage or a driver fault.
 
+### Serial stream has no `0x7E` frames
+
+micro-XRCE-DDS frames every message with `0x7E`. A stream with none of them is
+not micro-ROS. Either the wrong sketch is on the board, or you are reading at
+the wrong baud rate — a perfectly repeating byte pattern means the latter.
+
+### Two identical ESP32s
+
+Cost several hours, twice. One board runs `rover_microros`, the other usually
+has a bench sketch on it; plugged into the Pi they look identical, the agent
+starts, and nothing works. **Label them.**
+
+The blue LED is the tell: only `rover_microros` drives GPIO 2, so a board that
+never lights it is running something else.
+
+### Encoder counts implausibly high while driving
+
+Motor EMI false-triggering the LM393 comparators. If the counts imply a wheel
+speed of thousands of RPM, they include noise. Hand-turned calibration with
+the motors off is unaffected — which is why `TICKS_PER_REV` is trustworthy and
+anything measured under power is not.
+
 ### One side dead
 
 In order: `ENA`/`ENB` jumper caps must be **off**; the EN wire must be on the
@@ -432,16 +457,14 @@ the fault follows the wires it is the ESP32 pins, if it stays it is the board.
 
 In the order that unblocks the most.
 
-**1. Fix the electrical foundation.** Capacitors on the motors, a second ground
-wire, ESP32 on USB only while developing. Until this is solid, every bug looks
-like every other bug.
+**1. Capacitors on the motors.** 100 nF across each motor's terminals, soldered
+at the motor. Plus a second GND wire and keeping encoder leads away from motor
+leads. This is now the top blocker: EMI corrupts both the micro-ROS link and the
+encoder counts, so nothing measured under power is trustworthy until it is done.
 
-**2. Mount the encoder discs.** `encoder_disc.scad` and `encoder_bracket.scad`
-are parametric — set your measurements, export STL, print. Cardboard first to
-prove the geometry.
-
-**3. Take the four measurements.** This is what makes `/odom` real, and nav2
-cannot function without trustworthy odometry.
+**2. Take the remaining three measurements.** Wheel diameter and track width
+with a ruler; top speed from the `m` sweep in `drive_and_measure` — but only
+after the capacitors, or the sweep measures noise.
 
 **4. Closed-loop PID.** ~60 lines once discs exist. Gives matched wheel speeds,
 constant speed under varying load, and usable low-speed control.

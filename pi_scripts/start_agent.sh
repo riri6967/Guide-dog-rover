@@ -1,12 +1,21 @@
 #!/bin/bash
 # Self-healing micro-ROS agent launcher.
 #
-# Two problems this works around:
-#  1. Opening the port asserts DTR/RTS, which holds the ESP32 in reset. The
-#     release has to happen AFTER the agent opens the port, or it gets undone.
+# Three problems this works around, all found the hard way:
+#
+#  1. Opening the serial port asserts DTR/RTS, and on a DevKit the RTS line
+#     drives EN through the auto-reset circuit — so the agent's own open()
+#     holds the ESP32 in reset. The release has to happen AFTER the agent
+#     opens the port, or it simply gets undone.
+#
 #  2. Motor EMI can reset the ESP32 hard enough that its USB-serial bridge
-#     re-enumerates, moving ttyUSB0 to ttyUSB1. The agent then waits forever
-#     on a device that no longer exists.
+#     re-enumerates, moving /dev/ttyUSB0 to ttyUSB1. The agent then waits
+#     forever on a device node that no longer exists, reporting nothing.
+#
+#  3. Hard-coding the device means plugging the board into a different port
+#     silently breaks everything. Auto-detect instead.
+#
+# Usage:  ./start_agent.sh [baud]
 
 BAUD=${1:-115200}
 
@@ -27,6 +36,7 @@ while true; do
 
   echo "[$(date +%T)] starting agent on $DEV @ $BAUD"
 
+  # Release DTR/RTS a few seconds after the agent has opened the port.
   ( sleep 3
     exec python3 -c "
 import serial, time
