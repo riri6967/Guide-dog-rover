@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<!--
+  Guide Dog Rover - robot description.
+
+  Frames (REP-103: +X forward, +Y left, +Z up):
+
+    base_footprint            on the ground, directly under base_link
+    `- base_link             centre of the four axles, at axle height
+        +- chassis           (visual/collision only, fixed)
+        +- front_left_wheel  \
+        +- front_right_wheel | continuous joints, spin about +Y
+        +- rear_left_wheel   |
+        +- rear_right_wheel  /
+        +- laser
+        +- imu_link
+        `- camera_link
+            `- camera_link_optical   (+Z forward, +X right, +Y down)
+
+  The electronics (Pi, ESP32, L298N, battery) are not modelled - they are part
+  of the chassis.
+
+  Values marked MEASURE are estimates from the CAD render. Everything in this
+  file is a property at the top, so measuring the robot only means editing
+  numbers here. All lengths in metres, angles in radians.
+-->
+<robot name="guide_dog_rover" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ================================================================== -->
+  <!-- Measured                                                            -->
+  <!-- ================================================================== -->
+  <xacro:property name="wheel_radius"   value="0.055"/>  <!-- 11 cm diameter -->
+  <xacro:property name="track_width"    value="0.240"/>  <!-- L wheel centre to R wheel centre -->
+
+  <!-- ================================================================== -->
+  <!-- MEASURE - estimates from the CAD                                    -->
+  <!-- ================================================================== -->
+  <xacro:property name="wheel_width"    value="0.045"/>  <!-- tyre tread width -->
+  <xacro:property name="wheelbase"      value="0.140"/>  <!-- front axle to rear axle -->
+
+  <!-- Chassis tub: outer dimensions, and where its underside sits relative
+       to the axle line (negative = below the axles). -->
+  <xacro:property name="chassis_length" value="0.280"/>
+  <xacro:property name="chassis_width"  value="0.180"/>  <!-- must be < track_width - wheel_width -->
+  <xacro:property name="chassis_height" value="0.130"/>
+  <xacro:property name="chassis_bottom" value="-0.020"/>
+
+  <!-- Sensor poses relative to base_link: x forward, y left, z up. -->
+  <xacro:property name="laser_x"  value="0.080"/>
+  <xacro:property name="laser_y"  value="0.000"/>
+  <xacro:property name="laser_z"  value="0.150"/>
+  <xacro:property name="laser_yaw" value="0.0"/>        <!-- 0 = the LiDAR's 0 deg faces forward; pi if mounted backwards -->
+
+  <xacro:property name="imu_x"    value="0.000"/>
+  <xacro:property name="imu_y"    value="0.000"/>
+  <xacro:property name="imu_z"    value="0.020"/>
+  <!-- Rotation that takes the robot frame onto the IMU board's printed axes.
+       Board X->forward, Y->left, Z->up means all zero. -->
+  <xacro:property name="imu_roll"  value="0.0"/>
+  <xacro:property name="imu_pitch" value="0.0"/>
+  <xacro:property name="imu_yaw"   value="0.0"/>
+
+  <xacro:property name="camera_x"     value="0.140"/>
+  <xacro:property name="camera_y"     value="0.000"/>
+  <xacro:property name="camera_z"     value="0.120"/>
+  <xacro:property name="camera_pitch" value="0.0"/>     <!-- positive = tilted DOWN -->
+
+  <!-- Masses, only used by simulators. -->
+  <xacro:property name="chassis_mass" value="2.0"/>
+  <xacro:property name="wheel_mass"   value="0.15"/>
+
+  <!-- ================================================================== -->
+  <!-- Derived - do not edit                                               -->
+  <!-- ================================================================== -->
+  <xacro:property name="PI" value="3.14159265358979"/>
+  <xacro:property name="half_track" value="${track_width / 2}"/>
+  <xacro:property name="half_base"  value="${wheelbase / 2}"/>
+
+  <!-- ================================================================== -->
+  <!-- Materials                                                           -->
+  <!-- ================================================================== -->
+  <material name="grey">  <color rgba="0.75 0.75 0.75 1"/></material>
+  <material name="black"> <color rgba="0.10 0.10 0.10 1"/></material>
+  <material name="red">   <color rgba="0.85 0.15 0.15 1"/></material>
+  <material name="blue">  <color rgba="0.20 0.30 0.80 1"/></material>
+
+  <!-- ================================================================== -->
+  <!-- Inertia helpers                                                     -->
+  <!-- ================================================================== -->
+  <xacro:macro name="box_inertia" params="m x y z">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(y*y+z*z)/12}" ixy="0" ixz="0"
+               iyy="${m*(x*x+z*z)/12}" iyz="0"
+               izz="${m*(x*x+y*y)/12}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- Cylinder with its axis along the link's Y (how the wheels are built). -->
+  <xacro:macro name="wheel_inertia" params="m r h">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0"
+               iyy="${m*r*r/2}"          iyz="0"
+               izz="${m*(3*r*r+h*h)/12}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- ================================================================== -->
+  <!-- Base                                                                -->
+  <!-- ================================================================== -->
+  <link name="base_footprint"/>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child  link="base_link"/>
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link"/>
+
+  <!-- The tub is a separate link so base_link stays exactly on the axle
+       centre while the box sits where the real body is. -->
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="chassis"/>
+    <origin xyz="0 0 ${chassis_bottom + chassis_height / 2}" rpy="0 0 0"/>
+  </joint>
+
+  <link name="chassis">
+    <visual>
+      <geometry><box size="${chassis_length} ${chassis_width} ${chassis_height}"/></geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <geometry><box size="${chassis_length} ${chassis_width} ${chassis_height}"/></geometry>
+    </collision>
+    <xacro:box_inertia m="${chassis_mass}" x="${chassis_length}" y="${chassis_width}" z="${chassis_height}"/>
+  </link>
+
+  <!-- ================================================================== -->
+  <!-- Wheels                                                              -->
+  <!--                                                                    -->
+  <!-- Skid-steer: both wheels on a side are driven together and share one  -->
+  <!-- encoder, so kinematically this is a differential drive with         -->
+  <!-- track_width as the separation. Four are modelled because four touch  -->
+  <!-- the ground (footprint, collision, simulation).                      -->
+  <!-- ================================================================== -->
+  <xacro:macro name="wheel" params="prefix x y">
+    <joint name="${prefix}_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child  link="${prefix}_wheel"/>
+      <origin xyz="${x} ${y} 0" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="${prefix}_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+        <material name="black"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+      </collision>
+      <xacro:wheel_inertia m="${wheel_mass}" r="${wheel_radius}" h="${wheel_width}"/>
+    </link>
+  </xacro:macro>
+
+  <xacro:wheel prefix="front_left"  x="${ half_base}" y="${ half_track}"/>
+  <xacro:wheel prefix="front_right" x="${ half_base}" y="${-half_track}"/>
+  <xacro:wheel prefix="rear_left"   x="${-half_base}" y="${ half_track}"/>
+  <xacro:wheel prefix="rear_right"  x="${-half_base}" y="${-half_track}"/>
+
+  <!-- ================================================================== -->
+  <!-- LiDAR                                                               -->
+  <!-- ================================================================== -->
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="laser"/>
+    <origin xyz="${laser_x} ${laser_y} ${laser_z}" rpy="0 0 ${laser_yaw}"/>
+  </joint>
+
+  <link name="laser">
+    <visual>
+      <geometry><cylinder radius="0.035" length="0.040"/></geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry><cylinder radius="0.035" length="0.040"/></geometry>
+    </collision>
+  </link>
+
+  <!-- ================================================================== -->
+  <!-- IMU                                                                 -->
+  <!-- ================================================================== -->
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="imu_link"/>
+    <origin xyz="${imu_x} ${imu_y} ${imu_z}" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}"/>
+  </joint>
+
+  <link name="imu_link">
+    <visual>
+      <geometry><box size="0.02 0.015 0.003"/></geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <!-- ================================================================== -->
+  <!-- Camera                                                              -->
+  <!-- ================================================================== -->
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="camera_link"/>
+    <origin xyz="${camera_x} ${camera_y} ${camera_z}" rpy="0 ${camera_pitch} 0"/>
+  </joint>
+
+  <link name="camera_link">
+    <visual>
+      <geometry><box size="0.010 0.025 0.025"/></geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <!-- Image pipelines (OpenCV, image_proc, AprilTag, ...) expect the optical
+       convention. Set the camera driver's frame_id to this one. -->
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/>
+    <child  link="camera_link_optical"/>
+    <origin xyz="0 0 0" rpy="${-PI/2} 0 ${-PI/2}"/>
+  </joint>
+
+  <link name="camera_link_optical"/>
+
+</robot>
