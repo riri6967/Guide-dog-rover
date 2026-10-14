@@ -10,6 +10,8 @@ build/
 
 # OpenSCAD exports
 *.stl
+# ...but the URDF meshes are source, not exports - the Pi needs them
+!ros/rover_description/meshes/*.stl
 *.3mf
 *.gcode
 
