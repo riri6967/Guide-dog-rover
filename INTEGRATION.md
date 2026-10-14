@@ -93,8 +93,8 @@ Top of `rover_microros.ino`:
 
 ```cpp
 const float TICKS_PER_REV       = 140.0f;   // measured
-const float WHEEL_DIAMETER_M    = 0.065f;   // the 65 mm wheels fitted
-const float TRACK_WIDTH_M       = 0.200f;   // <-- MEASURE (CAD says 0.2146)
+const float WHEEL_DIAMETER_M    = 0.110f;   // measured
+const float TRACK_WIDTH_M       = 0.240f;   // measured
 const float MAX_WHEEL_SPEED_MS  = 0.55f;    // <-- MEASURE
 ```
 

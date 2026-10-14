@@ -35,10 +35,10 @@ class WheelOdometry(Node):
     def __init__(self):
         super().__init__('wheel_odometry')
         self.ticks_per_rev = self.declare_parameter('ticks_per_rev', 140.0).value
-        self.wheel_radius = self.declare_parameter('wheel_radius', 0.0325).value
-        # Centre of the left wheel to centre of the right wheel. Still to be
-        # measured on the robot: firmware has 0.200, the CAD 0.2146.
-        self.track_width = self.declare_parameter('track_width', 0.200).value
+        self.wheel_radius = self.declare_parameter('wheel_radius', 0.055).value  # 110 mm wheels
+        # Centre of the left wheel to centre of the right wheel, measured.
+        # Keep in step with TRACK_WIDTH_M in the firmware and the URDF.
+        self.track_width = self.declare_parameter('track_width', 0.240).value
         # Turning calibration for skid-steer. 0 = use track_width.
         eff = self.declare_parameter('effective_track_width', 0.0).value
         self.eff_track = eff if eff > 0.0 else self.track_width

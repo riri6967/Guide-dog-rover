@@ -27,7 +27,7 @@ trained policies and the Nav2 tuning do not transfer as they are.
 | | Simulated (`models/assistive_rover`) | Real rover (`ros/rover_description`) |
 |---|---|---|
 | Footprint | 0.90 × 0.76 m | 0.27 × 0.26 m |
-| Wheel radius | 0.12 m | 0.0598 m |
+| Wheel radius | 0.12 m | 0.055 m |
 | LiDAR height above floor | 0.96 m | 0.23 m |
 | Camera | RGB-D | Pi Camera v3 (no depth) |
 

@@ -49,13 +49,13 @@
 // Do not trust the slot count printed on the disc.
 const float TICKS_PER_REV = 140.0f;        // MEASURED: 1392/1402 pulses over 10 wheel turns
 
-// Wheel diameter in metres. 65 mm = 0.065
-const float WHEEL_DIAMETER_M = 0.065f;      // <-- MEASURE
+// Wheel diameter in metres. 110 mm = 0.110
+const float WHEEL_DIAMETER_M = 0.110f;      // MEASURED
 
 // Track width: centre of the left wheel to centre of the right wheel, metres.
 // This sets how fast the rover thinks it is turning. Get it wrong and the
 // robot will spiral in RViz while driving straight in real life.
-const float TRACK_WIDTH_M = 0.200f;         // <-- MEASURE
+const float TRACK_WIDTH_M = 0.240f;         // MEASURED
 
 // Top speed of one wheel at full PWM, metres/second. Used to convert the
 // m/s that ROS asks for into a PWM duty. Rough is fine to start:

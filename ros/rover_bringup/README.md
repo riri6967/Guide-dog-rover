@@ -103,10 +103,11 @@ Pass it as a parameter (`effective_track_width:=...`). It is typically 1.3-2x
 the real track width. The EKF leans on the IMU for heading anyway, but a good
 value keeps the two from fighting.
 
-### 5. Measure the track width
-Centre of the left wheel to centre of the right wheel. Set it in three places:
-`TRACK_WIDTH_M` in the firmware, `track_width` here, and `track_width` in the
-URDF. They currently disagree (0.200 vs 0.2146 m).
+### 5. Keep the three copies of the geometry in step
+Wheel diameter (110 mm) and track width (240 mm, centre of the left wheel to
+centre of the right wheel) are set in three places: the firmware
+(`WHEEL_DIAMETER_M`, `TRACK_WIDTH_M`), this package's `wheel_odometry`
+parameters, and the URDF. Change one, change all three.
 
 ## Turning on the speed PID (ESP32)
 
@@ -114,8 +115,8 @@ The firmware has a closed-loop wheel-speed controller, off by default because
 motor EMI currently adds false encoder pulses. After the 100 nF capacitors:
 
 1. Check the ticks are clean: wheels off the ground, drive at a steady speed;
-   `/ticks_left` should rise at a believable rate (0.2 m/s with 65 mm wheels is
-   about 137 ticks/s).
+   `/ticks_left` should rise at a believable rate (0.2 m/s with 110 mm wheels
+   is about 81 ticks/s).
 2. Set `USE_SPEED_PID = true` in `rover_microros.ino`, flash.
 3. Wheels off the ground, command 0.2 m/s. The measured speed from
    `/wheel/odom` should settle on it within about a second. Oscillating:

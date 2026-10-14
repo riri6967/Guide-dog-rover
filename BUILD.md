@@ -77,7 +77,7 @@ easier to write, tune and debug.
 | | Impact |
 |---|---|
 | **Motor EMI — now the top blocker** | drops the micro-ROS session *and* injects false encoder pulses. Counts taken while driving are inflated several-fold and cannot be trusted. Fix: 100 nF across each motor |
-| **Two calibration constants still unmeasured** | track width (firmware 0.200 m vs CAD 0.2146 m) and top speed. The 65 mm wheel diameter is in. Raw tick topics unaffected |
+| **Top speed still unmeasured** | `MAX_WHEEL_SPEED_MS`. Wheels (110 mm) and track (240 mm) are measured and in |
 | **L298N ~23 % deadband** | small velocity commands produce no movement. Matters for nav2 tuning |
 | **Battery protection trips under load** | fixed by moving to a 4S LiPo; still check the Pi's supply with `vcgencmd get_throttled` (see WIRING.md) |
 
@@ -351,8 +351,8 @@ Top of `rover_microros.ino`:
 
 ```cpp
 const float TICKS_PER_REV       = 140.0f;   // measured
-const float WHEEL_DIAMETER_M    = 0.065f;   // the 65 mm wheels fitted
-const float TRACK_WIDTH_M       = 0.200f;   // <-- MEASURE
+const float WHEEL_DIAMETER_M    = 0.110f;   // measured
+const float TRACK_WIDTH_M       = 0.240f;   // measured
 const float MAX_WHEEL_SPEED_MS  = 0.55f;    // <-- MEASURE
 ```
 
@@ -465,8 +465,8 @@ at the motor. Plus a second GND wire and keeping encoder leads away from motor
 leads. This is now the top blocker: EMI corrupts both the micro-ROS link and the
 encoder counts, so nothing measured under power is trustworthy until it is done.
 
-**2. Take the remaining three measurements.** Wheel diameter and track width
-with a ruler; top speed from the `m` sweep in `drive_and_measure` — but only
+**2. Measure top speed.** Wheel diameter and track width are in. Top speed
+comes from the `m` sweep in `drive_and_measure` — but only
 after the capacitors, or the sweep measures noise.
 
 **4. Turn on the speed PID.** Written and compiling; set `USE_SPEED_PID = true`

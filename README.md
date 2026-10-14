@@ -144,8 +144,8 @@ Outstanding:
 - **Motor EMI** is the top blocker. It drops the micro-ROS session *and* injects
   false encoder pulses, so counts taken while driving are inflated several-fold.
   100 nF across each motor's terminals is the fix.
-- **Two calibration constants still unmeasured** — track width (firmware 0.200 m,
-  CAD 0.2146 m) and top speed. `TICKS_PER_REV = 140` and the 65 mm wheels are in.
+- **Top speed still unmeasured** (`MAX_WHEEL_SPEED_MS`). Measured and in:
+  `TICKS_PER_REV = 140`, 110 mm wheels, 240 mm track.
 - **L298N has a ~23 % deadband.** The firmware now starts its PWM range at the
   deadband so slow commands still move the wheels; a MOSFET driver (BTS7960)
   would remove it properly.
