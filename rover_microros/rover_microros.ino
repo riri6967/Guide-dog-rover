@@ -5,8 +5,12 @@
  * Library: micro_ros_arduino v2.0.8-jazzy
  * Agent:   Raspberry Pi 5, ROS 2 Jazzy, over USB serial
  *
- * Subscribes  /cmd_vel   geometry_msgs/msg/Twist
- * Publishes   /odom      nav_msgs/msg/Odometry   at 20 Hz
+ * Subscribes  /cmd_vel       geometry_msgs/msg/Twist
+ * Publishes   /ticks_left    std_msgs/msg/Int32   at 20 Hz, cumulative, signed
+ *             /ticks_right   std_msgs/msg/Int32   at 20 Hz
+ *
+ * Odometry is computed on the Pi (ros/rover_bringup, wheel_odometry) from the
+ * tick counts, not here: INTEGRATION.md decision 2.
  *
  * Drive it from the Pi:
  *     ~/start_agent.sh
@@ -30,7 +34,6 @@
 #include <rmw_microros/rmw_microros.h>
 
 #include <geometry_msgs/msg/twist.h>
-#include <nav_msgs/msg/odometry.h>
 #include <std_msgs/msg/int32.h>
 
 #include "pins.h"
@@ -59,6 +62,19 @@ const float TRACK_WIDTH_M = 0.200f;         // <-- MEASURE
 // drive flat out across a measured 2 m and time it.
 const float MAX_WHEEL_SPEED_MS = 0.55f;     // <-- MEASURE
 
+// Closed-loop wheel speed (PI controller on the encoder ticks). OFF until the
+// 100 nF motor capacitors are fitted: motor EMI adds false encoder pulses, the
+// controller reads them as extra speed and throttles the motors down. With it
+// off, /cmd_vel maps straight to PWM as before.
+const bool  USE_SPEED_PID = false;
+const float PID_KP = 300.0f;        // duty per m/s of speed error
+const float PID_KI = 600.0f;        // duty per (m/s x s) of accumulated error
+const float SPEED_FILTER = 0.5f;    // weight of the newest speed sample, 0..1
+
+// Commands slower than this are treated as stop. Below it the motor would
+// only run at its minimum speed anyway, which is faster than asked.
+const float MIN_WHEEL_SPEED_MS = 0.02f;
+
 // ===================================================================
 
 // Motors stop if no /cmd_vel arrives within this window. Every way of losing
@@ -66,18 +82,14 @@ const float MAX_WHEEL_SPEED_MS = 0.55f;     // <-- MEASURE
 // same from here: commands stop. Silence means stop, never "carry on".
 const unsigned long CMD_TIMEOUT_MS = 900;
 
-const unsigned long ODOM_PERIOD_MS = 50;    // 20 Hz
+const unsigned long TICK_PERIOD_MS = 50;    // 20 Hz: tick publishing and the speed loop
 
 // ------------------------------------------------------------ ROS entities
 rcl_subscription_t   cmd_vel_sub;
-rcl_publisher_t      odom_pub;
 geometry_msgs__msg__Twist    cmd_vel_msg;
-nav_msgs__msg__Odometry      odom_msg;
 
-// Raw cumulative encoder counts, published alongside odometry. These are the
-// unprocessed truth: they need no calibration to be useful, so you can watch
-// them climb and know the wheels are actually turning long before the
-// geometry constants above are measured.
+// Raw cumulative encoder counts. These are the unprocessed truth: they need no
+// calibration to be useful, and the Pi computes odometry from them.
 rcl_publisher_t      ticks_l_pub;
 rcl_publisher_t      ticks_r_pub;
 std_msgs__msg__Int32 ticks_l_msg;
@@ -92,22 +104,23 @@ rclc_executor_t   executor;
 rclc_support_t    support;
 rcl_allocator_t   allocator;
 rcl_node_t        node;
-rcl_timer_t       odom_timer;
+rcl_timer_t       tick_timer;
 
 // ------------------------------------------------------------ state
 unsigned long lastCmdMs = 0;
 
-// Odometry pose, integrated from wheel travel.
-double pose_x = 0.0;
-double pose_y = 0.0;
-double pose_theta = 0.0;
+// Speed loop state, per side: target and filtered measured speed in m/s, and
+// the PI controller's accumulated error.
+float targetL = 0.0f, targetR = 0.0f;
+float measL = 0.0f,   measR = 0.0f;
+float integL = 0.0f,  integR = 0.0f;
 
 // Single-channel encoders cannot sense direction, so we remember which way we
 // last told each side to turn and sign the ticks with that.
 int dirLeft  = 1;
 int dirRight = 1;
 
-unsigned long lastOdomMs = 0;
+unsigned long lastTickMs = 0;
 
 // Agent connection state machine. The stock examples give up permanently when
 // the agent is missing; a robot must reconnect instead.
@@ -119,9 +132,6 @@ enum AgentState {
 };
 AgentState agentState = WAITING_AGENT;
 
-static char odom_frame[]  = "odom";
-static char child_frame[] = "base_link";
-
 // ------------------------------------------------------------ helpers
 
 #define RCCHECK(fn)      { rcl_ret_t rc = fn; if (rc != RCL_RET_OK) return false; }
@@ -131,11 +141,32 @@ static char child_frame[] = "base_link";
   static volatile unsigned long _last = 0; \
   if (millis() - _last >= (ms)) { body; _last = millis(); } }
 
-// Convert a wheel speed in m/s to an L298N duty, -255..255.
-int speedToDuty(float metresPerSec) {
-  float ratio = metresPerSec / MAX_WHEEL_SPEED_MS;
-  int duty = (int)(ratio * Motors::MAX_SPEED);
-  return constrain(duty, -Motors::MAX_SPEED, Motors::MAX_SPEED);
+// Convert a wheel speed in m/s to an L298N duty, -255..255. The range starts
+// at the driver's deadband instead of 0, so a slow command still turns the
+// wheels instead of vanishing below Motors::DEADBAND (the L298N's ~23 %).
+float speedToDuty(float metresPerSec) {
+  float speed = fabsf(metresPerSec);
+  if (speed < MIN_WHEEL_SPEED_MS) return 0.0f;
+  float ratio = constrain(speed / MAX_WHEEL_SPEED_MS, 0.0f, 1.0f);
+  float duty = Motors::DEADBAND + ratio * (Motors::MAX_SPEED - Motors::DEADBAND);
+  return metresPerSec < 0 ? -duty : duty;
+}
+
+// One PI step for one side. speedToDuty() is the feed-forward; the controller
+// only corrects what it gets wrong (load, battery voltage, a stiffer motor).
+int speedControl(float target, float measured, float &integ, float dt) {
+  if (fabsf(target) < MIN_WHEEL_SPEED_MS) { integ = 0.0f; return 0; }
+  float err = target - measured;
+  float out = speedToDuty(target) + PID_KP * err + PID_KI * integ;
+  // Anti-windup: stop accumulating while the output is pinned at full scale,
+  // unless the error is pulling it back.
+  bool saturated = fabsf(out) >= Motors::MAX_SPEED;
+  if (!saturated || (out > 0) != (err > 0)) integ += err * dt;
+  out = speedToDuty(target) + PID_KP * err + PID_KI * integ;
+  // Never drive against the commanded direction: single-channel encoders
+  // cannot see which way the wheel turns, so a reversed wheel looks forward.
+  if ((target > 0 && out < 0) || (target < 0 && out > 0)) out = 0;
+  return constrain((int)out, -Motors::MAX_SPEED, Motors::MAX_SPEED);
 }
 
 // ------------------------------------------------------------ callbacks
@@ -152,15 +183,23 @@ void cmd_vel_callback(const void *msgin) {
   float vLeft  = v - (w * TRACK_WIDTH_M / 2.0f);
   float vRight = v + (w * TRACK_WIDTH_M / 2.0f);
 
+  // A change of direction starts the speed loop afresh on that side.
+  if ((vLeft  < 0) != (targetL < 0)) { integL = 0.0f; measL = 0.0f; }
+  if ((vRight < 0) != (targetR < 0)) { integR = 0.0f; measR = 0.0f; }
+  targetL = vLeft;
+  targetR = vRight;
+
   dirLeft  = (vLeft  < 0) ? -1 : 1;
   dirRight = (vRight < 0) ? -1 : 1;
 
-  Motors::drive(speedToDuty(vLeft), speedToDuty(vRight));
+  if (!USE_SPEED_PID) {
+    Motors::drive((int)speedToDuty(vLeft), (int)speedToDuty(vRight));
+  }
   lastCmdMs = millis();
 }
 
-// Integrate wheel travel into a pose and publish it.
-void odom_timer_callback(rcl_timer_t *timer, int64_t last_call_time) {
+// Publish the tick counts and, with USE_SPEED_PID, run the speed loop.
+void tick_timer_callback(rcl_timer_t *timer, int64_t last_call_time) {
   (void)last_call_time;
   if (timer == NULL) return;
 
@@ -179,48 +218,22 @@ void odom_timer_callback(rcl_timer_t *timer, int64_t last_call_time) {
   RCSOFTCHECK(rcl_publish(&ticks_r_pub, &ticks_r_msg, NULL));
 
   unsigned long now = millis();
-  float dt = (now - lastOdomMs) / 1000.0f;
-  lastOdomMs = now;
-  if (dt <= 0.0f) return;
+  float dt = (now - lastTickMs) / 1000.0f;
+  lastTickMs = now;
+  if (!USE_SPEED_PID || dt <= 0.0f) return;
 
-  const float circumference = WHEEL_DIAMETER_M * PI;
-  const float metresPerTick = circumference / TICKS_PER_REV;
+  // Silence means stop: the same timeout as the failsafe in loop(), so the
+  // speed loop cannot keep a wheel turning after commands stop.
+  if (now - lastCmdMs > CMD_TIMEOUT_MS) {
+    targetL = targetR = 0.0f;
+  }
 
-  float distL = dL * metresPerTick * dirLeft;
-  float distR = dR * metresPerTick * dirRight;
+  const float metresPerTick = WHEEL_DIAMETER_M * PI / TICKS_PER_REV;
+  measL += SPEED_FILTER * (dL * metresPerTick / dt * dirLeft  - measL);
+  measR += SPEED_FILTER * (dR * metresPerTick / dt * dirRight - measR);
 
-  float dCentre = (distL + distR) / 2.0f;
-  float dTheta  = (distR - distL) / TRACK_WIDTH_M;
-
-  // Integrate about the midpoint of the arc rather than its start — markedly
-  // better than the naive version when turning.
-  pose_x     += dCentre * cos(pose_theta + dTheta / 2.0);
-  pose_y     += dCentre * sin(pose_theta + dTheta / 2.0);
-  pose_theta += dTheta;
-
-  // Keep theta in -pi..pi so it never drifts into float mush.
-  while (pose_theta >  PI) pose_theta -= 2.0 * PI;
-  while (pose_theta < -PI) pose_theta += 2.0 * PI;
-
-  // Timestamp from the agent's clock, so the Pi's TF tree lines up.
-  int64_t nanos = rmw_uros_epoch_nanos();
-  odom_msg.header.stamp.sec     = (int32_t)(nanos / 1000000000LL);
-  odom_msg.header.stamp.nanosec = (uint32_t)(nanos % 1000000000LL);
-
-  odom_msg.pose.pose.position.x = pose_x;
-  odom_msg.pose.pose.position.y = pose_y;
-  odom_msg.pose.pose.position.z = 0.0;
-
-  // Yaw as a quaternion. Rotation about Z only, so x and y stay zero.
-  odom_msg.pose.pose.orientation.x = 0.0;
-  odom_msg.pose.pose.orientation.y = 0.0;
-  odom_msg.pose.pose.orientation.z = sin(pose_theta / 2.0);
-  odom_msg.pose.pose.orientation.w = cos(pose_theta / 2.0);
-
-  odom_msg.twist.twist.linear.x  = dCentre / dt;
-  odom_msg.twist.twist.angular.z = dTheta / dt;
-
-  RCSOFTCHECK(rcl_publish(&odom_pub, &odom_msg, NULL));
+  Motors::drive(speedControl(targetL, measL, integL, dt),
+                speedControl(targetR, measR, integR, dt));
 }
 
 // ------------------------------------------------------------ ROS setup
@@ -237,11 +250,6 @@ bool createEntities() {
     "cmd_vel"));
 
   RCCHECK(rclc_publisher_init_default(
-    &odom_pub, &node,
-    ROSIDL_GET_MSG_TYPE_SUPPORT(nav_msgs, msg, Odometry),
-    "odom"));
-
-  RCCHECK(rclc_publisher_init_default(
     &ticks_l_pub, &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Int32),
     "ticks_left"));
@@ -254,17 +262,13 @@ bool createEntities() {
   // _default2 takes an explicit clock. The old rclc_timer_init_default is
   // deprecated in this version and warns at compile time.
   RCCHECK(rclc_timer_init_default2(
-    &odom_timer, &support, RCL_MS_TO_NS(ODOM_PERIOD_MS),
-    odom_timer_callback, true));
+    &tick_timer, &support, RCL_MS_TO_NS(TICK_PERIOD_MS),
+    tick_timer_callback, true));
 
   RCCHECK(rclc_executor_init(&executor, &support.context, 2, &allocator));
   RCCHECK(rclc_executor_add_subscription(
     &executor, &cmd_vel_sub, &cmd_vel_msg, &cmd_vel_callback, ON_NEW_DATA));
-  RCCHECK(rclc_executor_add_timer(&executor, &odom_timer));
-
-  // Line the ESP32's clock up with the agent's, so odom timestamps make sense
-  // to the rest of the ROS graph.
-  rmw_uros_sync_session(1000);
+  RCCHECK(rclc_executor_add_timer(&executor, &tick_timer));
 
   return true;
 }
@@ -274,11 +278,10 @@ bool createEntities() {
 // Return values are deliberately discarded — if teardown fails there is
 // nothing useful left to do about it.
 void destroyEntities() {
-  (void)rcl_publisher_fini(&odom_pub, &node);
   (void)rcl_publisher_fini(&ticks_l_pub, &node);
   (void)rcl_publisher_fini(&ticks_r_pub, &node);
   (void)rcl_subscription_fini(&cmd_vel_sub, &node);
-  (void)rcl_timer_fini(&odom_timer);
+  (void)rcl_timer_fini(&tick_timer);
   (void)rclc_executor_fini(&executor);
   (void)rcl_node_fini(&node);
   (void)rclc_support_fini(&support);
@@ -297,7 +300,7 @@ void setup() {
   set_microros_transports();
 
   lastCmdMs  = millis();
-  lastOdomMs = millis();
+  lastTickMs = millis();
 }
 
 // ------------------------------------------------------------ loop

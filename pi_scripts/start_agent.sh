@@ -15,6 +15,10 @@
 #  3. Hard-coding the device means plugging the board into a different port
 #     silently breaks everything. Auto-detect instead.
 #
+#  4. The RPLIDAR is also a /dev/ttyUSB*. With the udev rules from
+#     ros/rover_bringup/udev/99-rover.rules installed, /dev/esp32 is used;
+#     without them, the first ttyUSB that is not /dev/rplidar.
+#
 # Usage:  ./start_agent.sh [baud]
 
 BAUD=${1:-115200}
@@ -26,7 +30,12 @@ cleanup() { kill $HOLDER 2>/dev/null; exit 0; }
 trap cleanup INT TERM
 
 while true; do
-  DEV=$(ls /dev/ttyUSB* 2>/dev/null | head -1)
+  if [ -e /dev/esp32 ]; then
+    DEV=/dev/esp32
+  else
+    LIDAR=$(readlink -f /dev/rplidar 2>/dev/null)
+    DEV=$(ls /dev/ttyUSB* 2>/dev/null | grep -vx "${LIDAR:-none}" | head -1)
+  fi
 
   if [ -z "$DEV" ]; then
     echo "[$(date +%T)] waiting for ESP32 to appear..."

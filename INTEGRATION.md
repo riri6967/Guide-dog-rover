@@ -21,11 +21,12 @@ Node name: **`rover_base`**
 |---|---|---|---|
 | `/ticks_left` | `std_msgs/msg/Int32` | 20 Hz | cumulative, signed |
 | `/ticks_right` | `std_msgs/msg/Int32` | 20 Hz | cumulative, signed |
-| `/odom` | `nav_msgs/msg/Odometry` | 20 Hz | **see decision 2 — probably disable this** |
+
+The ESP32 no longer publishes `/odom` (decision 2).
 
 ---
 
-## Decision 1 — two encoders, not four
+## Decision 1 — two encoders, not four (settled: A)
 
 The Pi-side wheel odometry node expects `[FL, FR, RL, RR]`. The rover has
 **two** optical sensors, one per side.
@@ -36,6 +37,9 @@ they turn at the same rate. A second sensor per side would produce a duplicate
 reading, not new information.
 
 Three ways to resolve it, in order of preference:
+
+**Settled: A.** `ros/rover_bringup`'s `wheel_odometry` takes the two tick
+topics, and gives the front and rear wheel joints on each side the same angle.
 
 **A. Pi node accepts two inputs.** Cleanest. Differential-drive odometry needs
 left-side and right-side travel; four wheels do not change that maths.
@@ -53,9 +57,13 @@ that effort on quadrature instead (see below).
 
 ---
 
-## Decision 2 — who computes odometry
+## Decision 2 — who computes odometry (settled: the Pi)
 
-Right now **both** ends compute it, which must not reach the EKF twice.
+**Settled.** The ESP32's `/odom` is removed from the firmware; the Pi's
+`wheel_odometry` publishes `/wheel/odom` and the EKF fuses it with the IMU into
+`/odometry/filtered`. The reasoning below is kept for the record.
+
+Before this, **both** ends computed it, which must not reach the EKF twice.
 
 | | |
 |---|---|
@@ -75,25 +83,24 @@ Reasons:
 
 Disabling it is a few lines; the tick publishers stay. Ask and I will cut it.
 
-Until then, **do not subscribe the EKF to `/odom`** from the ESP32.
+Done: the firmware publishes ticks only.
 
 ---
 
-## Calibration — unmeasured so far
+## Calibration
 
 Top of `rover_microros.ino`:
 
 ```cpp
-const float TICKS_PER_REV       = 20.0f;    // <-- MEASURE
-const float WHEEL_DIAMETER_M    = 0.065f;   // <-- MEASURE
-const float TRACK_WIDTH_M       = 0.200f;   // <-- MEASURE
+const float TICKS_PER_REV       = 140.0f;   // measured
+const float WHEEL_DIAMETER_M    = 0.065f;   // the 65 mm wheels fitted
+const float TRACK_WIDTH_M       = 0.200f;   // <-- MEASURE (CAD says 0.2146)
 const float MAX_WHEEL_SPEED_MS  = 0.55f;    // <-- MEASURE
 ```
 
-These are placeholders. They affect:
-
-- `/odom` from the ESP32 — wrong until measured (another reason to disable it)
-- the `cmd_vel` m/s → PWM conversion, so commanded speeds are only approximate
+On the ESP32 these only set the `cmd_vel` m/s → PWM conversion (and the speed
+loop, when enabled). Odometry uses the same values as parameters of the Pi's
+`wheel_odometry` node — keep the two in step.
 
 **`/ticks_left` and `/ticks_right` are unaffected.** They are raw counts and
 need no calibration, which is why the Pi-side node should work from those.
@@ -131,9 +138,10 @@ across each motor's terminals is the fix. Until then expect gaps in the tick
 stream, which will look like odometry glitches.
 
 **The L298N has a ~23 % deadband.** Commanded velocities below roughly a quarter
-of full scale produce no movement at all. Relevant to nav2 tuning — the
-controller will ask for small corrections and get nothing. Replacing the driver
-with a MOSFET H-bridge (BTS7960) removes this.
+of full scale used to produce no movement at all. The firmware now starts its
+PWM range at the deadband (`speedToDuty`), so any command above 0.02 m/s turns
+the wheels, though slow speeds are only approximate without the speed loop.
+Replacing the driver with a MOSFET H-bridge (BTS7960) removes it properly.
 
 ---
 
@@ -191,7 +199,7 @@ corrupt the protocol.
 | encoder interrupt counting | odometry from ticks |
 | `/cmd_vel` → wheel speeds | `robot_localization` EKF |
 | command-timeout failsafe | SLAM, nav2 |
-| *(later)* closed-loop speed PID | *(later)* guide-dog behaviour |
+| closed-loop speed PID (written, off until the EMI fix) | *(later)* guide-dog behaviour |
 
 The dividing line: the ESP32 does what needs hard real-time guarantees and
 direct hardware access. Everything else belongs on the Pi, where it is easier

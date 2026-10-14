@@ -54,7 +54,7 @@ easier to write, tune and debug.
 | Two L298N boards, one per side | both channels confirmed |
 | Encoder sensors counting | both channels independently, correct pin mapping |
 | micro-ROS session | `client_key` exchange, agent log |
-| `/odom` reaching DDS | 704-byte `Odometry` writes in agent log |
+| Messages reaching DDS | `Odometry` writes in the agent log (the old on-board `/odom`, since moved to the Pi) |
 | `/ticks_left` `/ticks_right` | live counts visible via `ros2 topic echo` |
 | `/cmd_vel` driving motors | motors respond to `ros2 topic pub` |
 | Agent auto-recovery | reconnects after link loss |
@@ -66,7 +66,10 @@ easier to write, tune and debug.
 
 ### Built but not yet tested on hardware
 
-- **Closed-loop PID** — not written. Pointless until discs are fitted.
+- **Closed-loop speed PID** — written in `rover_microros` and compiles, but off
+  (`USE_SPEED_PID = false`) until the motor capacitors stop the EMI.
+- **Pi bringup** (`ros/rover_bringup`) — wheel odometry, MPU6050, EKF, RPLIDAR,
+  camera and one launch file for all of it. Not yet run on the robot.
 - **Haptic handle** (`_cane_later/`) — code written, hardware not built.
 
 ### Known outstanding
@@ -74,9 +77,9 @@ easier to write, tune and debug.
 | | Impact |
 |---|---|
 | **Motor EMI — now the top blocker** | drops the micro-ROS session *and* injects false encoder pulses. Counts taken while driving are inflated several-fold and cannot be trusted. Fix: 100 nF across each motor |
-| **Three calibration constants still unmeasured** | wheel diameter, track width, top speed. `/odom` distances wrong until measured. Raw tick topics unaffected |
+| **Two calibration constants still unmeasured** | track width (firmware 0.200 m vs CAD 0.2146 m) and top speed. The 65 mm wheel diameter is in. Raw tick topics unaffected |
 | **L298N ~23 % deadband** | small velocity commands produce no movement. Matters for nav2 tuning |
-| **Battery protection trips under load** | needs the 3S LiPo, not a 2S pack |
+| **Battery protection trips under load** | fixed by moving to a 4S LiPo; still check the Pi's supply with `vcgencmd get_throttled` (see WIRING.md) |
 
 ---
 
@@ -88,7 +91,7 @@ easier to write, tune and debug.
 | 2 × L298N | one per side. Each motor gets its own H-bridge channel |
 | 4 × 12 V brushed DC gearmotors | two per side, wired in parallel |
 | 2 × LM393 slot optical sensors | one per side, powered at **3.3 V** |
-| 3S LiPo, 11.1 V | 2S is not enough — see §9 |
+| 4S LiPo, 14.8 V | main leads to the L298Ns; balance plug to a 5 V USB-C module for the Pi — see WIRING.md |
 | Raspberry Pi 5 | LiDAR, IMU, camera, nav2 |
 
 ### Pin map
@@ -287,7 +290,8 @@ to micro-ROS and `Serial.print` would corrupt the protocol.
 ros2 topic list
 ```
 
-Expect `/cmd_vel`, `/odom`, `/ticks_left`, `/ticks_right`.
+Expect `/cmd_vel`, `/ticks_left`, `/ticks_right`. (Odometry comes from the Pi —
+see `ros/rover_bringup`.)
 
 > If the blue LED is lit but topics are missing, it is the stale `ros2` daemon,
 > not the rover. See §9.
@@ -332,23 +336,22 @@ Node **`rover_base`**.
 | subscribes | `/cmd_vel` | `geometry_msgs/msg/Twist` | — |
 | publishes | `/ticks_left` | `std_msgs/msg/Int32` | 20 Hz |
 | publishes | `/ticks_right` | `std_msgs/msg/Int32` | 20 Hz |
-| publishes | `/odom` | `nav_msgs/msg/Odometry` | 20 Hz |
 
 **Failsafe:** motors stop if no `/cmd_vel` arrives within 900 ms. Every way of
 losing control — agent killed, cable pulled, Pi crashed, teleop closed — looks
 identical from the rover's side: commands stop arriving. Silence is treated as
 "stop", never as "carry on".
 
-**Two integration decisions are outstanding** — which end computes odometry, and
-how two encoder topics map onto a node expecting four. Both in **INTEGRATION.md**.
+**Odometry is computed on the Pi** from the ticks, by `ros/rover_bringup`'s
+`wheel_odometry` — both integration decisions are settled in **INTEGRATION.md**.
 
 ### Calibration
 
 Top of `rover_microros.ino`:
 
 ```cpp
-const float TICKS_PER_REV       = 20.0f;    // <-- MEASURE
-const float WHEEL_DIAMETER_M    = 0.065f;   // <-- MEASURE
+const float TICKS_PER_REV       = 140.0f;   // measured
+const float WHEEL_DIAMETER_M    = 0.065f;   // the 65 mm wheels fitted
 const float TRACK_WIDTH_M       = 0.200f;   // <-- MEASURE
 const float MAX_WHEEL_SPEED_MS  = 0.55f;    // <-- MEASURE
 ```
@@ -360,9 +363,9 @@ const float MAX_WHEEL_SPEED_MS  = 0.55f;    // <-- MEASURE
 | `TRACK_WIDTH_M` | centre of left wheel to centre of right wheel |
 | `MAX_WHEEL_SPEED_MS` | drive flat out over a measured 2 m, time it |
 
-These affect `/odom` and the m/s → PWM conversion. **Raw tick topics are
-unaffected** — they need no calibration, which is why Pi-side odometry should
-work from those.
+On the ESP32 these set the m/s → PWM conversion and the speed loop. The Pi's
+`wheel_odometry` node takes the same values as parameters — keep them in step.
+**Raw tick topics are unaffected** — they need no calibration.
 
 ---
 
@@ -405,7 +408,7 @@ says.
 
 Battery protection tripping. A 2S pack cannot supply four 12 V motors, and
 7.4 V minus the L298N's ~2 V drop leaves 5.4 V for motors rated at 12 V — they
-strain, draw more current, and trip the protection sooner. Use the 3S pack.
+strain, draw more current, and trip the protection sooner. Use the 4S pack.
 
 Nothing getting warm rules out thermal shutdown.
 
@@ -466,8 +469,10 @@ encoder counts, so nothing measured under power is trustworthy until it is done.
 with a ruler; top speed from the `m` sweep in `drive_and_measure` — but only
 after the capacitors, or the sweep measures noise.
 
-**4. Closed-loop PID.** ~60 lines once discs exist. Gives matched wheel speeds,
-constant speed under varying load, and usable low-speed control.
+**4. Turn on the speed PID.** Written and compiling; set `USE_SPEED_PID = true`
+after the capacitors, then tune `PID_KP` / `PID_KI` (see
+`ros/rover_bringup/README.md`). Gives matched wheel speeds, constant speed
+under varying load, and usable low-speed control.
 
 **5. Replace the L298N.** Two BTS7960 boards, ~₹700. MOSFET, 0.1 V drop, 43 A,
 no thermal shutdown, no deadband. The code change is one function.
