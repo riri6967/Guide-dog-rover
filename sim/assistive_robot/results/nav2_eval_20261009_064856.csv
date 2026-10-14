@@ -1,0 +1,7 @@
+timestamp,goal_name,frame,goal_x,goal_y,status,success,timeout,duration_s,actual_distance_m,planned_path_length_m,route_efficiency_ratio,final_goal_distance_m,min_lidar_range_m,near_obstacle_samples,contact_reported,contact_samples,contact_pairs,collision_data_available,collision_topic
+2026-10-09T06:50:57.028787+05:30,candidate_1,map,-5,4,TIMEOUT,0,1,120.021,1.922,24.188,12.5825,6.228,0.733,0,0,0,,1,/rover_contacts
+2026-10-09T06:53:00.071927+05:30,candidate_2,map,5,-4,TIMEOUT,0,1,120.032,1.197,10.428,8.7121,6.085,0.697,0,0,0,,1,/rover_contacts
+2026-10-09T06:54:01.536262+05:30,candidate_3,map,-3,0,ABORTED,0,0,58.443,0.504,3.577,7.0965,3.157,0.744,0,0,0,,1,/rover_contacts
+2026-10-09T06:54:32.923057+05:30,candidate_4,map,3,4,ABORTED,0,0,28.363,0.281,21.715,77.3869,5.054,0.757,0,0,0,,1,/rover_contacts
+2026-10-09T06:55:17.719912+05:30,candidate_5,map,5,2,ABORTED,0,0,41.773,0.788,10.783,13.6817,5.269,0.904,0,0,0,,1,/rover_contacts
+2026-10-09T06:56:00.558262+05:30,candidate_6,map,-5,2.5,ABORTED,0,0,39.815,2.097,5.139,2.4509,4.27,0.66,0,0,0,,1,/rover_contacts

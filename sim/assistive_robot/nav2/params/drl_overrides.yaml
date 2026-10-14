@@ -1,0 +1,9 @@
+# Overrides applied ON TOP of nav2_params.yaml by navigation_drl.launch.py only (frozen baseline untouched).
+# bt_navigator waits default_server_timeout ms for an action server to ACKNOWLEDGE a goal. C++ controller_server answers in
+# < 1 ms; the Python DRL controller (rclpy) takes 17-50 ms (measured 2026-10-10), so 20 ms made every FollowPath goal fail.
+# 2026-10-11: raised 200 -> 1000. Probe under the full stack (60 goals at 1 Hz): ack median 18 ms, p99 152 ms, max 224 ms;
+# the BT re-sends the path ~1 Hz, so a 200 ms limit still failed whole navigations (15 ack timeouts in drl_run3_cmrev).
+# Does not change control, planning or recovery behaviour.
+bt_navigator:
+  ros__parameters:
+    default_server_timeout: 1000

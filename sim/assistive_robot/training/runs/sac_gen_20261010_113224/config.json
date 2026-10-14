@@ -1,0 +1,21 @@
+{
+ "minutes": 150.0,
+ "n_envs": 6,
+ "n_spare": 2,
+ "eval_envs": 2,
+ "epw": 10,
+ "batch": 1024,
+ "grad_steps": 2,
+ "buffer": 1000000,
+ "learning_starts": 10000,
+ "promote": 0.8,
+ "window": 40,
+ "ckpt_minutes": 20,
+ "log_every": 6000,
+ "seed": 0,
+ "utd": 0.3333333333333333,
+ "no_bg": false,
+ "torch": "2.14.1+cu130",
+ "cuda": true,
+ "utd_effective": 0.3333333333333333
+}

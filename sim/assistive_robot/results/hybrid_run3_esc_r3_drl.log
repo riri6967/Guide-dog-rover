@@ -1,0 +1,137 @@
+[INFO] [1791734719.105066117] [drl_controller]: DRL controller ready, actor /home/pushkar/assistive_robot_ws/src/assistive_robot/training/deploy/actor_run3.npz, tol 0.15 m, lookahead 1.5 m
+[INFO] [1791734719.108383146] [drl_controller]: HYBRID mode: map_c 0.9 ahead 2.0 c_in 0.25 c_out 0.4 g_in 0.0 dwell 2.0 s
+[INFO] [1791734719.757408115] [drl_controller]: map 521x321 received, clearance field ready
+[INFO] [1791734729.796063822] [drl_controller]: switch drl -> mppi at (0.00, -0.00): narrow ahead (map clearance 0.80 m)
+[INFO] [1791734733.999817958] [drl_controller]: switch mppi -> drl at (-0.07, -0.03): open ahead (map 1.00 m, scan 0.79 m)
+[INFO] [1791734735.026411493] [drl_controller]: switch drl -> mppi at (0.01, 0.08): narrow ahead (map clearance 0.85 m)
+[INFO] [1791734743.216207311] [drl_controller]: switch mppi -> drl at (-0.49, 0.05): open ahead (map 1.05 m, scan 0.95 m)
+[INFO] [1791734746.302880445] [drl_controller]: switch drl -> mppi at (-1.28, 0.17): narrow ahead (map clearance 0.70 m)
+[INFO] [1791734778.655316063] [drl_controller]: switch mppi -> drl at (-4.74, 2.30): open ahead (map 1.03 m, scan 0.50 m)
+[INFO] [1791734784.138067926] [drl_controller]: navigation succeeded: drl 2.55 m, mppi 5.77 m -> DRL share 31% | cumulative drl 2.5 m, mppi 5.8 m
+[INFO] [1791734787.546602686] [drl_controller]: switch drl -> mppi at (-5.04, 3.96): narrow ahead (map clearance 0.87 m)
+[INFO] [1791734880.132391584] [drl_controller]: switch mppi -> drl at (4.06, -1.34): open ahead (map 1.05 m, scan 0.52 m)
+[INFO] [1791734885.184797147] [drl_controller]: switch drl -> mppi at (4.37, -2.64): narrow ahead (map clearance 0.89 m)
+[INFO] [1791734888.354808839] [drl_controller]: switch mppi -> drl at (4.68, -3.33): open ahead (map 1.00 m, scan 1.68 m)
+[INFO] [1791734890.471862112] [drl_controller]: navigation succeeded: drl 2.03 m, mppi 14.29 m -> DRL share 12% | cumulative drl 4.6 m, mppi 20.1 m
+[INFO] [1791734893.874111568] [drl_controller]: switch drl -> mppi at (5.04, -3.99): narrow ahead (map clearance 0.60 m)
+[INFO] [1791734956.694522775] [drl_controller]: switch mppi -> drl at (-1.50, -0.39): open ahead (map 1.00 m, scan 0.66 m)
+[INFO] [1791734962.274109958] [drl_controller]: navigation succeeded: drl 1.50 m, mppi 9.11 m -> DRL share 14% | cumulative drl 6.1 m, mppi 29.2 m
+[INFO] [1791734965.655223521] [drl_controller]: switch drl -> mppi at (-2.94, 0.11): narrow ahead (map clearance 0.70 m)
+[INFO] [1791735003.727433706] [drl_controller]: switch mppi -> drl at (0.11, 2.52): open ahead (map 1.00 m, scan 0.47 m)
+[INFO] [1791735015.112538008] [drl_controller]: navigation succeeded: drl 3.24 m, mppi 4.70 m -> DRL share 41% | cumulative drl 9.3 m, mppi 33.9 m
+[INFO] [1791735020.710707372] [drl_controller]: navigation canceled: drl 0.39 m, mppi 0.00 m -> DRL share 100% | cumulative drl 9.7 m, mppi 33.9 m
+[INFO] [1791735029.514697603] [drl_controller]: navigation canceled: drl 0.77 m, mppi 0.00 m -> DRL share 100% | cumulative drl 10.5 m, mppi 33.9 m
+[INFO] [1791735042.812243211] [drl_controller]: switch drl -> mppi at (4.40, 4.19): narrow ahead (map clearance 0.85 m)
+[INFO] [1791735065.699564564] [drl_controller]: ESCAPE 1 at (4.74, 2.42): rear clearance 6.85 m
+[INFO] [1791735071.183372419] [drl_controller]: ESCAPE done: reversed 0.13 m, turned 0 deg
+[INFO] [1791735071.198816277] [drl_controller]: switch drl -> mppi at (4.65, 2.52): narrow ahead (map clearance 0.40 m)
+[INFO] [1791735143.125960128] [drl_controller]: ESCAPE 2 at (5.00, 2.30): rear clearance 5.60 m
+[INFO] [1791735148.280900725] [drl_controller]: ESCAPE done: reversed 0.30 m, turned 26 deg
+[INFO] [1791735148.387899062] [drl_controller]: switch drl -> mppi at (4.71, 2.31): scan clearance 0.23 m
+[INFO] [1791735168.496479707] [drl_controller]: navigation canceled: drl 1.73 m, mppi 2.99 m -> DRL share 37% | cumulative drl 12.2 m, mppi 36.9 m
+[INFO] [1791735171.797927832] [drl_controller]: switch drl -> mppi at (5.00, 2.27): narrow ahead (map clearance 0.65 m)
+[INFO] [1791735266.382250841] [drl_controller]: switch mppi -> drl at (-4.86, 2.09): open ahead (map 1.01 m, scan 0.46 m)
+[INFO] [1791735267.553292208] [drl_controller]: navigation succeeded: drl 0.31 m, mppi 13.88 m -> DRL share 2% | cumulative drl 12.5 m, mppi 50.7 m
+[INFO] [1791735272.101881566] [drl_controller]: switch drl -> mppi at (-5.01, 2.49): narrow ahead (map clearance 0.72 m)
+[INFO] [1791735310.449102597] [drl_controller]: switch mppi -> drl at (-2.24, 0.45): open ahead (map 1.00 m, scan 0.44 m)
+[INFO] [1791735318.027853485] [drl_controller]: navigation succeeded: drl 2.18 m, mppi 4.54 m -> DRL share 32% | cumulative drl 14.7 m, mppi 55.3 m
+[INFO] [1791735319.751370879] [drl_controller]: switch drl -> mppi at (0.03, -0.01): narrow ahead (map clearance 0.75 m)
+[INFO] [1791735362.910669959] [drl_controller]: switch mppi -> drl at (-4.96, 1.12): open ahead (map 1.00 m, scan 0.42 m)
+[INFO] [1791735365.650012635] [drl_controller]: switch drl -> mppi at (-4.83, 1.84): narrow ahead (map clearance 0.87 m)
+[INFO] [1791735368.126570557] [drl_controller]: switch mppi -> drl at (-4.69, 2.37): open ahead (map 1.03 m, scan 0.56 m)
+[INFO] [1791735373.246503612] [drl_controller]: navigation succeeded: drl 2.45 m, mppi 6.41 m -> DRL share 28% | cumulative drl 17.2 m, mppi 61.7 m
+[INFO] [1791735378.779415425] [drl_controller]: switch drl -> mppi at (-5.05, 4.03): narrow ahead (map clearance 0.81 m)
+[INFO] [1791735467.363466630] [drl_controller]: switch mppi -> drl at (4.07, -1.45): open ahead (map 1.05 m, scan 0.51 m)
+[INFO] [1791735473.366652695] [drl_controller]: switch drl -> mppi at (4.49, -2.88): narrow ahead (map clearance 0.89 m)
+[INFO] [1791735475.512394292] [drl_controller]: switch mppi -> drl at (4.70, -3.28): open ahead (map 1.01 m, scan 1.55 m)
+[INFO] [1791735478.033152015] [drl_controller]: navigation succeeded: drl 2.39 m, mppi 14.06 m -> DRL share 15% | cumulative drl 19.6 m, mppi 75.8 m
+[INFO] [1791735481.491345615] [drl_controller]: switch drl -> mppi at (5.04, -3.98): narrow ahead (map clearance 0.60 m)
+[INFO] [1791735533.971413823] [drl_controller]: switch mppi -> drl at (2.57, -0.34): open ahead (map 1.05 m, scan 0.53 m)
+[INFO] [1791735554.455287649] [drl_controller]: navigation succeeded: drl 5.97 m, mppi 6.65 m -> DRL share 47% | cumulative drl 25.5 m, mppi 82.4 m
+[INFO] [1791735554.535467625] [drl_controller]: navigation succeeded: drl 0.00 m, mppi 0.00 m -> DRL share 0% | cumulative drl 25.5 m, mppi 82.4 m
+[INFO] [1791735560.863979270] [drl_controller]: switch drl -> mppi at (-3.04, 0.05): narrow ahead (map clearance 0.85 m)
+[INFO] [1791735568.284156509] [drl_controller]: switch mppi -> drl at (-2.83, 0.07): open ahead (map 1.10 m, scan 0.86 m)
+[INFO] [1791735570.702576598] [drl_controller]: switch drl -> mppi at (-2.28, 0.15): narrow ahead (map clearance 0.89 m)
+[INFO] [1791735600.218538795] [drl_controller]: ESCAPE 1 at (-0.16, 1.50): rear clearance 2.37 m
+[INFO] [1791735603.548626583] [drl_controller]: ESCAPE done: reversed 0.30 m, turned 0 deg
+[INFO] [1791735603.554045683] [drl_controller]: switch drl -> mppi at (-0.22, 1.21): narrow ahead (map clearance 0.66 m)
+[INFO] [1791735623.785111249] [drl_controller]: switch mppi -> drl at (0.59, 2.65): open ahead (map 1.00 m, scan 0.47 m)
+[INFO] [1791735633.398265538] [drl_controller]: navigation succeeded: drl 3.78 m, mppi 5.84 m -> DRL share 39% | cumulative drl 29.3 m, mppi 88.2 m
+[INFO] [1791735640.974953259] [drl_controller]: switch drl -> mppi at (3.65, 4.04): narrow ahead (map clearance 0.85 m)
+[INFO] [1791735664.895519272] [drl_controller]: ESCAPE 1 at (4.81, 2.41): rear clearance 5.60 m
+[INFO] [1791735670.272257562] [drl_controller]: ESCAPE done: reversed 0.22 m, turned 0 deg
+[INFO] [1791735670.338023920] [drl_controller]: ESCAPE 2 at (4.67, 2.62): rear clearance 5.35 m
+[INFO] [1791735673.582664421] [drl_controller]: ESCAPE done: reversed 0.30 m, turned 0 deg
+[INFO] [1791735673.585990885] [drl_controller]: switch drl -> mppi at (4.54, 2.83): narrow ahead (map clearance 0.40 m)
+[WARN] [1791735688.104447561] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791735688.105211739] [drl_controller]: navigation aborted: drl 1.51 m, mppi 2.74 m -> DRL share 36% | cumulative drl 30.8 m, mppi 91.0 m
+[INFO] [1791735688.206535858] [drl_controller]: switch drl -> mppi at (4.82, 2.40): narrow ahead (map clearance 0.40 m)
+[INFO] [1791735698.467000572] [drl_controller]: ESCAPE 1 at (4.86, 2.34): rear clearance 6.71 m
+[INFO] [1791735703.842096139] [drl_controller]: ESCAPE done: reversed 0.21 m, turned 0 deg
+[INFO] [1791735703.847233091] [drl_controller]: ESCAPE 2 at (4.69, 2.51): rear clearance 6.46 m
+[INFO] [1791735707.596488213] [drl_controller]: ESCAPE done: reversed 0.30 m, turned 0 deg
+[INFO] [1791735707.600402089] [drl_controller]: switch drl -> mppi at (4.49, 2.68): narrow ahead (map clearance 0.40 m)
+[WARN] [1791735722.216609430] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791735722.257532204] [drl_controller]: navigation aborted: drl 0.51 m, mppi 0.70 m -> DRL share 42% | cumulative drl 31.3 m, mppi 91.7 m
+[INFO] [1791735722.428246513] [drl_controller]: switch drl -> mppi at (4.88, 2.36): narrow ahead (map clearance 0.40 m)
+[INFO] [1791735732.691711415] [drl_controller]: ESCAPE 1 at (5.00, 2.37): rear clearance 5.34 m
+[INFO] [1791735737.540641240] [drl_controller]: ESCAPE done: reversed 0.31 m, turned 29 deg
+[INFO] [1791735737.560183319] [drl_controller]: ESCAPE 2 at (4.68, 2.38): rear clearance 6.33 m
+[INFO] [1791735742.695920581] [drl_controller]: ESCAPE done: reversed 0.30 m, turned 0 deg
+[INFO] [1791735742.753867488] [drl_controller]: switch drl -> mppi at (4.46, 2.51): narrow ahead (map clearance 0.40 m)
+[WARN] [1791735756.211874435] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791735756.222048629] [drl_controller]: navigation aborted: drl 0.58 m, mppi 0.55 m -> DRL share 52% | cumulative drl 31.9 m, mppi 92.2 m
+[INFO] [1791735756.296875242] [drl_controller]: switch drl -> mppi at (4.64, 2.37): scan clearance 0.24 m
+[INFO] [1791735766.549600849] [drl_controller]: ESCAPE 1 at (4.70, 2.31): rear clearance 5.95 m
+[INFO] [1791735771.893502454] [drl_controller]: ESCAPE done: reversed 0.18 m, turned 0 deg
+[INFO] [1791735771.911397060] [drl_controller]: ESCAPE 2 at (4.53, 2.42): rear clearance 5.75 m
+[INFO] [1791735775.607179173] [drl_controller]: ESCAPE done: reversed 0.31 m, turned 0 deg
+[INFO] [1791735775.623886455] [drl_controller]: switch drl -> mppi at (4.31, 2.56): narrow ahead (map clearance 0.40 m)
+[INFO] [1791735786.821636394] [drl_controller]: navigation canceled: drl 0.47 m, mppi 0.66 m -> DRL share 41% | cumulative drl 32.4 m, mppi 92.9 m
+[INFO] [1791735790.137781096] [drl_controller]: switch drl -> mppi at (4.64, 2.33): scan clearance 0.24 m
+[INFO] [1791735800.423838997] [drl_controller]: ESCAPE 1 at (4.62, 2.34): rear clearance 6.50 m
+[INFO] [1791735812.013876035] [drl_controller]: ESCAPE done: reversed 0.12 m, turned 3 deg
+[INFO] [1791735812.032767745] [drl_controller]: ESCAPE 2 at (4.52, 2.43): rear clearance 5.76 m
+[INFO] [1791735823.585391586] [drl_controller]: ESCAPE done: reversed 0.15 m, turned 7 deg
+[INFO] [1791735823.674636312] [drl_controller]: switch drl -> mppi at (4.43, 2.54): narrow ahead (map clearance 0.80 m)
+[INFO] [1791735882.755826184] [drl_controller]: switch mppi -> drl at (-2.01, 0.45): open ahead (map 1.00 m, scan 0.49 m)
+[INFO] [1791735886.525376329] [drl_controller]: navigation succeeded: drl 1.31 m, mppi 9.07 m -> DRL share 13% | cumulative drl 33.7 m, mppi 101.9 m
+[INFO] [1791735886.610556757] [drl_controller]: navigation succeeded: drl 0.00 m, mppi 0.00 m -> DRL share 0% | cumulative drl 33.7 m, mppi 101.9 m
+[INFO] [1791735890.073921823] [drl_controller]: switch drl -> mppi at (-2.99, -0.06): narrow ahead (map clearance 0.70 m)
+[INFO] [1791735934.620602547] [drl_controller]: ESCAPE 1 at (-0.24, 1.25): rear clearance 2.29 m
+[INFO] [1791735938.193292515] [drl_controller]: ESCAPE done: reversed 0.30 m, turned 0 deg
+[INFO] [1791735938.221403990] [drl_controller]: ESCAPE 2 at (-0.35, 0.95): rear clearance 1.97 m
+[INFO] [1791735941.946778250] [drl_controller]: ESCAPE done: reversed 0.30 m, turned 0 deg
+[INFO] [1791735941.959420627] [drl_controller]: switch drl -> mppi at (-0.43, 0.68): narrow ahead (map clearance 0.67 m)
+[INFO] [1791735959.934916570] [drl_controller]: switch mppi -> drl at (0.30, 2.62): open ahead (map 1.04 m, scan 0.48 m)
+[INFO] [1791735970.346216061] [drl_controller]: navigation succeeded: drl 3.63 m, mppi 5.89 m -> DRL share 38% | cumulative drl 37.3 m, mppi 107.8 m
+[INFO] [1791735976.149655317] [drl_controller]: navigation canceled: drl 0.47 m, mppi 0.00 m -> DRL share 100% | cumulative drl 37.8 m, mppi 107.8 m
+[INFO] [1791735987.150648655] [drl_controller]: switch drl -> mppi at (3.95, 4.13): narrow ahead (map clearance 0.80 m)
+[INFO] [1791736018.242131127] [drl_controller]: ESCAPE 1 at (4.89, 2.38): rear clearance 5.24 m
+[INFO] [1791736022.658274582] [drl_controller]: ESCAPE done: reversed 0.31 m, turned 0 deg
+[INFO] [1791736022.724530084] [drl_controller]: switch drl -> mppi at (4.74, 2.68): narrow ahead (map clearance 0.40 m)
+[INFO] [1791736035.570667581] [drl_controller]: ESCAPE 2 at (4.90, 2.39): rear clearance 5.79 m
+[INFO] [1791736040.991422622] [drl_controller]: ESCAPE done: reversed 0.13 m, turned 0 deg
+[WARN] [1791736041.024046832] [drl_controller]: no progress for 10 s in drl mode: aborting FollowPath (BT recoveries)
+[INFO] [1791736041.024552432] [drl_controller]: navigation aborted: drl 2.40 m, mppi 2.93 m -> DRL share 45% | cumulative drl 40.2 m, mppi 110.8 m
+[INFO] [1791736041.081024692] [drl_controller]: switch drl -> mppi at (4.82, 2.51): narrow ahead (map clearance 0.40 m)
+[INFO] [1791736051.354847681] [drl_controller]: ESCAPE 1 at (4.85, 2.44): rear clearance 6.13 m
+[INFO] [1791736056.818300126] [drl_controller]: ESCAPE done: reversed 0.20 m, turned 0 deg
+[INFO] [1791736056.862967549] [drl_controller]: ESCAPE 2 at (4.71, 2.61): rear clearance 5.92 m
+[INFO] [1791736060.917079621] [drl_controller]: ESCAPE done: reversed 0.30 m, turned 0 deg
+[INFO] [1791736060.952032765] [drl_controller]: switch drl -> mppi at (4.54, 2.87): narrow ahead (map clearance 0.40 m)
+[WARN] [1791736075.223639492] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791736075.255053233] [drl_controller]: navigation aborted: drl 0.53 m, mppi 0.82 m -> DRL share 39% | cumulative drl 40.7 m, mppi 111.6 m
+[INFO] [1791736080.442755934] [drl_controller]: switch drl -> mppi at (4.85, 2.42): narrow ahead (map clearance 0.40 m)
+[INFO] [1791736100.951500447] [drl_controller]: ESCAPE 1 at (5.00, 2.32): rear clearance 1.25 m
+[INFO] [1791736105.685461969] [drl_controller]: ESCAPE done: reversed 0.31 m, turned 25 deg
+[INFO] [1791736105.709593715] [drl_controller]: ESCAPE 2 at (4.72, 2.29): rear clearance 5.81 m
+[INFO] [1791736111.088298205] [drl_controller]: ESCAPE done: reversed 0.09 m, turned 0 deg
+[INFO] [1791736111.122126662] [drl_controller]: switch drl -> mppi at (4.68, 2.32): narrow ahead (map clearance 0.40 m)
+[INFO] [1791736124.106252774] [drl_controller]: navigation canceled: drl 0.53 m, mppi 0.85 m -> DRL share 38% | cumulative drl 41.3 m, mppi 112.4 m
+[INFO] [1791736127.076674611] [drl_controller]: switch drl -> mppi at (5.02, 2.28): narrow ahead (map clearance 0.65 m)
+[INFO] [1791736217.120820789] [drl_controller]: switch mppi -> drl at (-4.95, 1.90): open ahead (map 1.03 m, scan 0.53 m)
+[INFO] [1791736218.973963253] [drl_controller]: navigation succeeded: drl 0.50 m, mppi 13.34 m -> DRL share 4% | cumulative drl 41.8 m, mppi 125.8 m
+22:00:22 received signal SIGINT, shutting down
+[INFO] [1791736222.406626245] [drl_controller]: navigation at shutdown: drl 0.50 m, mppi 13.34 m -> DRL share 4% | cumulative drl 41.8 m, mppi 125.8 m
+escapes total 21

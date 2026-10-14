@@ -1,0 +1,7 @@
+episodes 10: success 4 (40%), collisions 6, stuck 0, timeouts 0 | 1354 steps in 23.9 s = 57 steps/s | mean len 135, mean return 33.6, reset err max 0.007 m
+  fail: start geo 6.2 m, end geo 3.66 m, dist 2.63 m, collision after 86 steps
+  fail: start geo 8.3 m, end geo 4.15 m, dist 3.79 m, collision after 165 steps
+  fail: start geo 5.7 m, end geo 3.71 m, dist 3.03 m, collision after 71 steps
+  fail: start geo 9.0 m, end geo 5.74 m, dist 5.05 m, collision after 130 steps
+  fail: start geo 5.6 m, end geo 3.64 m, dist 2.22 m, collision after 65 steps
+  fail: start geo 9.8 m, end geo 7.66 m, dist 6.72 m, collision after 78 steps

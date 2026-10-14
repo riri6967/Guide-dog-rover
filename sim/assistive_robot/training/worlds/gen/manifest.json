@@ -1,0 +1,6496 @@
+[
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 13.393126433345365,
+  "H": 8.88887987073743,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_000.sdf",
+  "seed": 10000,
+  "spawn": [
+   5.25,
+   -2.65
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 11.364403587524777,
+  "H": 8.614166564769002,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_001.sdf",
+  "seed": 10001,
+  "spawn": [
+   3.95,
+   -0.45
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.405711806309902,
+  "H": 7.545109420273526,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_002.sdf",
+  "seed": 10002,
+  "spawn": [
+   -1.95,
+   2.35
+  ],
+  "n_prims": 5,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.6879454436892765,
+  "H": 5.624456544644432,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_003.sdf",
+  "seed": 10003,
+  "spawn": [
+   0.55,
+   0.55
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 12.447802198304782,
+  "H": 8.595396151089723,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_004.sdf",
+  "seed": 10004,
+  "spawn": [
+   1.95,
+   1.45
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.8678307220076675,
+  "H": 9.222872288553965,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_005.sdf",
+  "seed": 10005,
+  "spawn": [
+   -2.45,
+   3.55
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 9.390894290683192,
+  "H": 5.707000304354434,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_006.sdf",
+  "seed": 10006,
+  "spawn": [
+   2.15,
+   -1.85
+  ],
+  "n_prims": 5,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 12.240654491484204,
+  "H": 5.24641287934457,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_007.sdf",
+  "seed": 10007,
+  "spawn": [
+   -4.35,
+   -1.25
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.229307043443117,
+  "H": 8.066705643817576,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_008.sdf",
+  "seed": 10008,
+  "spawn": [
+   -0.85,
+   0.55
+  ],
+  "n_prims": 7,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.2992731119379135,
+  "H": 9.223063073403125,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_009.sdf",
+  "seed": 10009,
+  "spawn": [
+   1.25,
+   1.05
+  ],
+  "n_prims": 5,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 11.731557714972297,
+  "H": 6.801129525504457,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_010.sdf",
+  "seed": 10010,
+  "spawn": [
+   3.15,
+   -1.85
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 13.327096190914386,
+  "H": 8.717306577315368,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_011.sdf",
+  "seed": 10011,
+  "spawn": [
+   -2.95,
+   3.25
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 13.843283494060113,
+  "H": 5.552714261586763,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_012.sdf",
+  "seed": 10012,
+  "spawn": [
+   -0.05,
+   1.75
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 12.859866232997572,
+  "H": 7.493849249764411,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_013.sdf",
+  "seed": 10013,
+  "spawn": [
+   2.35,
+   1.45
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.10083866306854,
+  "H": 7.632587645363634,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_014.sdf",
+  "seed": 10014,
+  "spawn": [
+   -0.55,
+   2.75
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.0252620474553,
+  "H": 7.055145835350679,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_015.sdf",
+  "seed": 10015,
+  "spawn": [
+   0.15,
+   1.05
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 13.007376511030113,
+  "H": 7.61683231969555,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_016.sdf",
+  "seed": 10016,
+  "spawn": [
+   3.35,
+   -1.45
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.113017122414545,
+  "H": 5.288526406042728,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_017.sdf",
+  "seed": 10017,
+  "spawn": [
+   -1.75,
+   0.35
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 12.995553316155096,
+  "H": 6.517604953332706,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_018.sdf",
+  "seed": 10018,
+  "spawn": [
+   -5.35,
+   1.95
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.348758550285303,
+  "H": 6.5646047516169315,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_019.sdf",
+  "seed": 10019,
+  "spawn": [
+   0.85,
+   0.85
+  ],
+  "n_prims": 5,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 11.893611471801728,
+  "H": 9.35865520378086,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_020.sdf",
+  "seed": 10020,
+  "spawn": [
+   3.55,
+   -1.05
+  ],
+  "n_prims": 5,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 10.598457502836284,
+  "H": 7.157641239547897,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_021.sdf",
+  "seed": 10021,
+  "spawn": [
+   1.65,
+   0.75
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 11.955036838147459,
+  "H": 8.571553746782541,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_022.sdf",
+  "seed": 10022,
+  "spawn": [
+   1.35,
+   2.85
+  ],
+  "n_prims": 7,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 10.687449395586754,
+  "H": 8.350989573021849,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_023.sdf",
+  "seed": 10023,
+  "spawn": [
+   0.45,
+   -3.25
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.8711845993317135,
+  "H": 8.081488735874396,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_024.sdf",
+  "seed": 10024,
+  "spawn": [
+   -0.55,
+   -1.05
+  ],
+  "n_prims": 5,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.5149026794742,
+  "H": 9.635748221398412,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_025.sdf",
+  "seed": 10025,
+  "spawn": [
+   -1.45,
+   -1.25
+  ],
+  "n_prims": 7,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 8.305592459517367,
+  "H": 6.783096622686939,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_026.sdf",
+  "seed": 10026,
+  "spawn": [
+   -2.55,
+   1.45
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.638382319702296,
+  "H": 6.69679394663935,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_027.sdf",
+  "seed": 10027,
+  "spawn": [
+   0.35,
+   0.65
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 8.641689345440675,
+  "H": 6.130032805416127,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_028.sdf",
+  "seed": 10028,
+  "spawn": [
+   0.35,
+   -1.25
+  ],
+  "n_prims": 7,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 8.154125429226667,
+  "H": 6.485209264393181,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w0_029.sdf",
+  "seed": 10029,
+  "spawn": [
+   -0.45,
+   -1.05
+  ],
+  "n_prims": 5,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 14.755517569581635,
+  "H": 11.207958491533484,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_000.sdf",
+  "seed": 11000,
+  "spawn": [
+   2.35,
+   3.75
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.346524633736465,
+  "H": 7.483084764371909,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_001.sdf",
+  "seed": 11001,
+  "spawn": [
+   -2.35,
+   1.55
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 14.464310723269971,
+  "H": 8.093494679743653,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_002.sdf",
+  "seed": 11002,
+  "spawn": [
+   -5.65,
+   0.25
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 10.265396370359902,
+  "H": 6.402595856026215,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_003.sdf",
+  "seed": 11003,
+  "spawn": [
+   1.45,
+   1.35
+  ],
+  "n_prims": 11,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 10.922487995453732,
+  "H": 8.790406072017547,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_004.sdf",
+  "seed": 11004,
+  "spawn": [
+   1.35,
+   -1.65
+  ],
+  "n_prims": 10,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 15.305552594041568,
+  "H": 9.539472243572927,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_005.sdf",
+  "seed": 11005,
+  "spawn": [
+   -4.15,
+   -2.25
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 9.616822015360125,
+  "H": 9.166763442023115,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_006.sdf",
+  "seed": 11006,
+  "spawn": [
+   -0.35,
+   -0.75
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 8.007030444833568,
+  "H": 9.003618655634227,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_007.sdf",
+  "seed": 11007,
+  "spawn": [
+   2.55,
+   -1.75
+  ],
+  "n_prims": 8,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 13.538593509023,
+  "H": 6.883622417054896,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_008.sdf",
+  "seed": 11008,
+  "spawn": [
+   1.65,
+   -1.85
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.902201991898199,
+  "H": 10.153195056160259,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_009.sdf",
+  "seed": 11009,
+  "spawn": [
+   1.65,
+   -3.85
+  ],
+  "n_prims": 10,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 10.515052119449132,
+  "H": 7.364506126819318,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_010.sdf",
+  "seed": 11010,
+  "spawn": [
+   -1.95,
+   -2.15
+  ],
+  "n_prims": 8,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 13.96110087960638,
+  "H": 7.971103598506923,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_011.sdf",
+  "seed": 11011,
+  "spawn": [
+   -1.25,
+   -2.85
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 14.79774898856708,
+  "H": 7.349480506599552,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_012.sdf",
+  "seed": 11012,
+  "spawn": [
+   6.25,
+   0.45
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.809230034898718,
+  "H": 9.281750795531924,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_013.sdf",
+  "seed": 11013,
+  "spawn": [
+   -3.45,
+   -2.05
+  ],
+  "n_prims": 8,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 14.84223747808101,
+  "H": 6.112669358881039,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_014.sdf",
+  "seed": 11014,
+  "spawn": [
+   4.95,
+   -0.25
+  ],
+  "n_prims": 11,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 12.9396244942964,
+  "H": 11.843534875471015,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_015.sdf",
+  "seed": 11015,
+  "spawn": [
+   0.55,
+   -0.35
+  ],
+  "n_prims": 10,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 15.869491928354751,
+  "H": 10.300358838687218,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_016.sdf",
+  "seed": 11016,
+  "spawn": [
+   -3.85,
+   0.65
+  ],
+  "n_prims": 11,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 12.117280395526556,
+  "H": 7.347441207449069,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_017.sdf",
+  "seed": 11017,
+  "spawn": [
+   0.05,
+   1.75
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 9.892813066578395,
+  "H": 11.415520583749812,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_018.sdf",
+  "seed": 11018,
+  "spawn": [
+   3.05,
+   2.85
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 8.630151174602286,
+  "H": 8.60721439528934,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_019.sdf",
+  "seed": 11019,
+  "spawn": [
+   1.95,
+   -2.55
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 12.343173751703638,
+  "H": 11.642005673359604,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_020.sdf",
+  "seed": 11020,
+  "spawn": [
+   -4.25,
+   -2.65
+  ],
+  "n_prims": 10,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 9.308329970724555,
+  "H": 11.845218277709325,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_021.sdf",
+  "seed": 11021,
+  "spawn": [
+   -1.85,
+   -0.15
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.996548921090614,
+  "H": 11.239227982884225,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_022.sdf",
+  "seed": 11022,
+  "spawn": [
+   1.45,
+   -0.25
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 10.92622043289365,
+  "H": 7.446264143710255,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_023.sdf",
+  "seed": 11023,
+  "spawn": [
+   2.85,
+   -2.15
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 13.841265094644205,
+  "H": 7.20191453258934,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_024.sdf",
+  "seed": 11024,
+  "spawn": [
+   1.35,
+   0.85
+  ],
+  "n_prims": 8,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.900661000687634,
+  "H": 9.53930067839115,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_025.sdf",
+  "seed": 11025,
+  "spawn": [
+   0.55,
+   0.15
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 8.2022713054091,
+  "H": 8.982313701074203,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_026.sdf",
+  "seed": 11026,
+  "spawn": [
+   1.65,
+   1.05
+  ],
+  "n_prims": 8,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 15.844784286289148,
+  "H": 7.246040685323714,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_027.sdf",
+  "seed": 11027,
+  "spawn": [
+   -0.35,
+   -1.35
+  ],
+  "n_prims": 11,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.859553348357762,
+  "H": 7.58729184400531,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_028.sdf",
+  "seed": 11028,
+  "spawn": [
+   2.25,
+   1.75
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.871507924898381,
+  "H": 6.431520371174449,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_029.sdf",
+  "seed": 11029,
+  "spawn": [
+   -1.85,
+   -0.95
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 15.367751566194226,
+  "H": 8.199163874061199,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_030.sdf",
+  "seed": 11030,
+  "spawn": [
+   0.35,
+   -2.75
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 8.8492105295051,
+  "H": 11.4754279484469,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_031.sdf",
+  "seed": 11031,
+  "spawn": [
+   0.85,
+   0.05
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 15.886858733245788,
+  "H": 9.961503515379242,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_032.sdf",
+  "seed": 11032,
+  "spawn": [
+   0.65,
+   -2.25
+  ],
+  "n_prims": 8,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 10.429063632666374,
+  "H": 6.600170921740265,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_033.sdf",
+  "seed": 11033,
+  "spawn": [
+   0.55,
+   2.15
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.450402643976732,
+  "H": 10.048694550531991,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_034.sdf",
+  "seed": 11034,
+  "spawn": [
+   2.45,
+   4.05
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 9.394563533523346,
+  "H": 8.67609822048894,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_035.sdf",
+  "seed": 11035,
+  "spawn": [
+   2.25,
+   1.45
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 14.86775478139409,
+  "H": 11.329235876732074,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_036.sdf",
+  "seed": 11036,
+  "spawn": [
+   2.05,
+   0.95
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 13.6847807429141,
+  "H": 9.676632913441102,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_037.sdf",
+  "seed": 11037,
+  "spawn": [
+   -5.15,
+   -0.45
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 12.547754151477772,
+  "H": 8.067258203700174,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_038.sdf",
+  "seed": 11038,
+  "spawn": [
+   3.85,
+   0.65
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 9.453354641730357,
+  "H": 9.273144143823284,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_039.sdf",
+  "seed": 11039,
+  "spawn": [
+   3.75,
+   0.55
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 15.199882791138975,
+  "H": 9.394429413456585,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_040.sdf",
+  "seed": 11040,
+  "spawn": [
+   4.95,
+   1.75
+  ],
+  "n_prims": 10,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.744359472531594,
+  "H": 6.655443477698237,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_041.sdf",
+  "seed": 11041,
+  "spawn": [
+   1.25,
+   -1.85
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 8.206355529710306,
+  "H": 10.240884079732213,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_042.sdf",
+  "seed": 11042,
+  "spawn": [
+   -0.75,
+   2.55
+  ],
+  "n_prims": 10,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 15.16688562034539,
+  "H": 10.232416771723663,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_043.sdf",
+  "seed": 11043,
+  "spawn": [
+   5.05,
+   -1.35
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.50519619276974,
+  "H": 10.607002753370441,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_044.sdf",
+  "seed": 11044,
+  "spawn": [
+   0.75,
+   3.45
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 15.779072638726891,
+  "H": 6.000099684240796,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_045.sdf",
+  "seed": 11045,
+  "spawn": [
+   3.85,
+   -0.35
+  ],
+  "n_prims": 11,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 8.952014513487534,
+  "H": 10.816307439377288,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_046.sdf",
+  "seed": 11046,
+  "spawn": [
+   1.05,
+   -3.85
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 8.94530648797331,
+  "H": 8.016024631543504,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_047.sdf",
+  "seed": 11047,
+  "spawn": [
+   -0.45,
+   -3.05
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.82548913303471,
+  "H": 11.90908048289851,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_048.sdf",
+  "seed": 11048,
+  "spawn": [
+   -1.15,
+   -1.45
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 13.708873202889027,
+  "H": 10.307712573876465,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w1_049.sdf",
+  "seed": 11049,
+  "spawn": [
+   -5.85,
+   0.85
+  ],
+  "n_prims": 11,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 18.52891305173067,
+  "H": 10.821842579086322,
+  "corridor_w": 2.12856228629752,
+  "doors": [
+   0.975,
+   1.569,
+   1.728,
+   1.77,
+   1.096,
+   0.94,
+   1.689,
+   1.98,
+   1.451,
+   0.961
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_000.sdf",
+  "seed": 12000,
+  "spawn": [
+   3.95,
+   3.55
+  ],
+  "n_prims": 33,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 16.23917835283331,
+  "H": 10.710707115418698,
+  "corridor_w": 1.6427522533256502,
+  "doors": [
+   0.914,
+   0.943,
+   1.335,
+   1.819,
+   1.58,
+   1.556,
+   1.107,
+   1.383,
+   1.771
+  ],
+  "rooms": 7,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_001.sdf",
+  "seed": 12001,
+  "spawn": [
+   -6.75,
+   -3.95
+  ],
+  "n_prims": 29,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 14.55714729036924,
+  "H": 12.107355571850189,
+  "corridor_w": 2.5103627466908174,
+  "doors": [
+   0.932,
+   0.901,
+   1.02,
+   1.541,
+   1.402,
+   1.275,
+   1.808
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_002.sdf",
+  "seed": 12002,
+  "spawn": [
+   -2.75,
+   -1.75
+  ],
+  "n_prims": 25,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 15.272935912547347,
+  "H": 10.309230047892875,
+  "corridor_w": 1.2399990073360192,
+  "doors": [
+   1.021,
+   1.147,
+   1.014,
+   1.088,
+   1.506,
+   1.839,
+   1.603,
+   1.008
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_003.sdf",
+  "seed": 12003,
+  "spawn": [
+   4.85,
+   -2.85
+  ],
+  "n_prims": 27,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 17.055466323698177,
+  "H": 10.90779435485716,
+  "corridor_w": 1.8864755825224577,
+  "doors": [
+   1.069,
+   0.944,
+   1.736,
+   1.433,
+   0.933,
+   1.272,
+   1.492,
+   1.992,
+   1.522
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_004.sdf",
+  "seed": 12004,
+  "spawn": [
+   -4.15,
+   -3.15
+  ],
+  "n_prims": 32,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 17.351934550864293,
+  "H": 8.669126057602472,
+  "corridor_w": 1.226806049548407,
+  "doors": [
+   1.561,
+   1.976,
+   0.986,
+   1.027,
+   1.539,
+   1.731,
+   1.107,
+   1.152,
+   1.738,
+   1.412
+  ],
+  "rooms": 9,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_005.sdf",
+  "seed": 12005,
+  "spawn": [
+   -2.95,
+   -2.95
+  ],
+  "n_prims": 36,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 15.280850333077776,
+  "H": 12.400169202166929,
+  "corridor_w": 1.6573463740307217,
+  "doors": [
+   0.902,
+   1.247,
+   1.269,
+   1.379,
+   1.742,
+   1.36,
+   1.962,
+   1.872
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_006.sdf",
+  "seed": 12006,
+  "spawn": [
+   6.55,
+   -0.05
+  ],
+  "n_prims": 29,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 12.562678826016372,
+  "H": 8.020134574638552,
+  "corridor_w": 2.8697511187199276,
+  "doors": [
+   1.581,
+   0.994,
+   1.738
+  ],
+  "rooms": 3,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_007.sdf",
+  "seed": 12007,
+  "spawn": [
+   3.75,
+   0.65
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 16.12542039005681,
+  "H": 9.410293246047068,
+  "corridor_w": 1.286653861610911,
+  "doors": [
+   1.551,
+   1.006,
+   1.769,
+   1.151,
+   0.97,
+   1.744
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_008.sdf",
+  "seed": 12008,
+  "spawn": [
+   4.25,
+   1.75
+  ],
+  "n_prims": 22,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 15.326104431407302,
+  "H": 8.865555691407861,
+  "corridor_w": 1.203263798045464,
+  "doors": [
+   1.235,
+   1.129,
+   1.286,
+   1.341,
+   1.1,
+   1.933,
+   1.075,
+   1.402
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_009.sdf",
+  "seed": 12009,
+  "spawn": [
+   5.85,
+   -2.45
+  ],
+  "n_prims": 28,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 18.51467646599395,
+  "H": 11.825921586054477,
+  "corridor_w": 2.4432062801897705,
+  "doors": [
+   1.908,
+   1.61,
+   1.483,
+   1.818,
+   1.852,
+   1.828,
+   1.355,
+   1.711
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_010.sdf",
+  "seed": 12010,
+  "spawn": [
+   3.15,
+   -4.25
+  ],
+  "n_prims": 27,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 12.45814990026523,
+  "H": 8.252324596929098,
+  "corridor_w": 2.0635330862624444,
+  "doors": [
+   1.328,
+   1.879,
+   0.988,
+   1.754,
+   1.969,
+   1.474,
+   1.905,
+   1.217
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_011.sdf",
+  "seed": 12011,
+  "spawn": [
+   -1.15,
+   -0.35
+  ],
+  "n_prims": 24,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 19.450386931579935,
+  "H": 10.1368128259873,
+  "corridor_w": 1.45529708283158,
+  "doors": [
+   1.039,
+   1.005,
+   1.084,
+   1.069,
+   1.76,
+   1.431,
+   0.913,
+   0.911,
+   1.331,
+   1.067,
+   1.906
+  ],
+  "rooms": 10,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_012.sdf",
+  "seed": 12012,
+  "spawn": [
+   7.15,
+   -0.95
+  ],
+  "n_prims": 42,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 16.6891259057436,
+  "H": 9.661357401206498,
+  "corridor_w": 1.3587226328651083,
+  "doors": [
+   1.223,
+   1.023,
+   1.518,
+   1.575,
+   1.912,
+   1.524,
+   1.334,
+   1.899,
+   1.982
+  ],
+  "rooms": 8,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_013.sdf",
+  "seed": 12013,
+  "spawn": [
+   -6.25,
+   3.05
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 15.525052366097967,
+  "H": 9.285941271805136,
+  "corridor_w": 2.0287943378411963,
+  "doors": [
+   1.969,
+   1.037,
+   1.88,
+   1.407,
+   1.705,
+   0.992,
+   1.158,
+   1.404
+  ],
+  "rooms": 7,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_014.sdf",
+  "seed": 12014,
+  "spawn": [
+   6.35,
+   3.65
+  ],
+  "n_prims": 26,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 18.194127130257833,
+  "H": 11.0819592720328,
+  "corridor_w": 2.9341906049784825,
+  "doors": [
+   1.396,
+   1.982,
+   1.007,
+   1.77,
+   1.142,
+   1.084,
+   1.785,
+   1.324,
+   1.093
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_015.sdf",
+  "seed": 12015,
+  "spawn": [
+   1.15,
+   3.85
+  ],
+  "n_prims": 32,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 16.73747951514896,
+  "H": 11.658061377228236,
+  "corridor_w": 2.386886890560531,
+  "doors": [
+   1.209,
+   1.868,
+   0.974,
+   1.998,
+   1.884,
+   1.829,
+   1.814,
+   1.02,
+   1.779,
+   1.548
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_016.sdf",
+  "seed": 12016,
+  "spawn": [
+   3.75,
+   4.85
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 14.65478165121219,
+  "H": 8.958613673695021,
+  "corridor_w": 1.5999743499664287,
+  "doors": [
+   1.423,
+   1.245,
+   0.978,
+   0.924,
+   1.868,
+   0.958,
+   1.099,
+   1.243
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_017.sdf",
+  "seed": 12017,
+  "spawn": [
+   0.25,
+   -0.25
+  ],
+  "n_prims": 28,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 16.24447344416312,
+  "H": 10.80234409742147,
+  "corridor_w": 2.824661450475357,
+  "doors": [
+   1.951,
+   1.706,
+   1.688,
+   1.721,
+   1.418,
+   0.902,
+   1.289,
+   1.383,
+   1.149,
+   1.132
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_018.sdf",
+  "seed": 12018,
+  "spawn": [
+   4.85,
+   3.35
+  ],
+  "n_prims": 32,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 19.39235334441804,
+  "H": 10.964732240166594,
+  "corridor_w": 2.903134762699752,
+  "doors": [
+   1.233,
+   1.893,
+   1.571,
+   1.901,
+   1.257,
+   1.17,
+   1.353,
+   1.262,
+   0.976,
+   1.792,
+   1.138
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_019.sdf",
+  "seed": 12019,
+  "spawn": [
+   7.65,
+   2.65
+  ],
+  "n_prims": 41,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 19.276071739347856,
+  "H": 12.254596219896754,
+  "corridor_w": 1.822829794533801,
+  "doors": [
+   1.325,
+   0.952,
+   0.947,
+   1.49,
+   0.918,
+   0.994,
+   1.533,
+   1.768,
+   1.663
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_020.sdf",
+  "seed": 12020,
+  "spawn": [
+   1.75,
+   -2.85
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 17.188768845704004,
+  "H": 12.785913327508416,
+  "corridor_w": 2.705160946260691,
+  "doors": [
+   1.322,
+   1.277,
+   1.761,
+   1.756,
+   1.844,
+   1.253,
+   1.079,
+   1.752,
+   1.862
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_021.sdf",
+  "seed": 12021,
+  "spawn": [
+   -6.95,
+   -3.05
+  ],
+  "n_prims": 33,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 17.79572937992686,
+  "H": 10.994101974125751,
+  "corridor_w": 1.4220838517883754,
+  "doors": [
+   1.545,
+   1.505,
+   1.225,
+   1.259,
+   1.077,
+   1.808,
+   0.993,
+   1.281,
+   1.79
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_022.sdf",
+  "seed": 12022,
+  "spawn": [
+   -6.25,
+   -0.65
+  ],
+  "n_prims": 34,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 19.657147627968893,
+  "H": 8.685305025494358,
+  "corridor_w": 1.5118239822654178,
+  "doors": [
+   1.703,
+   1.432,
+   0.98,
+   1.173,
+   1.298,
+   1.23,
+   0.934,
+   1.766,
+   0.991,
+   1.271,
+   1.222,
+   1.984
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_023.sdf",
+  "seed": 12023,
+  "spawn": [
+   -0.25,
+   1.95
+  ],
+  "n_prims": 36,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 12.985531027576489,
+  "H": 11.153479550556074,
+  "corridor_w": 2.2940533451758425,
+  "doors": [
+   1.68,
+   1.572,
+   1.962,
+   1.763,
+   1.134,
+   0.926,
+   1.374,
+   1.47,
+   1.355
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_024.sdf",
+  "seed": 12024,
+  "spawn": [
+   -0.05,
+   -0.25
+  ],
+  "n_prims": 26,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 19.460980943390993,
+  "H": 10.013443060057378,
+  "corridor_w": 2.3216278149356717,
+  "doors": [
+   1.876,
+   1.089,
+   1.654,
+   0.98,
+   1.54,
+   1.139,
+   1.085,
+   1.858,
+   1.144,
+   1.248
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_025.sdf",
+  "seed": 12025,
+  "spawn": [
+   -6.75,
+   2.75
+  ],
+  "n_prims": 32,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 19.8413174635882,
+  "H": 8.581697103998792,
+  "corridor_w": 2.257926042198043,
+  "doors": [
+   1.503,
+   1.081,
+   0.929,
+   1.625,
+   1.063,
+   1.829,
+   1.777,
+   1.295,
+   1.964
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_026.sdf",
+  "seed": 12026,
+  "spawn": [
+   5.85,
+   -3.15
+  ],
+  "n_prims": 28,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 15.226463252344669,
+  "H": 12.910588326384245,
+  "corridor_w": 2.6717188648430232,
+  "doors": [
+   1.877,
+   0.944,
+   1.737,
+   1.925,
+   1.247,
+   0.989,
+   1.851,
+   1.407,
+   0.952
+  ],
+  "rooms": 7,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_027.sdf",
+  "seed": 12027,
+  "spawn": [
+   -6.55,
+   1.45
+  ],
+  "n_prims": 30,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 18.403438146067618,
+  "H": 9.263120269700348,
+  "corridor_w": 2.432097720045155,
+  "doors": [
+   1.667,
+   1.665,
+   1.848,
+   1.745,
+   0.969,
+   1.889,
+   1.896,
+   1.561,
+   1.91,
+   0.972
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_028.sdf",
+  "seed": 12028,
+  "spawn": [
+   6.35,
+   -2.25
+  ],
+  "n_prims": 36,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 12.007507238218821,
+  "H": 8.298230053346199,
+  "corridor_w": 1.7508124714176565,
+  "doors": [
+   1.23,
+   1.595,
+   1.078,
+   1.927,
+   1.161,
+   1.788,
+   1.426,
+   1.234
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_029.sdf",
+  "seed": 12029,
+  "spawn": [
+   -4.85,
+   2.85
+  ],
+  "n_prims": 23,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 19.80830231651695,
+  "H": 10.69729618568427,
+  "corridor_w": 1.9783273473283087,
+  "doors": [
+   0.996,
+   1.062,
+   1.345,
+   1.6,
+   1.543,
+   1.521,
+   1.45,
+   1.921,
+   1.567,
+   0.977,
+   1.979
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_030.sdf",
+  "seed": 12030,
+  "spawn": [
+   1.25,
+   -4.05
+  ],
+  "n_prims": 37,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 19.146813600841178,
+  "H": 10.884759401485457,
+  "corridor_w": 2.824890202596773,
+  "doors": [
+   1.883,
+   1.315,
+   1.907,
+   1.478,
+   1.341,
+   1.445,
+   1.311,
+   1.515,
+   1.613,
+   1.932
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_031.sdf",
+  "seed": 12031,
+  "spawn": [
+   -0.65,
+   -3.85
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 15.18076572225872,
+  "H": 10.916045228839508,
+  "corridor_w": 2.611355110595622,
+  "doors": [
+   1.793,
+   1.876,
+   1.907,
+   0.962,
+   1.623,
+   1.224,
+   1.614
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_032.sdf",
+  "seed": 12032,
+  "spawn": [
+   5.95,
+   2.95
+  ],
+  "n_prims": 27,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 16.187769611211138,
+  "H": 12.226722186101062,
+  "corridor_w": 1.6289214509423071,
+  "doors": [
+   1.935,
+   1.59,
+   1.411,
+   0.918,
+   1.439,
+   1.088,
+   1.051,
+   0.935,
+   1.269,
+   1.081
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_033.sdf",
+  "seed": 12033,
+  "spawn": [
+   -6.35,
+   0.85
+  ],
+  "n_prims": 32,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 17.865621281906122,
+  "H": 10.022453860542285,
+  "corridor_w": 1.4848802081047807,
+  "doors": [
+   1.146,
+   1.613,
+   1.183,
+   1.588,
+   1.711,
+   1.759,
+   1.237,
+   1.924,
+   1.849,
+   1.013
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_034.sdf",
+  "seed": 12034,
+  "spawn": [
+   0.05,
+   -3.85
+  ],
+  "n_prims": 33,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 14.032807206435265,
+  "H": 10.608729598697108,
+  "corridor_w": 1.4947954713461526,
+  "doors": [
+   1.94,
+   1.324,
+   1.187,
+   1.268,
+   1.112,
+   0.934,
+   1.45,
+   1.025,
+   1.546
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_035.sdf",
+  "seed": 12035,
+  "spawn": [
+   2.55,
+   3.65
+  ],
+  "n_prims": 29,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 15.988572614030538,
+  "H": 11.602475756911332,
+  "corridor_w": 1.970108890264616,
+  "doors": [
+   1.433,
+   1.557,
+   1.12,
+   1.103,
+   1.484,
+   1.108,
+   1.876,
+   1.399,
+   1.159
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_036.sdf",
+  "seed": 12036,
+  "spawn": [
+   5.35,
+   0.65
+  ],
+  "n_prims": 34,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 18.558303730799626,
+  "H": 9.811193973413808,
+  "corridor_w": 2.632690313931496,
+  "doors": [
+   1.815,
+   1.306,
+   1.663,
+   1.448,
+   1.217,
+   1.611,
+   1.907,
+   1.598,
+   0.946,
+   1.049,
+   1.381
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_037.sdf",
+  "seed": 12037,
+  "spawn": [
+   -8.25,
+   0.85
+  ],
+  "n_prims": 36,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 16.150586434880406,
+  "H": 10.998988536110279,
+  "corridor_w": 1.9047867329044101,
+  "doors": [
+   1.482,
+   1.538,
+   0.947,
+   1.139,
+   1.682,
+   0.958,
+   0.969,
+   1.45,
+   1.436,
+   0.933
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_038.sdf",
+  "seed": 12038,
+  "spawn": [
+   -1.25,
+   0.55
+  ],
+  "n_prims": 30,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 15.317309469165998,
+  "H": 11.27065047594928,
+  "corridor_w": 1.9131290590745733,
+  "doors": [
+   1.63,
+   1.441,
+   1.772,
+   1.658,
+   1.42,
+   1.52,
+   1.97,
+   1.939
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_039.sdf",
+  "seed": 12039,
+  "spawn": [
+   -5.35,
+   -2.65
+  ],
+  "n_prims": 28,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 17.365557040728284,
+  "H": 10.774237942180157,
+  "corridor_w": 1.3363322020005055,
+  "doors": [
+   1.127,
+   1.327,
+   1.558,
+   1.898,
+   1.081,
+   0.975,
+   1.047,
+   1.325,
+   1.188,
+   1.919,
+   1.697,
+   1.759
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_040.sdf",
+  "seed": 12040,
+  "spawn": [
+   -5.75,
+   -1.65
+  ],
+  "n_prims": 37,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 18.975875730284145,
+  "H": 12.409971659039176,
+  "corridor_w": 1.2547541808096951,
+  "doors": [
+   1.409,
+   1.813,
+   1.818,
+   1.07,
+   1.204,
+   1.077,
+   1.371,
+   1.239,
+   1.372,
+   1.648
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_041.sdf",
+  "seed": 12041,
+  "spawn": [
+   8.05,
+   4.35
+  ],
+  "n_prims": 36,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 17.851412355031293,
+  "H": 10.193536672767262,
+  "corridor_w": 1.6370539587510962,
+  "doors": [
+   1.148,
+   1.981,
+   1.509,
+   0.915,
+   1.517,
+   1.854,
+   1.955,
+   0.901,
+   1.14
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_042.sdf",
+  "seed": 12042,
+  "spawn": [
+   -2.65,
+   3.15
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 18.52151966483752,
+  "H": 8.178214085075725,
+  "corridor_w": 2.5534951043316276,
+  "doors": [
+   1.109,
+   1.038,
+   1.241,
+   1.237,
+   1.248,
+   1.258,
+   1.856,
+   1.885
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_043.sdf",
+  "seed": 12043,
+  "spawn": [
+   -3.45,
+   -0.15
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 12.745838075320759,
+  "H": 10.697028231145342,
+  "corridor_w": 1.675359351922218,
+  "doors": [
+   0.962,
+   1.628,
+   0.918,
+   1.803,
+   0.94
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 0.999,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_044.sdf",
+  "seed": 12044,
+  "spawn": [
+   -3.75,
+   0.65
+  ],
+  "n_prims": 22,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 19.218833022914474,
+  "H": 8.07052663556514,
+  "corridor_w": 1.7604717101767795,
+  "doors": [
+   1.998,
+   1.95,
+   0.977,
+   1.636,
+   1.691,
+   1.377,
+   1.27,
+   1.929,
+   1.705,
+   1.584,
+   1.361,
+   1.284
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_045.sdf",
+  "seed": 12045,
+  "spawn": [
+   5.95,
+   -1.95
+  ],
+  "n_prims": 37,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 15.317957063283437,
+  "H": 8.171497933723389,
+  "corridor_w": 2.507840815673034,
+  "doors": [
+   1.182,
+   1.756,
+   0.972,
+   0.97,
+   1.357,
+   1.585,
+   0.979,
+   1.779,
+   1.887
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_046.sdf",
+  "seed": 12046,
+  "spawn": [
+   -5.25,
+   2.75
+  ],
+  "n_prims": 27,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 19.50361113189141,
+  "H": 11.441387524196962,
+  "corridor_w": 1.5812437735395561,
+  "doors": [
+   1.763,
+   1.807,
+   1.276,
+   1.154,
+   1.879,
+   0.915,
+   1.469,
+   1.293,
+   0.986
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_047.sdf",
+  "seed": 12047,
+  "spawn": [
+   4.65,
+   2.85
+  ],
+  "n_prims": 35,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 18.62716359767652,
+  "H": 10.222934278846054,
+  "corridor_w": 2.3514304600501745,
+  "doors": [
+   1.206,
+   1.224,
+   1.448,
+   1.681,
+   1.741,
+   1.634,
+   1.3,
+   1.748
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_048.sdf",
+  "seed": 12048,
+  "spawn": [
+   5.65,
+   -2.25
+  ],
+  "n_prims": 28,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 14.521292773835583,
+  "H": 8.352582968876126,
+  "corridor_w": 1.4782721836874702,
+  "doors": [
+   1.655,
+   1.054,
+   1.377,
+   1.79,
+   1.687,
+   1.233,
+   1.121,
+   0.945
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_049.sdf",
+  "seed": 12049,
+  "spawn": [
+   -5.15,
+   -1.75
+  ],
+  "n_prims": 29,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 16.822445824973858,
+  "H": 9.371261108260974,
+  "corridor_w": 1.2827009430623801,
+  "doors": [
+   1.711,
+   1.559,
+   0.908,
+   1.54,
+   1.469,
+   1.075
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_050.sdf",
+  "seed": 12050,
+  "spawn": [
+   -0.65,
+   1.45
+  ],
+  "n_prims": 24,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 14.708295753833768,
+  "H": 11.505868945398456,
+  "corridor_w": 1.384809519382101,
+  "doors": [
+   1.655,
+   1.875,
+   1.41,
+   1.31,
+   1.829,
+   1.744,
+   1.038,
+   1.516,
+   1.226,
+   1.782
+  ],
+  "rooms": 8,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_051.sdf",
+  "seed": 12051,
+  "spawn": [
+   -5.55,
+   -0.45
+  ],
+  "n_prims": 32,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 16.96075264236269,
+  "H": 8.625388821722355,
+  "corridor_w": 2.0111046745963375,
+  "doors": [
+   1.635,
+   1.757,
+   1.445,
+   1.741,
+   1.05,
+   1.144,
+   0.989,
+   1.841,
+   1.465,
+   1.908
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_052.sdf",
+  "seed": 12052,
+  "spawn": [
+   -5.45,
+   2.95
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 18.50162104128367,
+  "H": 8.297383687427216,
+  "corridor_w": 2.2690645110865066,
+  "doors": [
+   1.778,
+   1.71,
+   1.788,
+   1.459,
+   1.393,
+   1.633,
+   0.951,
+   1.471,
+   1.389,
+   0.948
+  ],
+  "rooms": 8,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_053.sdf",
+  "seed": 12053,
+  "spawn": [
+   -8.05,
+   -2.55
+  ],
+  "n_prims": 32,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 15.242170225082077,
+  "H": 9.816648065991572,
+  "corridor_w": 1.436954666518114,
+  "doors": [
+   1.015,
+   1.197,
+   1.676,
+   1.349,
+   0.919,
+   1.499,
+   1.871,
+   1.299,
+   1.629
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_054.sdf",
+  "seed": 12054,
+  "spawn": [
+   5.35,
+   2.85
+  ],
+  "n_prims": 30,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 14.95602994918513,
+  "H": 8.991369290572434,
+  "corridor_w": 2.218544290346417,
+  "doors": [
+   1.227,
+   1.445,
+   1.944,
+   1.745,
+   1.145,
+   1.07
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_055.sdf",
+  "seed": 12055,
+  "spawn": [
+   -0.95,
+   2.25
+  ],
+  "n_prims": 24,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 14.384582045498119,
+  "H": 8.110201920189294,
+  "corridor_w": 2.9776665225393524,
+  "doors": [
+   1.248,
+   1.155,
+   1.707,
+   1.456,
+   0.913
+  ],
+  "rooms": 4,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_056.sdf",
+  "seed": 12056,
+  "spawn": [
+   6.05,
+   -0.95
+  ],
+  "n_prims": 18,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 18.853993452465872,
+  "H": 10.88901578866013,
+  "corridor_w": 1.694191435016084,
+  "doors": [
+   1.27,
+   1.469,
+   1.896,
+   1.478,
+   1.277,
+   1.868,
+   0.966,
+   1.206,
+   1.451,
+   1.568
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_057.sdf",
+  "seed": 12057,
+  "spawn": [
+   6.95,
+   -1.15
+  ],
+  "n_prims": 35,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 13.253473476722744,
+  "H": 10.279833610957636,
+  "corridor_w": 2.636121251914019,
+  "doors": [
+   1.685,
+   1.92,
+   1.97,
+   1.006,
+   1.932,
+   1.111
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_058.sdf",
+  "seed": 12058,
+  "spawn": [
+   3.15,
+   -0.55
+  ],
+  "n_prims": 23,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 16.65920450598086,
+  "H": 11.226935124336366,
+  "corridor_w": 1.8639501417342004,
+  "doors": [
+   1.511,
+   1.119,
+   1.716,
+   1.384,
+   1.114,
+   1.597,
+   1.898,
+   1.471,
+   0.939
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w2_059.sdf",
+  "seed": 12059,
+  "spawn": [
+   -1.65,
+   1.15
+  ],
+  "n_prims": 30,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 19.31229575841725,
+  "H": 8.692516859298902,
+  "corridor_w": 1.575367936713975,
+  "doors": [
+   1.0,
+   0.96,
+   1.64,
+   1.844,
+   1.114,
+   1.854,
+   1.965,
+   1.508,
+   1.19,
+   1.695,
+   1.569,
+   1.624
+  ],
+  "rooms": 10,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_000.sdf",
+  "seed": 13000,
+  "spawn": [
+   7.75,
+   2.55
+  ],
+  "n_prims": 65,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 19.836823018862045,
+  "H": 8.008263345920183,
+  "corridor_w": 2.196506280495963,
+  "doors": [
+   1.158,
+   1.036,
+   1.331,
+   1.056,
+   1.904,
+   1.363,
+   1.732,
+   1.818,
+   1.436,
+   1.099,
+   1.378,
+   1.864
+  ],
+  "rooms": 10,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_001.sdf",
+  "seed": 13001,
+  "spawn": [
+   -5.25,
+   -3.05
+  ],
+  "n_prims": 72,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 17.11695683590333,
+  "H": 9.58713242665096,
+  "corridor_w": 1.3801445045775214,
+  "doors": [
+   1.355,
+   1.585,
+   1.434,
+   1.488,
+   1.879,
+   0.938,
+   1.1,
+   1.488,
+   1.416,
+   1.199
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_002.sdf",
+  "seed": 13002,
+  "spawn": [
+   1.45,
+   -1.05
+  ],
+  "n_prims": 63,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.09856034888824,
+  "H": 9.641286263055044,
+  "corridor_w": 1.8336786199948514,
+  "doors": [
+   1.29,
+   1.55,
+   1.667,
+   1.854,
+   1.684,
+   1.087,
+   1.97,
+   1.593,
+   1.421,
+   1.082,
+   1.251,
+   1.057
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_003.sdf",
+  "seed": 13003,
+  "spawn": [
+   -5.85,
+   2.05
+  ],
+  "n_prims": 59,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 16.269522316107366,
+  "H": 9.309005744376087,
+  "corridor_w": 1.4017199349474658,
+  "doors": [
+   1.738,
+   1.174,
+   1.877,
+   1.883,
+   0.974,
+   1.563,
+   1.649,
+   0.987,
+   1.965
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 0.986,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_004.sdf",
+  "seed": 13004,
+  "spawn": [
+   4.05,
+   1.45
+  ],
+  "n_prims": 49,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 14.520910849889116,
+  "H": 11.109476002261719,
+  "corridor_w": 2.561819897434276,
+  "doors": [
+   1.347,
+   1.005,
+   1.714,
+   1.475,
+   1.836,
+   1.858
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_005.sdf",
+  "seed": 13005,
+  "spawn": [
+   -1.15,
+   2.55
+  ],
+  "n_prims": 41,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 14.870444100097624,
+  "H": 11.67239975143356,
+  "corridor_w": 1.8073418445083957,
+  "doors": [
+   1.603,
+   1.179,
+   1.612,
+   1.841,
+   1.043,
+   1.456,
+   1.428,
+   1.103
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_006.sdf",
+  "seed": 13006,
+  "spawn": [
+   4.05,
+   4.85
+  ],
+  "n_prims": 53,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.849349658905,
+  "H": 9.166571962558962,
+  "corridor_w": 1.782818628655705,
+  "doors": [
+   1.672,
+   1.132,
+   1.852,
+   1.352,
+   1.647,
+   1.997,
+   1.702,
+   1.852,
+   1.711,
+   1.411
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_007.sdf",
+  "seed": 13007,
+  "spawn": [
+   0.85,
+   2.95
+  ],
+  "n_prims": 52,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 15.891746671507546,
+  "H": 11.546785825120473,
+  "corridor_w": 1.908470227336277,
+  "doors": [
+   1.163,
+   1.333,
+   0.983,
+   1.66,
+   1.563,
+   0.937,
+   1.258,
+   1.556,
+   1.938,
+   1.997
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 0.972,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_008.sdf",
+  "seed": 13008,
+  "spawn": [
+   1.35,
+   3.05
+  ],
+  "n_prims": 64,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 18.36816131658527,
+  "H": 12.071243390393008,
+  "corridor_w": 2.256832290758082,
+  "doors": [
+   1.85,
+   1.395,
+   0.982,
+   1.973,
+   1.145,
+   1.329,
+   1.586,
+   1.678,
+   1.991,
+   1.484,
+   1.619,
+   1.293,
+   1.782,
+   1.123
+  ],
+  "rooms": 9,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_009.sdf",
+  "seed": 13009,
+  "spawn": [
+   -1.05,
+   -2.15
+  ],
+  "n_prims": 67,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 17.188805889532627,
+  "H": 8.3507993902972,
+  "corridor_w": 2.449640376376697,
+  "doors": [
+   1.672,
+   0.967,
+   1.566,
+   1.43,
+   1.772,
+   1.258,
+   1.044,
+   1.618,
+   1.732
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_010.sdf",
+  "seed": 13010,
+  "spawn": [
+   -7.05,
+   1.55
+  ],
+  "n_prims": 51,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 19.88278453899655,
+  "H": 12.627418752969959,
+  "corridor_w": 2.260446432648565,
+  "doors": [
+   1.196,
+   1.694,
+   1.989,
+   1.892,
+   1.762,
+   0.925,
+   1.197,
+   1.575,
+   1.642,
+   1.879,
+   1.548,
+   1.663,
+   1.666
+  ],
+  "rooms": 10,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_011.sdf",
+  "seed": 13011,
+  "spawn": [
+   8.65,
+   3.25
+  ],
+  "n_prims": 74,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 12.236603746193522,
+  "H": 10.874483133786388,
+  "corridor_w": 2.8636386501652638,
+  "doors": [
+   1.397,
+   0.967,
+   1.871,
+   1.472,
+   1.232,
+   1.536
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_012.sdf",
+  "seed": 13012,
+  "spawn": [
+   -4.95,
+   -3.55
+  ],
+  "n_prims": 41,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.590386481307245,
+  "H": 9.379151033638626,
+  "corridor_w": 2.946843626960692,
+  "doors": [
+   1.181,
+   0.935,
+   0.945,
+   1.677,
+   1.642,
+   1.09,
+   1.493,
+   1.015,
+   1.873,
+   1.813,
+   1.551
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_013.sdf",
+  "seed": 13013,
+  "spawn": [
+   2.75,
+   3.15
+  ],
+  "n_prims": 53,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 15.04311840596672,
+  "H": 12.916049365683122,
+  "corridor_w": 1.786648458068619,
+  "doors": [
+   1.649,
+   1.346,
+   1.377,
+   1.085,
+   1.868,
+   1.881,
+   1.223,
+   0.971
+  ],
+  "rooms": 7,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_014.sdf",
+  "seed": 13014,
+  "spawn": [
+   -0.55,
+   0.05
+  ],
+  "n_prims": 42,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 13.40147095528425,
+  "H": 9.875015169991151,
+  "corridor_w": 1.3108674467955634,
+  "doors": [
+   1.339,
+   1.232,
+   1.335,
+   1.314,
+   1.519,
+   1.475
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_015.sdf",
+  "seed": 13015,
+  "spawn": [
+   2.05,
+   -3.65
+  ],
+  "n_prims": 40,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 13.425331666078211,
+  "H": 10.091462092422521,
+  "corridor_w": 2.976483561995843,
+  "doors": [
+   0.963,
+   1.79,
+   1.741,
+   1.132,
+   1.447,
+   1.059,
+   1.911
+  ],
+  "rooms": 7,
+  "attempt": 2,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_016.sdf",
+  "seed": 13016,
+  "spawn": [
+   0.35,
+   -0.45
+  ],
+  "n_prims": 50,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 14.693966688275655,
+  "H": 11.59282219925755,
+  "corridor_w": 1.2789539509949555,
+  "doors": [
+   1.834,
+   1.526,
+   1.94,
+   1.789,
+   0.995,
+   1.069,
+   1.892,
+   1.453,
+   1.079
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 0.972,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_017.sdf",
+  "seed": 13017,
+  "spawn": [
+   -1.15,
+   -2.75
+  ],
+  "n_prims": 58,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 16.05974137244382,
+  "H": 8.283428302381232,
+  "corridor_w": 2.8053512109407546,
+  "doors": [
+   1.122,
+   1.23,
+   1.433,
+   1.222,
+   1.633,
+   1.343
+  ],
+  "rooms": 5,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_018.sdf",
+  "seed": 13018,
+  "spawn": [
+   -4.05,
+   -2.95
+  ],
+  "n_prims": 36,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.37800565679696,
+  "H": 12.946612826918127,
+  "corridor_w": 1.5060935677186968,
+  "doors": [
+   1.057,
+   1.321,
+   1.405,
+   1.768,
+   1.394,
+   1.969,
+   1.97,
+   1.603,
+   0.949,
+   1.469
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_019.sdf",
+  "seed": 13019,
+  "spawn": [
+   3.55,
+   4.25
+  ],
+  "n_prims": 56,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 16.71029681073148,
+  "H": 11.210418037365937,
+  "corridor_w": 2.9567855204462354,
+  "doors": [
+   1.315,
+   1.187,
+   1.63,
+   1.702,
+   0.942,
+   1.454,
+   0.969
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 0.989,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_020.sdf",
+  "seed": 13020,
+  "spawn": [
+   -2.85,
+   2.95
+  ],
+  "n_prims": 41,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 18.832361699028212,
+  "H": 12.726814970962621,
+  "corridor_w": 2.948577237285333,
+  "doors": [
+   1.973,
+   1.881,
+   1.943,
+   1.578,
+   1.427,
+   1.289,
+   1.413,
+   1.579,
+   1.638,
+   1.85
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_021.sdf",
+  "seed": 13021,
+  "spawn": [
+   -6.15,
+   1.65
+  ],
+  "n_prims": 56,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 12.020676648865617,
+  "H": 9.222753887273319,
+  "corridor_w": 2.0239852477033744,
+  "doors": [
+   1.505,
+   1.857,
+   1.022,
+   1.427,
+   1.131,
+   1.331
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 0.98,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_022.sdf",
+  "seed": 13022,
+  "spawn": [
+   -4.15,
+   0.95
+  ],
+  "n_prims": 41,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 19.487904388487973,
+  "H": 8.233839040355228,
+  "corridor_w": 2.75466722122136,
+  "doors": [
+   1.44,
+   1.74,
+   0.945,
+   1.672,
+   1.708,
+   1.241
+  ],
+  "rooms": 4,
+  "attempt": 2,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_023.sdf",
+  "seed": 13023,
+  "spawn": [
+   7.95,
+   -2.55
+  ],
+  "n_prims": 32,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 18.709080521440548,
+  "H": 9.3325809586244,
+  "corridor_w": 2.0123114659106345,
+  "doors": [
+   1.806,
+   1.834,
+   1.143,
+   1.077,
+   1.96,
+   1.634,
+   0.904,
+   1.866,
+   1.319,
+   0.947,
+   1.611
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_024.sdf",
+  "seed": 13024,
+  "spawn": [
+   7.05,
+   2.05
+  ],
+  "n_prims": 63,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 14.206307079507283,
+  "H": 9.249776275381434,
+  "corridor_w": 2.383636419723085,
+  "doors": [
+   1.256,
+   1.084,
+   1.8,
+   1.34,
+   1.025,
+   1.583,
+   1.699,
+   0.956,
+   1.06
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_025.sdf",
+  "seed": 13025,
+  "spawn": [
+   -3.15,
+   2.05
+  ],
+  "n_prims": 45,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 12.434426475756943,
+  "H": 9.63884003345569,
+  "corridor_w": 2.9084786208942077,
+  "doors": [
+   1.073,
+   1.233,
+   1.941,
+   1.339,
+   1.6,
+   1.61,
+   1.96
+  ],
+  "rooms": 7,
+  "attempt": 3,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_026.sdf",
+  "seed": 13026,
+  "spawn": [
+   2.25,
+   0.05
+  ],
+  "n_prims": 53,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.9845736544164,
+  "H": 8.872048045805467,
+  "corridor_w": 2.3733322784588005,
+  "doors": [
+   1.548,
+   1.417,
+   1.187,
+   1.832,
+   1.716,
+   0.998,
+   1.518,
+   1.463,
+   0.948,
+   1.85,
+   1.317,
+   0.973
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_027.sdf",
+  "seed": 13027,
+  "spawn": [
+   -2.75,
+   0.15
+  ],
+  "n_prims": 66,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 18.716623992281907,
+  "H": 9.459326673910597,
+  "corridor_w": 2.9748575115376097,
+  "doors": [
+   1.858,
+   1.429,
+   1.37,
+   1.327,
+   1.622,
+   1.188,
+   0.979,
+   1.944,
+   0.949,
+   1.688
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_028.sdf",
+  "seed": 13028,
+  "spawn": [
+   -5.45,
+   -2.45
+  ],
+  "n_prims": 67,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 14.319063319865915,
+  "H": 11.446632662953727,
+  "corridor_w": 2.7579698513253144,
+  "doors": [
+   1.447,
+   1.885,
+   1.124,
+   1.544,
+   0.905,
+   1.823,
+   1.166,
+   1.59
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 0.979,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_029.sdf",
+  "seed": 13029,
+  "spawn": [
+   -3.95,
+   -4.55
+  ],
+  "n_prims": 47,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 14.041397577260488,
+  "H": 10.461756910469974,
+  "corridor_w": 2.8648801062088496,
+  "doors": [
+   1.445,
+   1.496,
+   1.539,
+   0.991,
+   1.599,
+   1.019,
+   1.894,
+   1.41
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_030.sdf",
+  "seed": 13030,
+  "spawn": [
+   2.45,
+   2.55
+  ],
+  "n_prims": 47,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 14.982363911489958,
+  "H": 10.020033317084486,
+  "corridor_w": 1.982923897553569,
+  "doors": [
+   1.639,
+   1.639,
+   1.751,
+   1.638,
+   1.949,
+   1.954,
+   0.962,
+   0.992
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_031.sdf",
+  "seed": 13031,
+  "spawn": [
+   -5.45,
+   3.55
+  ],
+  "n_prims": 56,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 18.071046438474564,
+  "H": 12.123443403690485,
+  "corridor_w": 2.426316169766987,
+  "doors": [
+   1.952,
+   0.939,
+   1.787,
+   1.651,
+   1.502,
+   1.974,
+   1.039,
+   1.965,
+   0.972,
+   1.171,
+   1.518
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_032.sdf",
+  "seed": 13032,
+  "spawn": [
+   -6.35,
+   2.75
+  ],
+  "n_prims": 64,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 19.409924881139197,
+  "H": 11.322010588488816,
+  "corridor_w": 1.7776861398111476,
+  "doors": [
+   1.294,
+   1.321,
+   1.91,
+   1.782,
+   1.314,
+   1.892,
+   1.448,
+   1.013,
+   1.693,
+   1.023
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 0.986,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_033.sdf",
+  "seed": 13033,
+  "spawn": [
+   0.95,
+   -1.85
+  ],
+  "n_prims": 66,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 15.505713667772824,
+  "H": 11.90099841877138,
+  "corridor_w": 2.0633426410546645,
+  "doors": [
+   1.212,
+   1.758,
+   1.185,
+   0.965,
+   1.035,
+   1.213,
+   1.279,
+   1.916,
+   1.37,
+   0.989
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_034.sdf",
+  "seed": 13034,
+  "spawn": [
+   -2.55,
+   3.95
+  ],
+  "n_prims": 65,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 14.27601162798964,
+  "H": 8.825351968238355,
+  "corridor_w": 1.9080614214466824,
+  "doors": [
+   1.867,
+   1.784,
+   1.661,
+   1.87,
+   0.985,
+   1.449,
+   1.095,
+   1.604
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_035.sdf",
+  "seed": 13035,
+  "spawn": [
+   1.95,
+   1.85
+  ],
+  "n_prims": 48,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 19.61709116661888,
+  "H": 11.25837348408645,
+  "corridor_w": 1.977765146726758,
+  "doors": [
+   1.903,
+   1.501,
+   1.935,
+   1.077,
+   1.796,
+   1.0,
+   1.712,
+   1.054,
+   1.753,
+   1.779
+  ],
+  "rooms": 9,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_036.sdf",
+  "seed": 13036,
+  "spawn": [
+   6.05,
+   -2.95
+  ],
+  "n_prims": 65,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 17.431868744882916,
+  "H": 10.365574414718878,
+  "corridor_w": 2.80691601629234,
+  "doors": [
+   1.138,
+   1.765,
+   1.686,
+   1.386,
+   1.092,
+   1.243,
+   1.268,
+   1.373,
+   1.682,
+   1.405,
+   1.381
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_037.sdf",
+  "seed": 13037,
+  "spawn": [
+   4.75,
+   0.75
+  ],
+  "n_prims": 70,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 17.520126267375588,
+  "H": 11.232981171551108,
+  "corridor_w": 2.574342089077918,
+  "doors": [
+   1.093,
+   0.951,
+   1.956,
+   1.943,
+   1.144,
+   1.331,
+   1.586,
+   1.313,
+   1.699,
+   1.193,
+   0.914,
+   1.76,
+   0.982
+  ],
+  "rooms": 10,
+  "attempt": 0,
+  "reachable_frac": 0.981,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_038.sdf",
+  "seed": 13038,
+  "spawn": [
+   -3.15,
+   3.75
+  ],
+  "n_prims": 73,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 17.971549463942356,
+  "H": 9.104032771093923,
+  "corridor_w": 1.4430116961338386,
+  "doors": [
+   1.938,
+   1.05,
+   1.877,
+   1.482,
+   1.697,
+   1.234,
+   1.038,
+   1.972
+  ],
+  "rooms": 8,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_039.sdf",
+  "seed": 13039,
+  "spawn": [
+   2.85,
+   0.85
+  ],
+  "n_prims": 55,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 17.083099751111334,
+  "H": 10.762360875443257,
+  "corridor_w": 1.297892393986548,
+  "doors": [
+   1.434,
+   1.832,
+   0.943,
+   1.491,
+   1.82,
+   1.744,
+   1.142,
+   1.462,
+   1.402,
+   1.646,
+   1.568,
+   0.938
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_040.sdf",
+  "seed": 13040,
+  "spawn": [
+   6.55,
+   -2.65
+  ],
+  "n_prims": 64,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 18.287348284972943,
+  "H": 12.715324426259345,
+  "corridor_w": 1.4508321931576318,
+  "doors": [
+   1.754,
+   1.294,
+   1.294,
+   1.43,
+   1.02,
+   1.598,
+   1.421,
+   1.069,
+   1.42,
+   1.924
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 0.997,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_041.sdf",
+  "seed": 13041,
+  "spawn": [
+   -5.15,
+   -3.15
+  ],
+  "n_prims": 61,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 12.451249928184307,
+  "H": 10.53038321906615,
+  "corridor_w": 1.8762105069829458,
+  "doors": [
+   1.473,
+   1.739,
+   1.127,
+   1.922,
+   0.951,
+   1.838,
+   1.627
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 0.995,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_042.sdf",
+  "seed": 13042,
+  "spawn": [
+   -3.45,
+   -1.05
+  ],
+  "n_prims": 43,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 17.015543066624513,
+  "H": 8.441395719218425,
+  "corridor_w": 1.787560442069825,
+  "doors": [
+   1.064,
+   1.349,
+   1.306,
+   1.602,
+   0.969,
+   1.665,
+   1.586,
+   1.179
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_043.sdf",
+  "seed": 13043,
+  "spawn": [
+   2.25,
+   2.55
+  ],
+  "n_prims": 56,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 14.879237042837362,
+  "H": 11.9262359956356,
+  "corridor_w": 1.736166014837424,
+  "doors": [
+   1.317,
+   1.95,
+   1.591,
+   1.506,
+   1.32,
+   1.135,
+   1.876,
+   0.96,
+   1.83
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_044.sdf",
+  "seed": 13044,
+  "spawn": [
+   -1.85,
+   -3.55
+  ],
+  "n_prims": 46,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 18.628037084889044,
+  "H": 11.572715366012844,
+  "corridor_w": 2.1456630796115297,
+  "doors": [
+   1.317,
+   1.105,
+   1.171,
+   1.506,
+   1.977,
+   1.706,
+   1.142,
+   1.141,
+   1.916,
+   1.582,
+   1.393
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_045.sdf",
+  "seed": 13045,
+  "spawn": [
+   2.65,
+   1.75
+  ],
+  "n_prims": 64,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 14.40441371273214,
+  "H": 10.034100352959072,
+  "corridor_w": 2.5219734327012033,
+  "doors": [
+   1.158,
+   1.15,
+   1.823,
+   1.299,
+   1.104,
+   1.052,
+   1.323,
+   1.766,
+   1.307
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_046.sdf",
+  "seed": 13046,
+  "spawn": [
+   -3.85,
+   -0.85
+  ],
+  "n_prims": 58,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 12.216465205789802,
+  "H": 9.819098645245013,
+  "corridor_w": 2.5801236452405574,
+  "doors": [
+   1.104,
+   1.303,
+   1.705,
+   1.741,
+   1.346,
+   1.78,
+   1.358
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_047.sdf",
+  "seed": 13047,
+  "spawn": [
+   -1.45,
+   0.55
+  ],
+  "n_prims": 40,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 17.891067718400183,
+  "H": 10.264131084647147,
+  "corridor_w": 1.3054697788623375,
+  "doors": [
+   1.023,
+   1.607,
+   1.134,
+   1.872,
+   1.219,
+   1.285,
+   0.942,
+   1.752,
+   1.258,
+   1.623,
+   1.713
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 0.999,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_048.sdf",
+  "seed": 13048,
+  "spawn": [
+   0.25,
+   1.65
+  ],
+  "n_prims": 65,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 16.70306772140805,
+  "H": 8.385365914173157,
+  "corridor_w": 1.9356688297110558,
+  "doors": [
+   1.391,
+   1.22,
+   1.87,
+   1.935,
+   1.027,
+   1.085,
+   1.321
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_049.sdf",
+  "seed": 13049,
+  "spawn": [
+   -4.35,
+   -2.85
+  ],
+  "n_prims": 52,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.588824763141876,
+  "H": 9.60888941094836,
+  "corridor_w": 1.955155904437329,
+  "doors": [
+   1.326,
+   1.398,
+   0.978,
+   1.327,
+   1.82,
+   1.837,
+   1.977,
+   1.653,
+   1.758,
+   1.448
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_050.sdf",
+  "seed": 13050,
+  "spawn": [
+   -5.15,
+   -3.55
+  ],
+  "n_prims": 57,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 13.688708203702635,
+  "H": 9.075975982468588,
+  "corridor_w": 2.5181917965426606,
+  "doors": [
+   1.78,
+   1.329,
+   1.768,
+   1.607,
+   1.114,
+   1.719
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_051.sdf",
+  "seed": 13051,
+  "spawn": [
+   -0.65,
+   0.25
+  ],
+  "n_prims": 42,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 15.768560533167792,
+  "H": 11.839668863142206,
+  "corridor_w": 1.7924523484836583,
+  "doors": [
+   1.245,
+   1.235,
+   1.789,
+   1.042,
+   1.467,
+   1.449,
+   1.199,
+   1.861
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 0.992,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_052.sdf",
+  "seed": 13052,
+  "spawn": [
+   5.45,
+   4.95
+  ],
+  "n_prims": 44,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 19.850495623896393,
+  "H": 9.317464451563763,
+  "corridor_w": 1.4479260344447313,
+  "doors": [
+   1.102,
+   0.963,
+   1.505,
+   1.025,
+   1.671,
+   1.705,
+   1.355,
+   1.392,
+   1.917,
+   0.985
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_053.sdf",
+  "seed": 13053,
+  "spawn": [
+   -7.05,
+   3.25
+  ],
+  "n_prims": 66,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 12.069759056705834,
+  "H": 10.411614882971424,
+  "corridor_w": 1.5935645255244564,
+  "doors": [
+   1.542,
+   0.919,
+   0.915,
+   1.838,
+   1.572,
+   1.143
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 0.99,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_054.sdf",
+  "seed": 13054,
+  "spawn": [
+   -2.05,
+   -3.45
+  ],
+  "n_prims": 43,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 17.673392843269646,
+  "H": 12.929663797488583,
+  "corridor_w": 2.385743031171889,
+  "doors": [
+   0.996,
+   1.137,
+   1.425,
+   1.206,
+   1.957,
+   1.051,
+   1.641,
+   1.694
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_055.sdf",
+  "seed": 13055,
+  "spawn": [
+   5.85,
+   0.25
+  ],
+  "n_prims": 53,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 14.405071287811133,
+  "H": 12.929011319578109,
+  "corridor_w": 2.725875044171776,
+  "doors": [
+   1.205,
+   1.394,
+   1.761,
+   1.607,
+   1.714,
+   1.805,
+   1.054,
+   1.908
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_056.sdf",
+  "seed": 13056,
+  "spawn": [
+   6.05,
+   1.35
+  ],
+  "n_prims": 47,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.57986644365846,
+  "H": 10.052132910526929,
+  "corridor_w": 2.489142266096823,
+  "doors": [
+   1.108,
+   1.813,
+   1.215,
+   0.958,
+   1.016,
+   1.702,
+   1.458,
+   1.143
+  ],
+  "rooms": 8,
+  "attempt": 1,
+  "reachable_frac": 0.998,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_057.sdf",
+  "seed": 13057,
+  "spawn": [
+   1.95,
+   0.15
+  ],
+  "n_prims": 55,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 16.796215361489914,
+  "H": 9.406064240818823,
+  "corridor_w": 2.625482379751359,
+  "doors": [
+   1.27,
+   1.765,
+   1.795,
+   1.934,
+   0.977,
+   1.102,
+   0.945,
+   1.246,
+   1.338
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_058.sdf",
+  "seed": 13058,
+  "spawn": [
+   -5.85,
+   -0.15
+  ],
+  "n_prims": 52,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 17.245902911733236,
+  "H": 12.570208602319969,
+  "corridor_w": 2.8792658383343435,
+  "doors": [
+   1.439,
+   1.83,
+   0.948,
+   1.651,
+   1.909,
+   1.567,
+   1.105
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "train",
+  "file": "training/worlds/gen/train/w3_059.sdf",
+  "seed": 13059,
+  "spawn": [
+   3.55,
+   0.45
+  ],
+  "n_prims": 53,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 10.324352128391528,
+  "H": 8.539225741702978,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w0_000.sdf",
+  "seed": 20000,
+  "spawn": [
+   0.95,
+   -2.05
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 10.09079395978698,
+  "H": 8.946721807692596,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w0_001.sdf",
+  "seed": 20001,
+  "spawn": [
+   1.25,
+   -0.85
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 6.700119368521781,
+  "H": 8.265732585123793,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w0_002.sdf",
+  "seed": 20002,
+  "spawn": [
+   -2.25,
+   -0.75
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 11.182087501909217,
+  "H": 6.770358402887932,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w0_003.sdf",
+  "seed": 20003,
+  "spawn": [
+   -4.05,
+   1.85
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 9.596740326197457,
+  "H": 9.647257608724619,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w0_004.sdf",
+  "seed": 20004,
+  "spawn": [
+   -2.55,
+   -0.05
+  ],
+  "n_prims": 7,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 12.41140986270075,
+  "H": 5.398774955274665,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w0_005.sdf",
+  "seed": 20005,
+  "spawn": [
+   4.95,
+   -1.65
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 13.57645457205311,
+  "H": 10.348755609382206,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w1_000.sdf",
+  "seed": 21000,
+  "spawn": [
+   4.35,
+   1.85
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 12.78639400412195,
+  "H": 8.785690252052179,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w1_001.sdf",
+  "seed": 21001,
+  "spawn": [
+   -4.55,
+   0.45
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.901114220573618,
+  "H": 7.670085656387468,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w1_002.sdf",
+  "seed": 21002,
+  "spawn": [
+   -1.05,
+   -2.55
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 10.524119797752247,
+  "H": 10.776936055010573,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w1_003.sdf",
+  "seed": 21003,
+  "spawn": [
+   -1.55,
+   2.65
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 12.94876552834672,
+  "H": 11.66471144535397,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w1_004.sdf",
+  "seed": 21004,
+  "spawn": [
+   -0.45,
+   4.25
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.083218731034611,
+  "H": 11.952552785405102,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w1_005.sdf",
+  "seed": 21005,
+  "spawn": [
+   -0.25,
+   2.65
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 8.417929569647255,
+  "H": 8.584915878855739,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w1_006.sdf",
+  "seed": 21006,
+  "spawn": [
+   -2.15,
+   2.05
+  ],
+  "n_prims": 14,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 9.089870663752901,
+  "H": 11.643502630443468,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w1_007.sdf",
+  "seed": 21007,
+  "spawn": [
+   -3.45,
+   1.25
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 14.021877475827182,
+  "H": 11.491167049387098,
+  "corridor_w": 1.6813990581643734,
+  "doors": [
+   1.108,
+   1.504,
+   1.489,
+   0.963,
+   1.578,
+   1.656
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w2_000.sdf",
+  "seed": 22000,
+  "spawn": [
+   0.25,
+   2.35
+  ],
+  "n_prims": 24,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 17.841453829515384,
+  "H": 9.738011804399939,
+  "corridor_w": 2.3336693542284364,
+  "doors": [
+   1.309,
+   1.665,
+   1.308,
+   1.487,
+   1.721,
+   1.847,
+   1.459,
+   1.861,
+   1.223,
+   1.065
+  ],
+  "rooms": 9,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w2_001.sdf",
+  "seed": 22001,
+  "spawn": [
+   -2.55,
+   0.25
+  ],
+  "n_prims": 30,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 17.792782472527986,
+  "H": 10.931376901682738,
+  "corridor_w": 2.0697222902220576,
+  "doors": [
+   1.965,
+   1.883,
+   1.328,
+   1.06,
+   1.076,
+   0.92,
+   1.781
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w2_002.sdf",
+  "seed": 22002,
+  "spawn": [
+   -1.45,
+   -0.25
+  ],
+  "n_prims": 26,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 14.435528581731063,
+  "H": 12.635693260148896,
+  "corridor_w": 1.7171858825597248,
+  "doors": [
+   1.961,
+   1.401,
+   1.819,
+   1.22,
+   1.732,
+   1.972,
+   1.018,
+   1.148
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w2_003.sdf",
+  "seed": 22003,
+  "spawn": [
+   1.25,
+   -3.05
+  ],
+  "n_prims": 24,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 17.912906001682803,
+  "H": 8.91260221441296,
+  "corridor_w": 2.7518637804882156,
+  "doors": [
+   1.778,
+   0.993,
+   1.667,
+   1.593,
+   1.054,
+   0.994,
+   1.599,
+   1.16,
+   1.734,
+   1.117
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w2_004.sdf",
+  "seed": 22004,
+  "spawn": [
+   -6.25,
+   -0.35
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "L",
+  "W": 14.533622431990445,
+  "H": 10.217753911777756,
+  "corridor_w": 2.533525243190738,
+  "doors": [
+   1.476,
+   1.624,
+   1.599,
+   1.943,
+   1.305,
+   1.48,
+   1.488,
+   1.31
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w2_005.sdf",
+  "seed": 22005,
+  "spawn": [
+   -5.05,
+   0.85
+  ],
+  "n_prims": 28,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 18.763897961935204,
+  "H": 10.394750387958734,
+  "corridor_w": 1.681304002035742,
+  "doors": [
+   1.96,
+   0.985,
+   1.839,
+   1.017,
+   0.994,
+   1.011,
+   1.283,
+   1.331,
+   1.36,
+   1.77,
+   1.08,
+   1.336,
+   1.816,
+   1.614,
+   1.826
+  ],
+  "rooms": 10,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w2_006.sdf",
+  "seed": 22006,
+  "spawn": [
+   5.55,
+   -2.35
+  ],
+  "n_prims": 42,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 14.220728018113718,
+  "H": 8.666759898346001,
+  "corridor_w": 2.6007104225328312,
+  "doors": [
+   1.127,
+   1.111,
+   0.979,
+   1.071,
+   1.229,
+   1.268,
+   1.653,
+   1.225,
+   1.55,
+   1.629
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w2_007.sdf",
+  "seed": 22007,
+  "spawn": [
+   -2.65,
+   -0.05
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.595781157085682,
+  "H": 12.23206660404703,
+  "corridor_w": 1.838747618015232,
+  "doors": [
+   1.598,
+   1.069,
+   1.95,
+   1.484,
+   1.522,
+   1.677,
+   1.046,
+   1.735,
+   1.395,
+   1.649,
+   1.042
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w3_000.sdf",
+  "seed": 23000,
+  "spawn": [
+   -6.45,
+   -2.55
+  ],
+  "n_prims": 60,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 16.764841800866414,
+  "H": 12.954668731286619,
+  "corridor_w": 1.7870082310872295,
+  "doors": [
+   1.164,
+   1.05,
+   1.013,
+   1.966,
+   1.091,
+   1.839,
+   1.968,
+   1.209,
+   1.395,
+   1.801
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w3_001.sdf",
+  "seed": 23001,
+  "spawn": [
+   2.85,
+   -2.75
+  ],
+  "n_prims": 57,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 15.843075036129015,
+  "H": 10.814116131506388,
+  "corridor_w": 1.626005223943986,
+  "doors": [
+   1.137,
+   1.677,
+   1.869,
+   1.144,
+   1.673,
+   1.193,
+   1.645
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w3_002.sdf",
+  "seed": 23002,
+  "spawn": [
+   0.65,
+   4.35
+  ],
+  "n_prims": 38,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "T",
+  "W": 13.929269710985476,
+  "H": 9.956670334165873,
+  "corridor_w": 2.7584480146741113,
+  "doors": [
+   1.876,
+   1.994,
+   1.267,
+   1.907,
+   1.454,
+   1.661,
+   1.029,
+   1.663
+  ],
+  "rooms": 6,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w3_003.sdf",
+  "seed": 23003,
+  "spawn": [
+   -0.55,
+   3.85
+  ],
+  "n_prims": 40,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.091507539792172,
+  "H": 8.570675650334987,
+  "corridor_w": 1.493899310331114,
+  "doors": [
+   1.911,
+   0.98,
+   1.531,
+   1.461,
+   1.322,
+   1.986,
+   1.847,
+   1.342,
+   0.964,
+   1.009
+  ],
+  "rooms": 9,
+  "attempt": 0,
+  "reachable_frac": 0.997,
+  "split": "val",
+  "file": "training/worlds/gen/val/w3_004.sdf",
+  "seed": 23004,
+  "spawn": [
+   3.85,
+   -1.45
+  ],
+  "n_prims": 68,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 16.43056119455555,
+  "H": 9.436053687367767,
+  "corridor_w": 2.5530578572795353,
+  "doors": [
+   1.578,
+   1.24,
+   1.719,
+   1.366,
+   1.116,
+   1.519,
+   0.957,
+   1.258,
+   1.679,
+   1.18
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w3_005.sdf",
+  "seed": 23005,
+  "spawn": [
+   1.95,
+   -0.85
+  ],
+  "n_prims": 56,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 17.66202203063844,
+  "H": 11.297739401769732,
+  "corridor_w": 2.8393770159266385,
+  "doors": [
+   1.928,
+   1.631,
+   1.97,
+   1.684,
+   1.837,
+   1.854,
+   1.167,
+   0.955,
+   1.571
+  ],
+  "rooms": 8,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "val",
+  "file": "training/worlds/gen/val/w3_006.sdf",
+  "seed": 23006,
+  "spawn": [
+   -6.15,
+   -0.35
+  ],
+  "n_prims": 57,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 17.512926003740205,
+  "H": 8.686205875107,
+  "corridor_w": 2.087660342539369,
+  "doors": [
+   1.555,
+   1.378,
+   1.679,
+   1.924,
+   1.131,
+   1.132,
+   1.897,
+   1.115,
+   1.946,
+   1.54,
+   1.65,
+   1.353,
+   1.557
+  ],
+  "rooms": 10,
+  "attempt": 0,
+  "reachable_frac": 0.977,
+  "split": "val",
+  "file": "training/worlds/gen/val/w3_007.sdf",
+  "seed": 23007,
+  "spawn": [
+   2.95,
+   -1.45
+  ],
+  "n_prims": 76,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 13.551663388676356,
+  "H": 7.3411656147266635,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w0_000.sdf",
+  "seed": 30000,
+  "spawn": [
+   -5.05,
+   -1.75
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 8.094973433641547,
+  "H": 7.622627025259507,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w0_001.sdf",
+  "seed": 30001,
+  "spawn": [
+   -2.05,
+   -0.15
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 13.55008603948313,
+  "H": 6.847917054539597,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w0_002.sdf",
+  "seed": 30002,
+  "spawn": [
+   1.25,
+   2.25
+  ],
+  "n_prims": 4,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 9.837476547217378,
+  "H": 7.275258368995149,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w0_003.sdf",
+  "seed": 30003,
+  "spawn": [
+   1.15,
+   1.15
+  ],
+  "n_prims": 6,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 13.418803315701625,
+  "H": 5.1318581903714255,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w0_004.sdf",
+  "seed": 30004,
+  "spawn": [
+   -3.25,
+   -1.25
+  ],
+  "n_prims": 5,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 0,
+  "kind": "room",
+  "W": 7.990630117189724,
+  "H": 7.075028747853921,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w0_005.sdf",
+  "seed": 30005,
+  "spawn": [
+   -0.95,
+   1.45
+  ],
+  "n_prims": 5,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 10.51701079088496,
+  "H": 8.97559154975665,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w1_000.sdf",
+  "seed": 31000,
+  "spawn": [
+   -2.05,
+   -0.95
+  ],
+  "n_prims": 10,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.996917662936534,
+  "H": 7.192590519760099,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w1_001.sdf",
+  "seed": 31001,
+  "spawn": [
+   -4.35,
+   -1.55
+  ],
+  "n_prims": 9,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.223624295266237,
+  "H": 7.730615074025223,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w1_002.sdf",
+  "seed": 31002,
+  "spawn": [
+   4.45,
+   0.45
+  ],
+  "n_prims": 13,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 14.34052915019199,
+  "H": 6.585599627412649,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w1_003.sdf",
+  "seed": 31003,
+  "spawn": [
+   -5.45,
+   -2.05
+  ],
+  "n_prims": 11,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 15.662782159298493,
+  "H": 9.241646212659226,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w1_004.sdf",
+  "seed": 31004,
+  "spawn": [
+   -5.25,
+   -2.65
+  ],
+  "n_prims": 8,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.300995495239299,
+  "H": 8.125969898009547,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w1_005.sdf",
+  "seed": 31005,
+  "spawn": [
+   -1.95,
+   2.85
+  ],
+  "n_prims": 11,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 9.763416508113782,
+  "H": 8.948490373860981,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w1_006.sdf",
+  "seed": 31006,
+  "spawn": [
+   3.65,
+   2.85
+  ],
+  "n_prims": 11,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 1,
+  "kind": "room",
+  "W": 11.086609512939923,
+  "H": 11.72985588031015,
+  "doors": [],
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w1_007.sdf",
+  "seed": 31007,
+  "spawn": [
+   4.35,
+   3.05
+  ],
+  "n_prims": 12,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 13.012009175138864,
+  "H": 12.811881309761972,
+  "corridor_w": 2.8346616709541106,
+  "doors": [
+   1.456,
+   1.679,
+   1.711,
+   1.488,
+   1.388,
+   1.733,
+   1.792,
+   1.109
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w2_000.sdf",
+  "seed": 32000,
+  "spawn": [
+   -4.05,
+   -4.55
+  ],
+  "n_prims": 25,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 14.851458038688747,
+  "H": 10.087487098531007,
+  "corridor_w": 1.84068384126149,
+  "doors": [
+   1.174,
+   1.04,
+   1.232,
+   1.55,
+   1.813,
+   1.733,
+   1.76,
+   1.71,
+   1.625,
+   0.909
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w2_001.sdf",
+  "seed": 32001,
+  "spawn": [
+   1.45,
+   -2.75
+  ],
+  "n_prims": 29,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 14.272575402842412,
+  "H": 8.412284500604056,
+  "corridor_w": 1.3756208833213013,
+  "doors": [
+   1.374,
+   1.553,
+   1.786,
+   1.536,
+   1.318,
+   1.952,
+   1.199,
+   1.294
+  ],
+  "rooms": 7,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w2_002.sdf",
+  "seed": 32002,
+  "spawn": [
+   2.95,
+   -0.75
+  ],
+  "n_prims": 30,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 14.786337836110684,
+  "H": 8.806279721367863,
+  "corridor_w": 2.3961452541248587,
+  "doors": [
+   1.44,
+   1.179,
+   1.93,
+   1.34,
+   0.989,
+   1.797,
+   1.677,
+   1.218,
+   1.155,
+   1.234
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w2_003.sdf",
+  "seed": 32003,
+  "spawn": [
+   0.35,
+   -2.55
+  ],
+  "n_prims": 31,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 17.177972025145284,
+  "H": 12.552089474384541,
+  "corridor_w": 1.4768340503633945,
+  "doors": [
+   1.869,
+   1.642,
+   1.527,
+   1.861,
+   1.853,
+   1.747,
+   1.136,
+   1.165,
+   1.962,
+   1.667,
+   1.561,
+   1.98
+  ],
+  "rooms": 8,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w2_004.sdf",
+  "seed": 32004,
+  "spawn": [
+   0.85,
+   3.75
+  ],
+  "n_prims": 36,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "straight",
+  "W": 13.592077547272844,
+  "H": 8.65104919086068,
+  "corridor_w": 1.5291253314902442,
+  "doors": [
+   1.879,
+   1.302,
+   1.454,
+   1.367,
+   1.085,
+   1.083,
+   1.347
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w2_005.sdf",
+  "seed": 32005,
+  "spawn": [
+   4.25,
+   -2.55
+  ],
+  "n_prims": 25,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "dead_end",
+  "W": 13.234772234561621,
+  "H": 10.852538913492467,
+  "corridor_w": 1.9721653450198184,
+  "doors": [
+   1.047,
+   0.918,
+   1.683,
+   0.998,
+   1.717,
+   1.061,
+   1.6
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w2_006.sdf",
+  "seed": 32006,
+  "spawn": [
+   1.15,
+   -2.65
+  ],
+  "n_prims": 25,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 2,
+  "kind": "T",
+  "W": 12.302178485100494,
+  "H": 8.359488627996809,
+  "corridor_w": 2.267656603451612,
+  "doors": [
+   1.558,
+   1.808,
+   1.711,
+   1.415,
+   1.683,
+   1.458
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w2_007.sdf",
+  "seed": 32007,
+  "spawn": [
+   -1.75,
+   1.45
+  ],
+  "n_prims": 23,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 14.270624560142052,
+  "H": 8.59607044983461,
+  "corridor_w": 1.3621212113522194,
+  "doors": [
+   1.583,
+   1.756,
+   1.234,
+   1.844,
+   1.552,
+   1.457,
+   1.231,
+   1.381
+  ],
+  "rooms": 7,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w3_000.sdf",
+  "seed": 33000,
+  "spawn": [
+   -0.95,
+   -1.15
+  ],
+  "n_prims": 44,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 15.17818795340656,
+  "H": 11.946149120803094,
+  "corridor_w": 1.9242717248820451,
+  "doors": [
+   0.963,
+   1.003,
+   1.238,
+   1.819,
+   1.91,
+   0.916,
+   1.39,
+   1.18
+  ],
+  "rooms": 7,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w3_001.sdf",
+  "seed": 33001,
+  "spawn": [
+   -3.75,
+   4.05
+  ],
+  "n_prims": 45,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 19.787262339117426,
+  "H": 10.439301917227708,
+  "corridor_w": 2.9268843871316745,
+  "doors": [
+   1.055,
+   0.942,
+   1.506,
+   0.957,
+   1.897,
+   1.819,
+   1.936,
+   1.324,
+   1.199,
+   1.583
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w3_002.sdf",
+  "seed": 33002,
+  "spawn": [
+   -4.35,
+   3.95
+  ],
+  "n_prims": 60,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 15.124520659377339,
+  "H": 10.85049291509066,
+  "corridor_w": 1.8198057244787313,
+  "doors": [
+   1.816,
+   1.86,
+   1.63,
+   1.004,
+   1.238,
+   0.988,
+   1.638
+  ],
+  "rooms": 7,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w3_003.sdf",
+  "seed": 33003,
+  "spawn": [
+   6.35,
+   1.75
+  ],
+  "n_prims": 54,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "straight",
+  "W": 12.603433308999433,
+  "H": 10.581046381514938,
+  "corridor_w": 2.2773905675706865,
+  "doors": [
+   1.275,
+   1.945,
+   1.665,
+   1.45,
+   1.117,
+   1.499,
+   1.047
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w3_004.sdf",
+  "seed": 33004,
+  "spawn": [
+   4.05,
+   1.05
+  ],
+  "n_prims": 44,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 17.864418920518318,
+  "H": 8.455319239870764,
+  "corridor_w": 2.698527603500914,
+  "doors": [
+   1.115,
+   1.288,
+   1.325,
+   1.118,
+   1.652,
+   1.832,
+   0.961,
+   1.288
+  ],
+  "rooms": 8,
+  "attempt": 0,
+  "reachable_frac": 0.997,
+  "split": "test",
+  "file": "training/worlds/gen/test/w3_005.sdf",
+  "seed": 33005,
+  "spawn": [
+   -1.85,
+   -0.05
+  ],
+  "n_prims": 55,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "L",
+  "W": 14.109231260210088,
+  "H": 8.705810457862865,
+  "corridor_w": 2.5544433474498787,
+  "doors": [
+   1.901,
+   0.973,
+   1.549,
+   1.592,
+   1.659,
+   1.994,
+   1.111
+  ],
+  "rooms": 6,
+  "attempt": 0,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w3_006.sdf",
+  "seed": 33006,
+  "spawn": [
+   -5.55,
+   -0.45
+  ],
+  "n_prims": 44,
+  "parser_missing_cells": 0
+ },
+ {
+  "tier": 3,
+  "kind": "dead_end",
+  "W": 17.073874965420046,
+  "H": 12.714846714380553,
+  "corridor_w": 2.488175618370856,
+  "doors": [
+   1.269,
+   0.958,
+   1.245,
+   1.883,
+   1.165,
+   1.974,
+   1.824,
+   1.783,
+   1.669,
+   1.737,
+   1.695
+  ],
+  "rooms": 9,
+  "attempt": 1,
+  "reachable_frac": 1.0,
+  "split": "test",
+  "file": "training/worlds/gen/test/w3_007.sdf",
+  "seed": 33007,
+  "spawn": [
+   7.05,
+   -3.75
+  ],
+  "n_prims": 67,
+  "parser_missing_cells": 0
+ }
+]

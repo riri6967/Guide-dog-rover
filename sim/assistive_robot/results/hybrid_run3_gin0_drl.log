@@ -1,0 +1,125 @@
+[INFO] [1791710419.506433564] [drl_controller]: DRL controller ready, actor /home/pushkar/assistive_robot_ws/src/assistive_robot/training/deploy/actor_run3.npz, tol 0.15 m, lookahead 1.5 m
+[INFO] [1791710419.509087997] [drl_controller]: HYBRID mode: map_c 0.9 ahead 2.0 c_in 0.25 c_out 0.4 g_in 0.0 dwell 2.0 s
+[INFO] [1791710420.256203112] [drl_controller]: map 521x321 received, clearance field ready
+[INFO] [1791710426.374005493] [drl_controller]: switch drl -> mppi at (0.00, -0.00): narrow ahead (map clearance 0.80 m)
+[INFO] [1791710430.483813111] [drl_controller]: switch mppi -> drl at (-0.07, -0.03): open ahead (map 1.00 m, scan 0.79 m)
+[INFO] [1791710431.489340914] [drl_controller]: switch drl -> mppi at (0.03, 0.08): narrow ahead (map clearance 0.75 m)
+[INFO] [1791710439.758563376] [drl_controller]: switch mppi -> drl at (-0.39, 0.07): open ahead (map 1.05 m, scan 0.92 m)
+[INFO] [1791710442.768881430] [drl_controller]: switch drl -> mppi at (-1.12, 0.21): narrow ahead (map clearance 0.75 m)
+[INFO] [1791710450.049083352] [drl_controller]: switch mppi -> drl at (-1.82, 0.05): open ahead (map 1.00 m, scan 0.87 m)
+[INFO] [1791710452.099260890] [drl_controller]: switch drl -> mppi at (-2.27, 0.15): narrow ahead (map clearance 0.80 m)
+[INFO] [1791710482.888071950] [drl_controller]: switch mppi -> drl at (-4.97, 1.86): open ahead (map 1.03 m, scan 0.55 m)
+[INFO] [1791710489.924227502] [drl_controller]: navigation succeeded: drl 3.45 m, mppi 6.03 m -> DRL share 36% | cumulative drl 3.4 m, mppi 6.0 m
+[INFO] [1791710495.493126104] [drl_controller]: switch drl -> mppi at (-5.01, 4.06): narrow ahead (map clearance 0.86 m)
+[INFO] [1791710497.805230239] [drl_controller]: navigation canceled: drl 0.11 m, mppi 0.15 m -> DRL share 43% | cumulative drl 3.6 m, mppi 6.2 m
+[INFO] [1791710502.211171408] [drl_controller]: navigation canceled: drl 0.27 m, mppi 0.00 m -> DRL share 100% | cumulative drl 3.8 m, mppi 6.2 m
+[INFO] [1791710509.470673148] [drl_controller]: switch drl -> mppi at (-4.54, 4.29): narrow ahead (map clearance 0.85 m)
+[INFO] [1791710600.844393967] [drl_controller]: switch mppi -> drl at (4.03, -1.39): open ahead (map 1.00 m, scan 0.50 m)
+[INFO] [1791710610.697016823] [drl_controller]: navigation succeeded: drl 2.96 m, mppi 13.58 m -> DRL share 18% | cumulative drl 6.8 m, mppi 19.8 m
+[INFO] [1791710614.090089625] [drl_controller]: switch drl -> mppi at (5.03, -3.99): narrow ahead (map clearance 0.60 m)
+[INFO] [1791710688.191328448] [drl_controller]: switch mppi -> drl at (-2.02, -0.38): open ahead (map 1.00 m, scan 0.60 m)
+[INFO] [1791710691.854276508] [drl_controller]: navigation succeeded: drl 0.95 m, mppi 9.98 m -> DRL share 9% | cumulative drl 7.7 m, mppi 29.7 m
+[INFO] [1791710695.247994166] [drl_controller]: switch drl -> mppi at (-2.98, 0.01): narrow ahead (map clearance 0.80 m)
+[INFO] [1791710742.562744942] [drl_controller]: switch mppi -> drl at (0.62, 2.61): open ahead (map 1.00 m, scan 0.47 m)
+[INFO] [1791710751.864744503] [drl_controller]: navigation succeeded: drl 2.74 m, mppi 5.44 m -> DRL share 33% | cumulative drl 10.5 m, mppi 35.2 m
+[INFO] [1791710755.335241868] [drl_controller]: switch drl -> mppi at (3.00, 3.93): narrow ahead (map clearance 0.85 m)
+[INFO] [1791710763.827126189] [drl_controller]: navigation canceled: drl 0.00 m, mppi 0.41 m -> DRL share 0% | cumulative drl 10.5 m, mppi 35.6 m
+[INFO] [1791710766.690242255] [drl_controller]: switch drl -> mppi at (3.35, 3.75): narrow ahead (map clearance 0.65 m)
+[WARN] [1791710795.056032701] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710795.080333143] [drl_controller]: navigation aborted: drl 0.00 m, mppi 2.50 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.1 m
+[INFO] [1791710795.198620533] [drl_controller]: switch drl -> mppi at (4.95, 2.41): narrow ahead (map clearance 0.40 m)
+[WARN] [1791710805.429406570] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710805.467340882] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.08 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.2 m
+[INFO] [1791710810.649080111] [drl_controller]: switch drl -> mppi at (4.97, 2.37): scan clearance 0.22 m
+[WARN] [1791710820.921628899] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710820.942812143] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.06 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.2 m
+[INFO] [1791710824.377411142] [drl_controller]: switch drl -> mppi at (5.01, 2.33): scan clearance 0.20 m
+[WARN] [1791710834.628541866] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710834.629763169] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.04 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.3 m
+[INFO] [1791710834.709209652] [drl_controller]: switch drl -> mppi at (4.99, 2.36): scan clearance 0.20 m
+[WARN] [1791710855.213493091] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710855.214658099] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.05 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.3 m
+[INFO] [1791710860.606460422] [drl_controller]: switch drl -> mppi at (4.98, 2.38): narrow ahead (map clearance 0.70 m)
+[WARN] [1791710870.871313771] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710870.934128199] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.02 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.3 m
+[INFO] [1791710873.102469916] [drl_controller]: switch drl -> mppi at (4.98, 2.37): narrow ahead (map clearance 0.75 m)
+[WARN] [1791710893.568982808] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710893.607038096] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.03 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.3 m
+[INFO] [1791710896.968678512] [drl_controller]: switch drl -> mppi at (4.98, 2.38): narrow ahead (map clearance 0.75 m)
+[WARN] [1791710907.184165126] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710907.191445407] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.03 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.4 m
+[INFO] [1791710907.283381440] [drl_controller]: switch drl -> mppi at (4.96, 2.38): narrow ahead (map clearance 0.70 m)
+[WARN] [1791710917.500409516] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710917.503369520] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.03 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.4 m
+[INFO] [1791710917.729394095] [drl_controller]: switch drl -> mppi at (4.95, 2.36): narrow ahead (map clearance 0.70 m)
+[WARN] [1791710927.955226040] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710927.965561544] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.04 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.4 m
+[INFO] [1791710928.062408278] [drl_controller]: switch drl -> mppi at (4.93, 2.34): narrow ahead (map clearance 0.70 m)
+[WARN] [1791710938.279742456] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710938.321363982] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.07 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.5 m
+[INFO] [1791710941.803441818] [drl_controller]: switch drl -> mppi at (4.90, 2.31): scan clearance 0.21 m
+[WARN] [1791710952.096035782] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710952.105688639] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.05 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.6 m
+[INFO] [1791710955.574797739] [drl_controller]: switch drl -> mppi at (4.87, 2.27): scan clearance 0.18 m
+[WARN] [1791710965.813767401] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710965.819706778] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.04 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.6 m
+[INFO] [1791710965.925108517] [drl_controller]: switch drl -> mppi at (4.86, 2.28): scan clearance 0.19 m
+[WARN] [1791710976.106951247] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791710976.128267760] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.04 m -> DRL share 0% | cumulative drl 10.5 m, mppi 38.6 m
+[INFO] [1791710976.215593752] [drl_controller]: switch drl -> mppi at (4.84, 2.28): scan clearance 0.21 m
+[INFO] [1791710986.463485164] [drl_controller]: switch mppi -> drl at (4.32, 2.64): open ahead (map 1.00 m, scan 0.51 m)
+[INFO] [1791710992.905011506] [drl_controller]: navigation succeeded: drl 1.79 m, mppi 0.85 m -> DRL share 68% | cumulative drl 12.3 m, mppi 39.5 m
+[INFO] [1791710998.547624963] [drl_controller]: navigation canceled: drl 0.21 m, mppi 0.00 m -> DRL share 100% | cumulative drl 12.5 m, mppi 39.5 m
+[INFO] [1791711009.870307567] [drl_controller]: switch drl -> mppi at (3.93, 4.12): narrow ahead (map clearance 0.85 m)
+[WARN] [1791711034.547518738] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711034.547982956] [drl_controller]: navigation aborted: drl 1.69 m, mppi 2.06 m -> DRL share 45% | cumulative drl 14.2 m, mppi 41.6 m
+[INFO] [1791711034.767684586] [drl_controller]: switch drl -> mppi at (4.90, 2.40): narrow ahead (map clearance 0.40 m)
+[WARN] [1791711045.034124679] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711045.053340954] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.08 m -> DRL share 0% | cumulative drl 14.2 m, mppi 41.6 m
+[INFO] [1791711048.512353134] [drl_controller]: switch drl -> mppi at (4.94, 2.36): narrow ahead (map clearance 0.75 m)
+[WARN] [1791711058.800034112] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711058.842692833] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.02 m -> DRL share 0% | cumulative drl 14.2 m, mppi 41.7 m
+[INFO] [1791711058.846108325] [drl_controller]: switch drl -> mppi at (4.92, 2.37): narrow ahead (map clearance 0.75 m)
+[WARN] [1791711069.093193637] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711069.126695888] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.05 m -> DRL share 0% | cumulative drl 14.2 m, mppi 41.7 m
+[INFO] [1791711069.197195924] [drl_controller]: switch drl -> mppi at (4.90, 2.40): narrow ahead (map clearance 0.80 m)
+[WARN] [1791711079.436633501] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711079.437356455] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.02 m -> DRL share 0% | cumulative drl 14.2 m, mppi 41.7 m
+[INFO] [1791711082.916056096] [drl_controller]: switch drl -> mppi at (4.89, 2.41): narrow ahead (map clearance 0.80 m)
+[WARN] [1791711093.204837764] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711093.239631431] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.04 m -> DRL share 0% | cumulative drl 14.2 m, mppi 41.8 m
+[INFO] [1791711096.766278422] [drl_controller]: switch drl -> mppi at (4.90, 2.39): narrow ahead (map clearance 0.70 m)
+[WARN] [1791711117.255699457] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711117.257067407] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.17 m -> DRL share 0% | cumulative drl 14.2 m, mppi 41.9 m
+[INFO] [1791711120.756092798] [drl_controller]: switch drl -> mppi at (4.86, 2.48): narrow ahead (map clearance 0.70 m)
+[WARN] [1791711130.990763262] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711130.999380101] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.06 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.0 m
+[INFO] [1791711131.107137034] [drl_controller]: switch drl -> mppi at (4.82, 2.43): narrow ahead (map clearance 0.70 m)
+[WARN] [1791711151.497477267] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711151.504099467] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.13 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.1 m
+[INFO] [1791711151.528108582] [drl_controller]: switch drl -> mppi at (4.74, 2.33): scan clearance 0.19 m
+[WARN] [1791711161.777343923] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711161.781909177] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.05 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.2 m
+[INFO] [1791711161.942509635] [drl_controller]: switch drl -> mppi at (4.70, 2.29): scan clearance 0.16 m
+[WARN] [1791711172.108380627] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711172.135238972] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.04 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.2 m
+[INFO] [1791711172.232334614] [drl_controller]: switch drl -> mppi at (4.67, 2.26): scan clearance 0.14 m
+[WARN] [1791711182.416564946] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711182.425352649] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.02 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.2 m
+[INFO] [1791711197.872946079] [drl_controller]: switch drl -> mppi at (4.66, 2.26): scan clearance 0.14 m
+[WARN] [1791711208.131687439] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711208.187987325] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.02 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.3 m
+[INFO] [1791711211.648123312] [drl_controller]: switch drl -> mppi at (4.66, 2.27): scan clearance 0.15 m
+[WARN] [1791711221.946044684] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711221.946471228] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.04 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.3 m
+[INFO] [1791711225.415555161] [drl_controller]: switch drl -> mppi at (4.65, 2.27): scan clearance 0.14 m
+[WARN] [1791711235.630397999] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711235.708130353] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.01 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.3 m
+[INFO] [1791711235.749135983] [drl_controller]: switch drl -> mppi at (4.65, 2.27): scan clearance 0.16 m
+[WARN] [1791711245.966267938] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711245.971869989] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.03 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.3 m
+[INFO] [1791711249.475732420] [drl_controller]: switch drl -> mppi at (4.65, 2.26): scan clearance 0.12 m
+[WARN] [1791711270.009547540] [drl_controller]: MPPI ended with status 6, error 105: aborting FollowPath (BT recoveries)
+[INFO] [1791711270.013307824] [drl_controller]: navigation aborted: drl 0.00 m, mppi 0.04 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.4 m
+15:04:33 received signal SIGINT, shutting down
+[INFO] [1791711273.412843696] [drl_controller]: navigation at shutdown: drl 0.00 m, mppi 0.04 m -> DRL share 0% | cumulative drl 14.2 m, mppi 42.4 m

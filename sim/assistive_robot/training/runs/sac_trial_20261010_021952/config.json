@@ -1,0 +1,13 @@
+{
+ "minutes": 30.0,
+ "n_envs": 3,
+ "gradient_steps": -1,
+ "seed": 0,
+ "worlds": [
+  "trial_0_0.sdf",
+  "trial_0_1.sdf",
+  "trial_0_2.sdf"
+ ],
+ "torch": "2.14.1+cu130",
+ "cuda": true
+}

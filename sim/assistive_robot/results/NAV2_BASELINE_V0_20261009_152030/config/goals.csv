@@ -1,0 +1,7 @@
+name,x,y,yaw_deg,frame
+candidate_1,-5,4,0,map
+candidate_2,5,-4,0,map
+candidate_3,-3,0,0,map
+candidate_4,3,4,0,map
+candidate_5,5,2,0,map
+candidate_6,-5,2.5,0,map

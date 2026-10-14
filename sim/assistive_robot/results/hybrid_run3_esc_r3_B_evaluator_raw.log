@@ -1,0 +1,20 @@
+[1] candidate_1  SUCCEEDED  real_dist=0.04 m t=53.7s rec=0 success_real=True
+[1] candidate_2  SUCCEEDED  real_dist=0.12 m t=101.4s rec=1 success_real=True
+[1] candidate_3  SUCCEEDED  real_dist=0.04 m t=73.1s rec=0 success_real=True
+[1] candidate_4  SUCCEEDED  real_dist=0.2 m t=75.6s rec=0 success_real=True
+[1] candidate_5  TIMEOUT    real_dist=0.51 m t=150.0s rec=4 success_real=False
+[1] candidate_6  ABORTED    real_dist=9.56 m t=18.5s rec=0 success_real=False
+[2] candidate_1  ABORTED    real_dist=9.6 m t=7.2s rec=0 success_real=False
+[2] candidate_2  ABORTED    real_dist=6.65 m t=1.0s rec=0 success_real=False
+[2] candidate_3  SUCCEEDED  real_dist=0.06 m t=59.8s rec=0 success_real=True
+[2] candidate_4  SUCCEEDED  real_dist=0.2 m t=80.4s rec=0 success_real=True
+[2] candidate_5  TIMEOUT    real_dist=0.39 m t=150.0s rec=8 success_real=False
+[2] candidate_6  SUCCEEDED  real_dist=0.08 m t=92.0s rec=0 success_real=True
+
+=== SUMMARY (success = Nav2 SUCCEEDED and real distance <= 0.25 m) ===
+trials: 12   real successes: 7 (58%)
+mean time (successes): 76.6 s
+mean path efficiency (successes): 0.80
+trials with non-ground contacts (unvalidated): 0
+csv: /home/pushkar/assistive_robot_ws/src/assistive_robot/results/nav2_eval_v2_20261011_214519.csv
+evaluator exit 0

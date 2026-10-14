@@ -1,0 +1,7 @@
+repeat,goal,goal_x,goal_y,status,success_real,duration_s,recoveries,start_x,start_y,start_yaw,end_x,end_y,end_yaw,real_dist_to_goal_m,yaw_error_deg,path_len_m,straight_m,efficiency,min_lidar_m,contact_pairs
+1,candidate_1,-5.0,4.0,SUCCEEDED,True,49.2,0,0.0,-0.0,0.0,-5.2,4.05,17.0,0.21,17.0,10.58,6.4,0.61,0.46,
+1,candidate_2,5.0,-4.0,SUCCEEDED,True,132.1,0,-5.2,4.05,17.0,4.87,-4.19,-53.0,0.23,-53.0,17.11,12.99,0.76,0.34,
+1,candidate_3,-3.0,0.0,ABORTED,False,82.4,0,4.87,-4.19,-53.0,4.47,-1.57,115.0,7.63,115.0,4.98,8.92,1.79,0.41,
+1,candidate_4,3.0,4.0,TIMEOUT,False,150.0,0,4.47,-1.57,115.0,4.47,-1.57,115.0,5.76,115.0,0.0,5.76,,0.41,
+1,candidate_5,5.0,2.0,TIMEOUT,False,150.0,0,4.47,-1.57,115.0,4.47,-1.57,115.0,3.61,115.0,0.0,3.61,,0.41,
+1,candidate_6,-5.0,2.5,ABORTED,False,26.9,0,4.47,-1.57,115.0,4.47,-1.57,115.0,10.31,115.0,0.0,10.31,,0.41,

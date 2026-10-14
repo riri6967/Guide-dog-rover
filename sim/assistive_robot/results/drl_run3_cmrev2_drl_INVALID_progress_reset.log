@@ -1,0 +1,2 @@
+[INFO] [1791672171.538589551] [drl_controller]: DRL controller ready, actor /home/pushkar/assistive_robot_ws/src/assistive_robot/training/deploy/actor_run3.npz, tol 0.15 m, lookahead 1.5 m
+04:55:35 received signal SIGINT, shutting down
