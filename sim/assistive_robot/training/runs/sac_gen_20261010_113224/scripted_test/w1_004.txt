@@ -1,0 +1,1 @@
+episodes 10: success 10 (100%), collisions 0, stuck 0, timeouts 0 | 2133 steps in 37.6 s = 57 steps/s | mean len 213, mean return 69.5, reset err max 0.006 m

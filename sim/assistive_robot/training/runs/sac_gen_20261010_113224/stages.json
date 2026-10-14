@@ -1,0 +1,25 @@
+[
+ {
+  "stage": 0,
+  "steps": 0,
+  "minutes": 0.0
+ },
+ {
+  "stage": 1,
+  "steps": 50874,
+  "minutes": 4.5,
+  "val_success_prev_tier": 0.8
+ },
+ {
+  "stage": 2,
+  "steps": 162066,
+  "minutes": 14.5,
+  "val_success_prev_tier": 0.8
+ },
+ {
+  "stage": 3,
+  "steps": 788196,
+  "minutes": 74.3,
+  "val_success_prev_tier": 0.8
+ }
+]

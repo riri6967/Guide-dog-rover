@@ -1,0 +1,29 @@
+# Fix 1 (2026-10-11), applied identically to Nav2 MPPI and DRL runs via nav2/launch/navigation_variant.launch.py.
+# Problem: PolygonStop (x 0..0.55, |y| <= 0.33, front) stops EVERY command once >= 4 scan points are inside, including
+# reverse and the BT BackUp recovery, so a robot that ends up facing a wall within 10 cm is stuck for good (DRL runs 2 and 3).
+# Change: the stop zone depends on the commanded velocity. v < 0 (reversing): mirrored box BEHIND the robot. Any other command
+# (forward, rotation, zero): exactly the old front box. Forward driving and turning are therefore unchanged.
+collision_monitor:
+  ros__parameters:
+    polygons: ["PolygonSlow", "PolygonStopVel"]
+    PolygonStopVel:
+      type: "velocity_polygon"
+      action_type: "stop"
+      min_points: 4
+      visualize: true
+      enabled: true
+      polygon_pub_topic: polygon_stop
+      holonomic: false
+      velocity_polygons: ["backward", "default"]
+      backward:
+        points: "[[0.00, 0.33], [0.00, -0.33], [-0.55, -0.33], [-0.55, 0.33]]"
+        linear_min: -1.0
+        linear_max: -0.001
+        theta_min: -2.0
+        theta_max: 2.0
+      default:
+        points: "[[0.55, 0.33], [0.55, -0.33], [0.00, -0.33], [0.00, 0.33]]"
+        linear_min: -1.0
+        linear_max: 1.0
+        theta_min: -2.0
+        theta_max: 2.0

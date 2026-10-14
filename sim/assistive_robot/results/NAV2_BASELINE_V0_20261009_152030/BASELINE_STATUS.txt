@@ -1,0 +1,23 @@
+Assistive Rover — Nav2 Baseline V0
+Status: DEVELOPMENT BASELINE FROZEN
+
+Confirmed:
+- ROS 2 Jazzy, Gazebo Sim, Nav2 and velocity pipeline running.
+- LiDAR and odometry messages available.
+- Rover visibly moves in Gazebo.
+- Direct planning succeeded for several tested goals.
+- Navigation to (0.5, 0.0) succeeded with 5 recoveries.
+- Navigation to (3.0, 0.0) succeeded with 0 recoveries.
+
+Known limitations:
+- Direct planning to (-3.0, 0.0) failed.
+- Return navigation to (0.0, 0.0) aborted after 16 recoveries.
+- Earlier multi-goal evaluation had timeouts and aborts.
+- Evaluator does not reset the rover between trials.
+- Historical evaluation is diagnostic, not a validated benchmark.
+- Contact reports and collision counts have not been independently validated.
+
+Decision:
+- No further random Nav2 parameter tuning.
+- Move on to the Isaac Lab phase.
+- Revisit benchmark repeatability before claiming a fair Nav2-vs-DRL comparison.

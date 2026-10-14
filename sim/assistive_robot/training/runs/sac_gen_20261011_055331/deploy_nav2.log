@@ -1,0 +1,986 @@
+[INFO] [launch]: All log files can be found below /home/pushkar/.ros/log/2026-10-11-08-31-50-325080-pushkar-LOQ-15ARP9-1924435
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [map_server-1]: process started with pid [1924446]
+[INFO] [amcl-2]: process started with pid [1924447]
+[INFO] [planner_server-3]: process started with pid [1924448]
+[INFO] [controller_server-4]: process started with pid [1924449]
+[INFO] [smoother_server-5]: process started with pid [1924450]
+[INFO] [behavior_server-6]: process started with pid [1924451]
+[INFO] [bt_navigator-7]: process started with pid [1924452]
+[INFO] [velocity_smoother-8]: process started with pid [1924453]
+[INFO] [collision_monitor-9]: process started with pid [1924454]
+[INFO] [static_transform_publisher-10]: process started with pid [1924455]
+[INFO] [lifecycle_manager-11]: process started with pid [1924456]
+[static_transform_publisher-10] [INFO] [1791687710.470420990] [base_to_lidar]: Spinning until stopped - publishing transform
+[static_transform_publisher-10] translation: ('0.000000', '0.000000', '0.680000')
+[static_transform_publisher-10] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-10] from 'base_link' to 'assistive_rover/base_link/lidar'
+[controller_server-4] [INFO] [1791687710.488404570] [controller_server]: 
+[controller_server-4] 	controller_server lifecycle node launched. 
+[controller_server-4] 	Waiting on external lifecycle transitions to activate
+[controller_server-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[velocity_smoother-8] [INFO] [1791687710.494138003] [velocity_smoother]: 
+[velocity_smoother-8] 	velocity_smoother lifecycle node launched. 
+[velocity_smoother-8] 	Waiting on external lifecycle transitions to activate
+[velocity_smoother-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[controller_server-4] [INFO] [1791687710.494812673] [controller_server]: Creating controller server
+[planner_server-3] [INFO] [1791687710.506830177] [planner_server]: 
+[planner_server-3] 	planner_server lifecycle node launched. 
+[planner_server-3] 	Waiting on external lifecycle transitions to activate
+[planner_server-3] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-3] [INFO] [1791687710.508868144] [planner_server]: Creating
+[bt_navigator-7] [INFO] [1791687710.512680237] [bt_navigator]: 
+[bt_navigator-7] 	bt_navigator lifecycle node launched. 
+[bt_navigator-7] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-7] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[lifecycle_manager-11] [INFO] [1791687710.513005805] [lifecycle_manager_navigation]: Creating
+[bt_navigator-7] [INFO] [1791687710.514530354] [bt_navigator]: Creating
+[collision_monitor-9] [INFO] [1791687710.519046321] [collision_monitor]: 
+[collision_monitor-9] 	collision_monitor lifecycle node launched. 
+[collision_monitor-9] 	Waiting on external lifecycle transitions to activate
+[collision_monitor-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[lifecycle_manager-11] [INFO] [1791687710.521406471] [lifecycle_manager_navigation]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[behavior_server-6] [INFO] [1791687710.522613967] [behavior_server]: 
+[behavior_server-6] 	behavior_server lifecycle node launched. 
+[behavior_server-6] 	Waiting on external lifecycle transitions to activate
+[behavior_server-6] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[smoother_server-5] [INFO] [1791687710.523353188] [smoother_server]: 
+[smoother_server-5] 	smoother_server lifecycle node launched. 
+[smoother_server-5] 	Waiting on external lifecycle transitions to activate
+[smoother_server-5] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[smoother_server-5] [INFO] [1791687710.526073701] [smoother_server]: Creating smoother server
+[amcl-2] [INFO] [1791687710.528901896] [amcl]: 
+[amcl-2] 	amcl lifecycle node launched. 
+[amcl-2] 	Waiting on external lifecycle transitions to activate
+[amcl-2] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[amcl-2] [INFO] [1791687710.529318414] [amcl]: Creating
+[controller_server-4] [INFO] [1791687710.530341525] [local_costmap.local_costmap]: 
+[controller_server-4] 	local_costmap lifecycle node launched. 
+[controller_server-4] 	Waiting on external lifecycle transitions to activate
+[controller_server-4] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[controller_server-4] [INFO] [1791687710.530761149] [local_costmap.local_costmap]: Creating Costmap
+[planner_server-3] [INFO] [1791687710.534677467] [global_costmap.global_costmap]: 
+[planner_server-3] 	global_costmap lifecycle node launched. 
+[planner_server-3] 	Waiting on external lifecycle transitions to activate
+[planner_server-3] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[planner_server-3] [INFO] [1791687710.535189744] [global_costmap.global_costmap]: Creating Costmap
+[map_server-1] [INFO] [1791687710.536002332] [map_server]: 
+[map_server-1] 	map_server lifecycle node launched. 
+[map_server-1] 	Waiting on external lifecycle transitions to activate
+[map_server-1] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[map_server-1] [INFO] [1791687710.536146331] [map_server]: Creating
+[lifecycle_manager-11] [INFO] [1791687711.044663017] [lifecycle_manager_navigation]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-11] [INFO] [1791687711.044712890] [lifecycle_manager_navigation]: [34m[1mConfiguring map_server[0m[0m
+[map_server-1] [INFO] [1791687711.045040903] [map_server]: Configuring
+[map_server-1] [INFO] [1791687711.045115803] [map_io]: Loading yaml file: /home/pushkar/assistive_robot_ws/src/assistive_robot/nav2/maps/assistive_world.yaml
+[map_server-1] [INFO] [1791687711.045413019] [map_io]: resolution: 0.05
+[map_server-1] [INFO] [1791687711.045428648] [map_io]: origin[0]: -13
+[map_server-1] [INFO] [1791687711.045434779] [map_io]: origin[1]: -8
+[map_server-1] [INFO] [1791687711.045439127] [map_io]: origin[2]: 0
+[map_server-1] [INFO] [1791687711.045443836] [map_io]: free_thresh: 0.25
+[map_server-1] [INFO] [1791687711.045448525] [map_io]: occupied_thresh: 0.65
+[map_server-1] [INFO] [1791687711.045454807] [map_io]: mode: trinary
+[map_server-1] [INFO] [1791687711.045460898] [map_io]: negate: 0
+[map_server-1] [INFO] [1791687711.045715043] [map_io]: Loading image_file: /home/pushkar/assistive_robot_ws/src/assistive_robot/nav2/maps/assistive_world.pgm
+[map_server-1] [INFO] [1791687711.050053249] [map_io]: Read map /home/pushkar/assistive_robot_ws/src/assistive_robot/nav2/maps/assistive_world.pgm: 521 X 321 map @ 0.05 m/cell
+[lifecycle_manager-11] [INFO] [1791687711.057387983] [lifecycle_manager_navigation]: [34m[1mConfiguring amcl[0m[0m
+[amcl-2] [INFO] [1791687711.057666513] [amcl]: Configuring
+[amcl-2] [INFO] [1791687711.057753836] [amcl]: initTransforms
+[amcl-2] [INFO] [1791687711.066265179] [amcl]: initPubSub
+[amcl-2] [INFO] [1791687711.074300924] [amcl]: Subscribed to map topic.
+[lifecycle_manager-11] [INFO] [1791687711.077170325] [lifecycle_manager_navigation]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-4] [INFO] [1791687711.077380748] [controller_server]: Configuring controller interface
+[controller_server-4] [INFO] [1791687711.077401817] [controller_server]: getting progress checker plugins..
+[controller_server-4] [INFO] [1791687711.077535156] [controller_server]: getting goal checker plugins..
+[controller_server-4] [INFO] [1791687711.077625866] [controller_server]: Controller frequency set to 20.0000Hz
+[controller_server-4] [INFO] [1791687711.077664077] [local_costmap.local_costmap]: Configuring
+[controller_server-4] [INFO] [1791687711.084962634] [local_costmap.local_costmap]: Using plugin "obstacle_layer"
+[controller_server-4] [INFO] [1791687711.088200474] [local_costmap.local_costmap]: Subscribed to Topics: scan
+[controller_server-4] [INFO] [1791687711.091348205] [local_costmap.local_costmap]: Initialized plugin "obstacle_layer"
+[controller_server-4] [INFO] [1791687711.091373883] [local_costmap.local_costmap]: Using plugin "inflation_layer"
+[controller_server-4] [INFO] [1791687711.091864069] [local_costmap.local_costmap]: Initialized plugin "inflation_layer"
+[controller_server-4] [INFO] [1791687711.113465209] [controller_server]: Created progress_checker : progress_checker of type nav2_controller::SimpleProgressChecker
+[controller_server-4] [INFO] [1791687711.113876979] [controller_server]: Controller Server has progress_checker  progress checkers available.
+[controller_server-4] [INFO] [1791687711.114553513] [controller_server]: Created goal checker : general_goal_checker of type nav2_controller::SimpleGoalChecker
+[controller_server-4] [INFO] [1791687711.115160417] [controller_server]: Controller Server has general_goal_checker  goal checkers available.
+[controller_server-4] [INFO] [1791687711.116908593] [controller_server]: Created controller : FollowPath of type nav2_mppi_controller::MPPIController
+[controller_server-4] [INFO] [1791687711.118415368] [controller_server]: Controller period is equal to model dt. Control sequence shifting is ON
+[controller_server-4] [INFO] [1791687711.119901184] [controller_server]: ConstraintCritic instantiated with 1 power and 4.000000 weight.
+[controller_server-4] [INFO] [1791687711.119926592] [controller_server]: Critic loaded : mppi::critics::ConstraintCritic
+[controller_server-4] [INFO] [1791687711.120539176] [controller_server]: InflationCostCritic instantiated with 1 power and 300.000000 / 0.015000 weights. Critic will collision check based on footprint cost.
+[controller_server-4] [INFO] [1791687711.120560937] [controller_server]: Critic loaded : mppi::critics::CostCritic
+[controller_server-4] [INFO] [1791687711.120801206] [controller_server]: GoalCritic instantiated with 1 power and 5.000000 weight.
+[controller_server-4] [INFO] [1791687711.120814210] [controller_server]: Critic loaded : mppi::critics::GoalCritic
+[controller_server-4] [INFO] [1791687711.121206754] [controller_server]: GoalAngleCritic instantiated with 1 power, 3.000000 weight, 0.500000 angular threshold and symmetric_yaw_tolerance disabled
+[controller_server-4] [INFO] [1791687711.121229286] [controller_server]: Critic loaded : mppi::critics::GoalAngleCritic
+[controller_server-4] [INFO] [1791687711.122168010] [controller_server]: ReferenceTrajectoryCritic instantiated with 1 power and 14.000000 weight
+[controller_server-4] [INFO] [1791687711.122193267] [controller_server]: Critic loaded : mppi::critics::PathAlignCritic
+[controller_server-4] [INFO] [1791687711.122838112] [controller_server]: Critic loaded : mppi::critics::PathFollowCritic
+[controller_server-4] [INFO] [1791687711.123735859] [controller_server]: PathAngleCritic instantiated with 1 power and 2.000000 weight. Mode set to: Forward Preference
+[controller_server-4] [INFO] [1791687711.123760325] [controller_server]: Critic loaded : mppi::critics::PathAngleCritic
+[controller_server-4] [INFO] [1791687711.124179528] [controller_server]: PreferForwardCritic instantiated with 1 power and 5.000000 weight.
+[controller_server-4] [INFO] [1791687711.124202972] [controller_server]: Critic loaded : mppi::critics::PreferForwardCritic
+[controller_server-4] [INFO] [1791687711.126285182] [controller_server]: Optimizer reset
+[controller_server-4] [INFO] [1791687711.132550839] [MPPIController]: Configured MPPI Controller: FollowPath
+[controller_server-4] [INFO] [1791687711.132630328] [controller_server]: Controller Server has FollowPath  controllers available.
+[lifecycle_manager-11] [INFO] [1791687711.139880444] [lifecycle_manager_navigation]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-3] [INFO] [1791687711.140081259] [planner_server]: Configuring
+[planner_server-3] [INFO] [1791687711.140108380] [global_costmap.global_costmap]: Configuring
+[planner_server-3] [INFO] [1791687711.146858492] [global_costmap.global_costmap]: Using plugin "static_layer"
+[planner_server-3] [INFO] [1791687711.151064841] [global_costmap.global_costmap]: Subscribing to the map topic (/map) with transient local durability
+[planner_server-3] [INFO] [1791687711.152956315] [global_costmap.global_costmap]: Initialized plugin "static_layer"
+[planner_server-3] [INFO] [1791687711.152984358] [global_costmap.global_costmap]: Using plugin "obstacle_layer"
+[planner_server-3] [INFO] [1791687711.153475555] [global_costmap.global_costmap]: Subscribed to Topics: scan
+[planner_server-3] [INFO] [1791687711.157286035] [global_costmap.global_costmap]: Initialized plugin "obstacle_layer"
+[planner_server-3] [INFO] [1791687711.157316372] [global_costmap.global_costmap]: Using plugin "inflation_layer"
+[planner_server-3] [INFO] [1791687711.157826044] [global_costmap.global_costmap]: Initialized plugin "inflation_layer"
+[planner_server-3] [INFO] [1791687711.185124028] [planner_server]: Created global planner plugin GridBased of type nav2_smac_planner::SmacPlanner2D
+[planner_server-3] [INFO] [1791687711.185168341] [planner_server]: Configuring GridBased of type SmacPlanner2D
+[planner_server-3] [ERROR] [1791687711.186138023] [planner_server]: Inflation layer either not found or inflation is not set sufficiently for optimized non-circular collision checking capabilities. It is HIGHLY recommended to set the inflation radius to be at MINIMUM half of the robot's largest cross-section. See github.com/ros-planning/navigation2/tree/main/nav2_smac_planner#potential-fields for full instructions. This will substantially impact run-time performance.
+[planner_server-3] [INFO] [1791687711.187716813] [planner_server]: Configured plugin GridBased of type SmacPlanner2D with tolerance 0.12, maximum iterations 1000000, max on approach iterations 1000, and not allowing unknown traversal.
+[planner_server-3] [INFO] [1791687711.187756026] [planner_server]: Planner Server has GridBased  planners available.
+[lifecycle_manager-11] [INFO] [1791687711.197067263] [lifecycle_manager_navigation]: [34m[1mConfiguring smoother_server[0m[0m
+[smoother_server-5] [INFO] [1791687711.197416566] [smoother_server]: Configuring smoother server
+[smoother_server-5] [INFO] [1791687711.212233841] [smoother_server]: Created smoother : simple_smoother of type nav2_smoother::SimpleSmoother
+[smoother_server-5] [INFO] [1791687711.212644088] [smoother_server]: Smoother Server has simple_smoother  smoothers available.
+[lifecycle_manager-11] [INFO] [1791687711.219915023] [lifecycle_manager_navigation]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-6] [INFO] [1791687711.220118874] [behavior_server]: Configuring
+[behavior_server-6] [INFO] [1791687711.224149645] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors::Spin
+[behavior_server-6] [INFO] [1791687711.225012246] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors::BackUp
+[behavior_server-6] [INFO] [1791687711.225719328] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors::DriveOnHeading
+[behavior_server-6] [INFO] [1791687711.226418434] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors::Wait
+[behavior_server-6] [INFO] [1791687711.236227822] [behavior_server]: Configuring spin
+[behavior_server-6] [INFO] [1791687711.243836999] [behavior_server]: Configuring backup
+[behavior_server-6] [INFO] [1791687711.249042255] [behavior_server]: Configuring drive_on_heading
+[behavior_server-6] [INFO] [1791687711.253096971] [behavior_server]: Configuring wait
+[lifecycle_manager-11] [INFO] [1791687711.257390062] [lifecycle_manager_navigation]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-7] [INFO] [1791687711.257715680] [bt_navigator]: Configuring
+[bt_navigator-7] [INFO] [1791687711.264691705] [bt_navigator]: Creating navigator id navigate_to_pose of type nav2_bt_navigator::NavigateToPoseNavigator
+[bt_navigator-7] [WARN] [1791687711.269065517] [bt_navigator]: Error_code parameters were not set. Using default values of: follow_path_error_code compute_path_error_code
+[bt_navigator-7] Make sure these match your BT and there are not other sources of error codes youreported to your application
+[bt_navigator-7] [INFO] [1791687711.331784563] [bt_navigator]: Creating navigator id navigate_through_poses of type nav2_bt_navigator::NavigateThroughPosesNavigator
+[lifecycle_manager-11] [INFO] [1791687711.353374913] [lifecycle_manager_navigation]: [34m[1mConfiguring velocity_smoother[0m[0m
+[velocity_smoother-8] [INFO] [1791687711.353599653] [velocity_smoother]: Configuring velocity smoother
+[lifecycle_manager-11] [INFO] [1791687711.359819995] [lifecycle_manager_navigation]: [34m[1mConfiguring collision_monitor[0m[0m
+[collision_monitor-9] [INFO] [1791687711.360084840] [collision_monitor]: Configuring
+[collision_monitor-9] [INFO] [1791687711.367073187] [collision_monitor]: [scan]: Creating Scan
+[collision_monitor-9] [INFO] [1791687711.370321606] [collision_monitor]: [PolygonSlow]: Creating Polygon
+[collision_monitor-9] [INFO] [1791687711.372713115] [collision_monitor]: [PolygonStopVel]: Creating Polygon
+[collision_monitor-9] [INFO] [1791687711.372761836] [collision_monitor]: [PolygonStopVel]: Creating VelocityPolygon
+[lifecycle_manager-11] [INFO] [1791687711.383075827] [lifecycle_manager_navigation]: [34m[1mActivating map_server[0m[0m
+[map_server-1] [INFO] [1791687711.383231187] [map_server]: Activating
+[map_server-1] [INFO] [1791687711.383678823] [map_server]: Creating bond (map_server) to lifecycle manager.
+[planner_server-3] [INFO] [1791687711.384084631] [global_costmap.global_costmap]: StaticLayer: Resizing costmap to 521 X 321 at 0.050000 m/pix
+[amcl-2] [INFO] [1791687711.384203163] [amcl]: Received a 521 X 321 map @ 0.050 m/pix
+[lifecycle_manager-11] [INFO] [1791687711.488225170] [lifecycle_manager_navigation]: Server map_server connected with bond.
+[lifecycle_manager-11] [INFO] [1791687711.488260206] [lifecycle_manager_navigation]: [34m[1mActivating amcl[0m[0m
+[amcl-2] [INFO] [1791687711.488526994] [amcl]: Activating
+[amcl-2] [INFO] [1791687711.488572599] [amcl]: initialPoseReceived
+[amcl-2] [INFO] [1791687711.488676333] [amcl]: Setting pose (9.833000): 0.000 0.000 0.000
+[amcl-2] [INFO] [1791687711.489280502] [amcl]: Creating bond (amcl) to lifecycle manager.
+[amcl-2] [INFO] [1791687711.583811146] [amcl]: createLaserObject
+[lifecycle_manager-11] [INFO] [1791687711.593366259] [lifecycle_manager_navigation]: Server amcl connected with bond.
+[lifecycle_manager-11] [INFO] [1791687711.593405121] [lifecycle_manager_navigation]: [34m[1mActivating controller_server[0m[0m
+[controller_server-4] [INFO] [1791687711.593665087] [controller_server]: Activating
+[controller_server-4] [INFO] [1791687711.593703168] [local_costmap.local_costmap]: Activating
+[controller_server-4] [INFO] [1791687711.593713087] [local_costmap.local_costmap]: Checking transform
+[controller_server-4] [INFO] [1791687711.593860201] [local_costmap.local_costmap]: start
+[controller_server-4] [WARN] [1791687711.694769944] [controller_server]: Parameter controller_server.verbose not found
+[controller_server-4] [INFO] [1791687711.696246954] [controller_server]: Optimizer reset
+[controller_server-4] [INFO] [1791687711.696583182] [MPPIController]: Activated MPPI Controller: FollowPath
+[controller_server-4] [INFO] [1791687711.696625311] [controller_server]: Creating bond (controller_server) to lifecycle manager.
+[lifecycle_manager-11] [INFO] [1791687711.802399702] [lifecycle_manager_navigation]: Server controller_server connected with bond.
+[lifecycle_manager-11] [INFO] [1791687711.802453222] [lifecycle_manager_navigation]: [34m[1mActivating planner_server[0m[0m
+[planner_server-3] [INFO] [1791687711.802724088] [planner_server]: Activating
+[planner_server-3] [INFO] [1791687711.802763211] [global_costmap.global_costmap]: Activating
+[planner_server-3] [INFO] [1791687711.802773320] [global_costmap.global_costmap]: Checking transform
+[planner_server-3] [INFO] [1791687711.802868989] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Lookup would require extrapolation into the past.  Requested time 10.132000 but the earliest data is at time 10.900000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-3] [INFO] [1791687712.302880289] [global_costmap.global_costmap]: Timed out waiting for transform from base_link to map to become available, tf error: Lookup would require extrapolation into the past.  Requested time 10.608000 but the earliest data is at time 10.900000, when looking up transform from frame [base_link] to frame [map]
+[planner_server-3] [INFO] [1791687712.802955483] [global_costmap.global_costmap]: start
+[planner_server-3] [INFO] [1791687713.053877739] [planner_server]: Activating plugin GridBased of type SmacPlanner2D
+[planner_server-3] [INFO] [1791687713.055272104] [planner_server]: Creating bond (planner_server) to lifecycle manager.
+[lifecycle_manager-11] [INFO] [1791687713.159361843] [lifecycle_manager_navigation]: Server planner_server connected with bond.
+[lifecycle_manager-11] [INFO] [1791687713.159394263] [lifecycle_manager_navigation]: [34m[1mActivating smoother_server[0m[0m
+[smoother_server-5] [INFO] [1791687713.159644371] [smoother_server]: Activating
+[smoother_server-5] [INFO] [1791687713.159675399] [smoother_server]: Creating bond (smoother_server) to lifecycle manager.
+[lifecycle_manager-11] [INFO] [1791687713.264640593] [lifecycle_manager_navigation]: Server smoother_server connected with bond.
+[lifecycle_manager-11] [INFO] [1791687713.264713940] [lifecycle_manager_navigation]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-6] [INFO] [1791687713.265147079] [behavior_server]: Activating
+[behavior_server-6] [INFO] [1791687713.265173939] [behavior_server]: Activating spin
+[behavior_server-6] [INFO] [1791687713.265185110] [behavior_server]: Activating backup
+[behavior_server-6] [INFO] [1791687713.265192784] [behavior_server]: Activating drive_on_heading
+[behavior_server-6] [INFO] [1791687713.265201030] [behavior_server]: Activating wait
+[behavior_server-6] [INFO] [1791687713.265215387] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-11] [INFO] [1791687713.370120889] [lifecycle_manager_navigation]: Server behavior_server connected with bond.
+[lifecycle_manager-11] [INFO] [1791687713.370155284] [lifecycle_manager_navigation]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-7] [INFO] [1791687713.370370255] [bt_navigator]: Activating
+[bt_navigator-7] [INFO] [1791687713.432258732] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-11] [INFO] [1791687713.537511082] [lifecycle_manager_navigation]: Server bt_navigator connected with bond.
+[lifecycle_manager-11] [INFO] [1791687713.537567458] [lifecycle_manager_navigation]: [34m[1mActivating velocity_smoother[0m[0m
+[velocity_smoother-8] [INFO] [1791687713.537871396] [velocity_smoother]: Activating
+[velocity_smoother-8] [INFO] [1791687713.537940845] [velocity_smoother]: Creating bond (velocity_smoother) to lifecycle manager.
+[lifecycle_manager-11] [INFO] [1791687713.642300739] [lifecycle_manager_navigation]: Server velocity_smoother connected with bond.
+[lifecycle_manager-11] [INFO] [1791687713.642346945] [lifecycle_manager_navigation]: [34m[1mActivating collision_monitor[0m[0m
+[collision_monitor-9] [INFO] [1791687713.642692771] [collision_monitor]: Activating
+[collision_monitor-9] [INFO] [1791687713.642878999] [collision_monitor]: Creating bond (collision_monitor) to lifecycle manager.
+[lifecycle_manager-11] [INFO] [1791687713.749726540] [lifecycle_manager_navigation]: Server collision_monitor connected with bond.
+[lifecycle_manager-11] [INFO] [1791687713.749766595] [lifecycle_manager_navigation]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-11] [INFO] [1791687713.749775411] [lifecycle_manager_navigation]: [34m[1mCreating bond timer...[0m[0m
+[bt_navigator-7] [INFO] [1791687717.323227352] [bt_navigator]: Begin navigating from current location (0.00, -0.00) to (-5.00, 4.00)
+[collision_monitor-9] [INFO] [1791687739.268417153] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687745.258291563] [collision_monitor]: Robot to continue normal operation
+[collision_monitor-9] [INFO] [1791687748.348253705] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687750.148265554] [collision_monitor]: Robot to continue normal operation
+[collision_monitor-9] [INFO] [1791687750.358407233] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687751.098398515] [collision_monitor]: Robot to continue normal operation
+[collision_monitor-9] [INFO] [1791687753.528540793] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687754.508396247] [collision_monitor]: Robot to continue normal operation
+[collision_monitor-9] [INFO] [1791687754.618442145] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687754.718484122] [collision_monitor]: Robot to continue normal operation
+[bt_navigator-7] [INFO] [1791687763.113645024] [bt_navigator]: Goal succeeded
+[bt_navigator-7] [INFO] [1791687766.494611574] [bt_navigator]: Begin navigating from current location (-5.02, 3.96) to (5.00, -4.00)
+[planner_server-3] [WARN] [1791687768.559236857] [planner_server]: GridBased plugin failed to plan from (-5.38, 3.89) to (5.00, -4.00): "no valid path found"
+[planner_server-3] [WARN] [1791687768.559288443] [planner_server]: [compute_path_to_pose] [ActionServer] Aborting handle.
+[planner_server-3] [INFO] [1791687768.575093582] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[collision_monitor-9] [INFO] [1791687783.518446964] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687788.498271054] [collision_monitor]: Robot to continue normal operation
+[collision_monitor-9] [INFO] [1791687819.198205321] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687820.218398549] [collision_monitor]: Robot to continue normal operation
+[collision_monitor-9] [INFO] [1791687820.908391237] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687821.888131197] [collision_monitor]: Robot to continue normal operation
+[collision_monitor-9] [INFO] [1791687823.058377539] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687824.658354447] [collision_monitor]: Robot to continue normal operation
+[collision_monitor-9] [INFO] [1791687824.858286730] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687825.558290681] [collision_monitor]: Robot to continue normal operation
+[bt_navigator-7] [INFO] [1791687840.344938415] [bt_navigator]: Goal succeeded
+[bt_navigator-7] [INFO] [1791687843.690731790] [bt_navigator]: Begin navigating from current location (5.01, -3.92) to (-3.00, 0.00)
+[collision_monitor-9] [INFO] [1791687861.118408316] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[controller_server-4] [INFO] [1791687872.581256065] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[collision_monitor-9] [INFO] [1791687872.608301014] [collision_monitor]: Robot to continue normal operation
+[collision_monitor-9] [INFO] [1791687872.648214335] [collision_monitor]: Robot to slowdown for 40.000000 percents due to PolygonSlow polygon
+[collision_monitor-9] [INFO] [1791687875.158353765] [collision_monitor]: Robot to stop due to PolygonStopVel polygon
+[controller_server-4] [INFO] [1791687882.951419077] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791687882.951709871] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791687893.251177280] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791687903.351600759] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791687903.351728629] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791687913.551872414] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791687913.551910405] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791687913.551921025] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791687913.571189845] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791687918.671335113] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791687928.971172750] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791687949.511999365] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791687949.512313994] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791687949.512332899] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791687949.512343639] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791687949.531070634] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791687949.531329018] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791687970.061177643] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791687980.221338035] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791687980.221400973] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791687990.421542073] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791687990.421588420] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791687990.421605261] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791687990.441196785] [behavior_server]: Running wait
+[bt_navigator-7] [ERROR] [1791687993.721350177] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for wait in node halt!
+[bt_navigator-7] [INFO] [1791687993.721467987] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791687993.721562945] [bt_navigator]: Goal canceled
+[behavior_server-6] [INFO] [1791687993.741351659] [behavior_server]: Canceling wait
+[behavior_server-6] [INFO] [1791687993.741500457] [behavior_server]: [wait] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791687996.973918531] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (3.00, 4.00)
+[controller_server-4] [INFO] [1791688007.144375369] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791688017.375102613] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688017.375488085] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688027.704540713] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688037.904580571] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688037.904671401] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688048.004803114] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688048.004836326] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688048.004854850] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688048.024508674] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688053.124795188] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688063.344388451] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688073.554500887] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688073.554614830] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688073.554625841] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688073.554630911] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688073.574331306] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688073.574663639] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688083.694409458] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688093.994485352] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688093.994560493] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688104.094678055] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688104.094716908] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688104.094726696] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688104.114370051] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688109.214510595] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688119.524486212] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688129.604525687] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688129.604717537] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688129.604738075] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688129.604751741] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688129.624308448] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688129.624588744] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688140.004578193] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [ERROR] [1791688147.016940270] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[bt_navigator-7] [INFO] [1791688147.017062679] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791688147.017154311] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791688150.319210264] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (5.00, 2.00)
+[controller_server-4] [INFO] [1791688170.739739818] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791688180.899765431] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688180.900191160] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688191.089644662] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688201.249737013] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688201.249814228] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688211.449905250] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688211.449943061] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688211.449950996] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688211.469681222] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688216.569882905] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688226.669678656] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688236.799768446] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688236.800027552] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688236.800059041] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688236.800074300] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688236.819597732] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688236.819994356] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688247.249731749] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688257.520113418] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688257.520231680] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688267.720376336] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688267.720423484] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688267.720434786] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688267.739595933] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688272.839790913] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688283.059759529] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688293.149763105] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688293.149912315] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688293.149925520] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688293.149931471] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688293.169702926] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688293.170134225] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[bt_navigator-7] [ERROR] [1791688300.370376537] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[bt_navigator-7] [INFO] [1791688300.370540024] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791688300.370639561] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791688303.592156557] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (-5.00, 2.50)
+[controller_server-4] [INFO] [1791688313.872668091] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791688323.972673926] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688323.972988225] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688334.232592687] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688344.342739735] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688344.342822109] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688354.542914808] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688354.542945065] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688354.542954873] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688354.562610930] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688359.662792154] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688380.192638229] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688390.262705882] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688390.262881652] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688390.262902100] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688390.262910667] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688390.282472180] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688390.282834450] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688400.722726176] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688421.202786712] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688421.202875939] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688431.303018744] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688431.303066323] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688431.303076212] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688431.322572497] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688436.422747844] [behavior_server]: wait completed successfully
+[bt_navigator-7] [INFO] [1791688453.671712779] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791688453.671861007] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791688459.315928988] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (0.00, 0.00)
+[controller_server-4] [INFO] [1791688469.416531717] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791688479.696421827] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688479.696718544] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688490.016447857] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688500.276502257] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688500.276580705] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688510.476708821] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688510.476754827] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688510.476771208] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688510.496380613] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688515.596553332] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688525.806384283] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688536.146752686] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688536.146975574] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688536.146991063] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688536.146999409] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688536.166241787] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688536.166497667] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688546.356373246] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688556.566516074] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688556.566580124] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688566.666698601] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688566.666751921] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688566.666763543] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688566.686322688] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688571.786480464] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688582.176520308] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688592.326487343] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688592.326638306] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688592.326653815] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688592.326661550] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688592.346329852] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688592.346702802] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688602.586387647] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688612.796613526] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688612.796751394] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688622.996971331] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688622.997038016] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688622.997051111] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688623.016356333] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688628.116534082] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688638.266367962] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [WARN] [1791688648.446157414] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[bt_navigator-7] [ERROR] [1791688648.446364393] [bt_navigator]: Goal failed
+[bt_navigator-7] [INFO] [1791688651.627874186] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (-5.00, 4.00)
+[controller_server-4] [INFO] [1791688661.998341252] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791688672.098354514] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688672.098635501] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688682.398556482] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688692.478769140] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688692.478880730] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688702.579019222] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688702.579064397] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688702.579073304] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688702.598262734] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688707.698426815] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688728.248408260] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688738.348681959] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688738.348878458] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688738.348894999] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688738.348902643] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688738.358185464] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688738.358496488] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688748.678475018] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688758.708861738] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688758.708968658] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688768.909085058] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688768.909117629] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688768.909124853] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688768.928577270] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688774.028780787] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688784.218406870] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688794.268576422] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688794.268690647] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688794.268701216] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688794.268706907] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688794.288200844] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688794.288635129] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[bt_navigator-7] [ERROR] [1791688801.664460327] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[bt_navigator-7] [INFO] [1791688801.664599258] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791688801.664725415] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791688804.928133409] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (5.00, -4.00)
+[controller_server-4] [INFO] [1791688815.138610151] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791688825.318619459] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688825.318892242] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688835.538564350] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688845.588670683] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688845.588742117] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688855.788888183] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688855.788937265] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688855.788948226] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688855.808766695] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688860.908942233] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688871.168604369] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688881.278685093] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688881.278840926] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688881.278864310] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688881.278873026] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688881.298405279] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688881.298630321] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688891.568582592] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688901.718747743] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688901.718815840] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791688911.918908009] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791688911.918959966] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791688911.918969254] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791688911.938529981] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791688917.038700182] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791688927.278619062] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688937.468688822] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791688937.468847189] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791688937.468862328] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791688937.468869641] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791688937.488758827] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688937.489444935] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688947.798745760] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [ERROR] [1791688954.963179983] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[bt_navigator-7] [INFO] [1791688954.963298866] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791688954.963378876] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791688958.299272293] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (-3.00, 0.00)
+[controller_server-4] [INFO] [1791688968.449820323] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791688978.679733002] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791688978.680047303] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791688988.949756664] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791688999.109929548] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791688999.110029937] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689009.310152803] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689009.310187078] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689009.310194922] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689009.329704236] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689014.429851446] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689024.579703295] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689034.759878246] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689034.760025482] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689034.760038467] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689034.760044318] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689034.779572628] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689034.779806648] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689045.239775462] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689055.380523603] [planner_server]: Goal was canceled. Canceling planning action.
+[planner_server-3] [INFO] [1791689055.380578316] [planner_server]: [compute_path_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[behavior_server-6] [INFO] [1791689055.380884581] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689055.380933113] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689065.581049957] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689065.581088870] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689065.581099049] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689065.599682206] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689070.699880268] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689081.209796959] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689091.529954905] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689091.530150512] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689091.530175830] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689091.530189435] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689091.549663465] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689091.550176229] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689101.859971128] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [INFO] [1791689108.321797774] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791689108.321940512] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791689111.650626872] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (3.00, 4.00)
+[controller_server-4] [INFO] [1791689121.971215781] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791689132.431036394] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689132.431270183] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689143.041051216] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689153.231265438] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689153.231340369] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689163.431535240] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689163.431590313] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689163.431604440] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689163.451027787] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689168.551206673] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689178.751038042] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689189.011176283] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689189.011297911] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689189.011317157] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689189.011322407] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689189.030957643] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689189.031322218] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689199.421029173] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689209.561140481] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689209.561201345] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689219.761316499] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689219.761348840] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689219.761356003] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689219.780942278] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689224.881100878] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689235.161284129] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689245.731117859] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689245.731265677] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689245.731280014] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689245.731287748] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689245.751015178] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689245.751471545] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689255.991022008] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [INFO] [1791689261.666057836] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791689261.666205023] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791689264.998882781] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (5.00, 2.00)
+[controller_server-4] [INFO] [1791689275.239332142] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791689285.559315312] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689285.559636645] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689295.669314117] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689305.909392634] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689305.909465842] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689316.109592200] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689316.109633227] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689316.109646682] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689316.129425861] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689321.229573739] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689331.539341069] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689341.849565982] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689341.849721344] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689341.849735000] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689341.849741873] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689341.869158781] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689341.869435611] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689352.159363755] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689372.679641688] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689372.679732398] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689382.779860724] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689382.779905277] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689382.779916168] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689382.799386968] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689387.899575411] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689398.189621314] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689408.279527607] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689408.279706894] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689408.279721942] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689408.279729817] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689408.299256773] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689408.299515950] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[bt_navigator-7] [ERROR] [1791689415.031659358] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[bt_navigator-7] [INFO] [1791689415.031886124] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791689415.032030756] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791689418.277977794] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (-5.00, 2.50)
+[controller_server-4] [INFO] [1791689428.738420067] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791689449.148621503] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689449.148895227] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689459.438441356] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689469.679020434] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689469.679181989] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689479.879356969] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689479.879416928] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689479.879429521] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689479.898653489] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689484.998821410] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689495.178828998] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689505.388575686] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689505.388749874] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689505.388771644] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689505.388783425] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689505.408333595] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689505.408594060] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[planner_server-3] [WARN] [1791689505.613636870] [planner_server]: Planner loop missed its desired rate of 5.0000 Hz. Current loop rate is 4.9020 Hz
+[controller_server-4] [INFO] [1791689515.758434608] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689526.058582530] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689526.058658459] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689536.258766611] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689536.258796075] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689536.258803448] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689536.278546201] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689541.378767190] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689551.498535096] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689561.838573247] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689561.838698536] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689561.838708865] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689561.838714105] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689561.858296355] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689561.858608906] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[bt_navigator-7] [INFO] [1791689568.367052236] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791689568.367177676] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791689571.629475969] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (-5.00, 4.00)
+[controller_server-4] [INFO] [1791689581.709941983] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791689591.929926111] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689591.930242030] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689602.139895709] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689612.260364305] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689612.260484185] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689622.460698317] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689622.460753398] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689622.460765360] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689622.479885041] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689627.580048486] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689637.710118597] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689647.990274584] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689647.990399052] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689647.990412927] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689647.990418678] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689648.009972339] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689648.010381239] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[planner_server-3] [WARN] [1791689648.216103259] [planner_server]: Planner loop missed its desired rate of 5.0000 Hz. Current loop rate is 4.8780 Hz
+[controller_server-4] [INFO] [1791689658.400001477] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689668.620078963] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689668.620139374] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689678.820263580] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689678.820303072] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689678.820312971] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689678.839868063] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689683.940019273] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689694.160011832] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689704.360291298] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689704.360425806] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689704.360438028] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689704.360443548] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689704.379781432] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689704.380050277] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689714.860146072] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [INFO] [1791689721.660606556] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791689721.660714645] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791689724.954921369] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (5.00, -4.00)
+[controller_server-4] [INFO] [1791689735.225678759] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791689745.315377164] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689745.315678399] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689755.885360643] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689766.085532410] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689766.085594946] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689776.185708379] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689776.185742031] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689776.185751869] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689776.205345352] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689781.305523766] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689791.495355768] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689801.606170663] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689801.606464966] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689801.606483821] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689801.606492677] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689801.625262686] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689801.625516194] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689812.055494263] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689822.545506251] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689822.545591338] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689832.745749592] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689832.745803662] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689832.745814522] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689832.765314256] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689837.865475174] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689848.075363619] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689858.265514593] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689858.265684056] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689858.265704374] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689858.265710735] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689858.285279339] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689858.285569746] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689868.525383467] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [ERROR] [1791689874.995072034] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[bt_navigator-7] [INFO] [1791689874.995193408] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791689874.995277884] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791689878.269611864] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (-3.00, 0.00)
+[controller_server-4] [INFO] [1791689888.360025711] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791689898.520083563] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689898.520385571] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689908.700018326] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689918.900150260] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689918.900220490] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689929.100341628] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689929.100378266] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689929.100386401] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689929.120300081] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689934.220532326] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791689944.450120325] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689954.610146482] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791689954.610321887] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791689954.610357313] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791689954.610371930] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791689954.629888143] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791689954.630142434] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791689964.920222582] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791689975.040172470] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791689975.040234525] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791689985.240371544] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791689985.240425924] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791689985.240437906] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791689985.259953210] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791689990.360096615] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791690000.520197267] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690010.720208836] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791690010.720344828] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791690010.720356810] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791690010.720362671] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791690010.739891866] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690010.740125269] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690020.950028091] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [ERROR] [1791690028.342467311] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[bt_navigator-7] [INFO] [1791690028.342589878] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791690028.342690895] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791690031.633733597] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (3.00, 4.00)
+[controller_server-4] [INFO] [1791690041.754204352] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791690052.094215914] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690052.094422817] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690062.364207657] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690072.454283147] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791690072.454349309] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791690082.554528625] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791690082.554567257] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791690082.554577436] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791690082.574157699] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791690087.674320181] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791690097.874183992] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690107.974357057] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791690107.974480166] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791690107.974491887] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791690107.974497488] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791690107.994035757] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690107.994420190] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690118.234318054] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690128.434514175] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791690128.434617406] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791690138.534753686] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791690138.534814680] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791690138.534826231] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791690138.554171167] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791690143.654319716] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791690153.864163447] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690164.004377512] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791690164.004509928] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791690164.004524696] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791690164.004532741] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791690164.024077651] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690164.024399869] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690174.474227294] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [ERROR] [1791690181.704523231] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[bt_navigator-7] [INFO] [1791690181.704653483] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791690181.704750243] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791690184.997516319] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (5.00, 2.00)
+[controller_server-4] [INFO] [1791690195.288170779] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791690205.548146029] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690205.548507641] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690216.088028615] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690226.698526946] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791690226.698630138] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791690236.798779322] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791690236.798833322] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791690236.798853570] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791690236.817935621] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791690241.918099770] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791690252.077985276] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690262.348824938] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791690262.349079782] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791690262.349101172] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791690262.349111401] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791690262.367897042] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690262.368199143] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690272.698081811] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690282.768159969] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791690282.768231803] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791690292.868351522] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791690292.868392879] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791690292.868403398] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791690292.887904331] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791690297.988071260] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791690308.178010287] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690318.368096258] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791690318.368256947] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791690318.368273087] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791690318.368281052] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791690318.387879525] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690318.388135431] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690328.698617810] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [INFO] [1791690335.170014620] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791690335.170179497] [bt_navigator]: Goal canceled
+[bt_navigator-7] [INFO] [1791690338.364269155] [bt_navigator]: Begin navigating from current location (3.51, -1.48) to (-5.00, 2.50)
+[controller_server-4] [INFO] [1791690348.584824917] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[controller_server-4] [INFO] [1791690358.824819344] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690358.825165638] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690369.234912091] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690379.514835884] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791690379.514917445] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791690389.715139438] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791690389.715182048] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791690389.715192557] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791690389.734739458] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791690394.834919819] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791690405.014762668] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690415.114917811] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791690415.115089902] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791690415.115104609] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791690415.115110520] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791690415.134587799] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690415.134868912] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690425.464820202] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690436.045132856] [behavior_server]: Running spin
+[behavior_server-6] [INFO] [1791690436.045235807] [behavior_server]: Turning 1.57 for spin behavior.
+[behavior_server-6] [WARN] [1791690446.245385986] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-6] [WARN] [1791690446.245424938] [behavior_server]: spin failed
+[behavior_server-6] [WARN] [1791690446.245433865] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-6] [INFO] [1791690446.264715909] [behavior_server]: Running wait
+[behavior_server-6] [INFO] [1791690451.365192477] [behavior_server]: wait completed successfully
+[controller_server-4] [INFO] [1791690461.884895242] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[behavior_server-6] [INFO] [1791690472.084822203] [behavior_server]: Running backup
+[behavior_server-6] [WARN] [1791690472.084968907] [behavior_server]: Collision Ahead - Exiting DriveOnHeading
+[behavior_server-6] [WARN] [1791690472.084980889] [behavior_server]: backup failed
+[behavior_server-6] [WARN] [1791690472.084986750] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[controller_server-4] [INFO] [1791690472.104634702] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[planner_server-3] [INFO] [1791690472.105090251] [global_costmap.global_costmap]: Received request to clear entirely the global_costmap
+[controller_server-4] [INFO] [1791690482.344778584] [local_costmap.local_costmap]: Received request to clear entirely the local_costmap
+[bt_navigator-7] [ERROR] [1791690488.416006459] [bt_navigator_navigate_to_pose_rclcpp_node]: Failed to get result for follow_path in node halt!
+[bt_navigator-7] [INFO] [1791690488.416180373] [bt_navigator]: [navigate_to_pose] [ActionServer] Client requested to cancel the goal. Cancelling.
+[bt_navigator-7] [INFO] [1791690488.416300016] [bt_navigator]: Goal canceled
+[lifecycle_manager-11] [INFO] [1791690496.762892510] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[lifecycle_manager-11] [INFO] [1791690496.762972419] [lifecycle_manager_navigation]: Running Nav2 LifecycleManager rcl preshutdown (lifecycle_manager_navigation)
+[velocity_smoother-8] [INFO] [1791690496.762898561] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[velocity_smoother-8] [INFO] [1791690496.762985343] [velocity_smoother]: Running Nav2 LifecycleNode rcl preshutdown (velocity_smoother)
+[static_transform_publisher-10] [INFO] [1791690496.762902358] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-5] [INFO] [1791690496.762903671] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smoother_server-5] [INFO] [1791690496.762979672] [smoother_server]: Running Nav2 LifecycleNode rcl preshutdown (smoother_server)
+[smoother_server-5] [INFO] [1791690496.763028493] [smoother_server]: Deactivating
+[planner_server-3] [INFO] [1791690496.762905504] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[planner_server-3] [INFO] [1791690496.762972138] [planner_server]: Running Nav2 LifecycleNode rcl preshutdown (planner_server)
+[planner_server-3] [INFO] [1791690496.763027922] [planner_server]: Deactivating
+[collision_monitor-9] [INFO] [1791690496.762901617] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[collision_monitor-9] [INFO] [1791690496.762998888] [collision_monitor]: Running Nav2 LifecycleNode rcl preshutdown (collision_monitor)
+[lifecycle_manager-11] [INFO] [1791690496.763002575] [lifecycle_manager_navigation]: [34m[1mTerminating bond timer...[0m[0m
+[velocity_smoother-8] [INFO] [1791690496.763038732] [velocity_smoother]: Deactivating
+[velocity_smoother-8] [INFO] [1791690496.763060593] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[smoother_server-5] [INFO] [1791690496.763048130] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[planner_server-3] [INFO] [1791690496.763057668] [global_costmap.global_costmap]: Deactivating
+[collision_monitor-9] [INFO] [1791690496.763048180] [collision_monitor]: Deactivating
+[collision_monitor-9] [INFO] [1791690496.763069009] [collision_monitor]: Destroying bond (collision_monitor) to lifecycle manager.
+[controller_server-4] [INFO] [1791690496.762908199] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[controller_server-4] [INFO] [1791690496.762978731] [controller_server]: Running Nav2 LifecycleNode rcl preshutdown (controller_server)
+[controller_server-4] [INFO] [1791690496.763027712] [controller_server]: Deactivating
+[controller_server-4] [INFO] [1791690496.763054662] [MPPIController]: Deactivated MPPI Controller: FollowPath
+[controller_server-4] [INFO] [1791690496.763070021] [local_costmap.local_costmap]: Deactivating
+[behavior_server-6] [INFO] [1791690496.762916996] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[behavior_server-6] [INFO] [1791690496.762972118] [behavior_server]: Running Nav2 LifecycleNode rcl preshutdown (behavior_server)
+[behavior_server-6] [INFO] [1791690496.763030637] [behavior_server]: Deactivating
+[behavior_server-6] [INFO] [1791690496.763071814] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[amcl-2] [INFO] [1791690496.762914010] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[amcl-2] [INFO] [1791690496.762983760] [amcl]: Running Nav2 LifecycleNode rcl preshutdown (amcl)
+[amcl-2] [INFO] [1791690496.763035346] [amcl]: Deactivating
+[amcl-2] [INFO] [1791690496.763058369] [amcl]: Destroying bond (amcl) to lifecycle manager.
+[map_server-1] [INFO] [1791690496.762918328] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[map_server-1] [INFO] [1791690496.763017874] [map_server]: Running Nav2 LifecycleNode rcl preshutdown (map_server)
+[map_server-1] [INFO] [1791690496.763062146] [map_server]: Deactivating
+[map_server-1] [INFO] [1791690496.763077825] [map_server]: Destroying bond (map_server) to lifecycle manager.
+[bt_navigator-7] [INFO] [1791690496.763191257] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[bt_navigator-7] [INFO] [1791690496.763250958] [bt_navigator]: Running Nav2 LifecycleNode rcl preshutdown (bt_navigator)
+[bt_navigator-7] [INFO] [1791690496.763296423] [bt_navigator]: Deactivating
+[bt_navigator-7] [INFO] [1791690496.763324505] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[collision_monitor-9] [INFO] [1791690496.773301033] [collision_monitor]: Cleaning up
+[collision_monitor-9] [INFO] [1791690496.773344915] [collision_monitor]: [PolygonSlow]: Destroying Polygon
+[collision_monitor-9] [INFO] [1791690496.773358951] [collision_monitor]: [PolygonStopVel]: Destroying VelocityPolygon
+[collision_monitor-9] [INFO] [1791690496.773367237] [collision_monitor]: [PolygonStopVel]: Destroying Polygon
+[collision_monitor-9] [INFO] [1791690496.773373048] [collision_monitor]: [scan]: Destroying Scan
+[amcl-2] [INFO] [1791690496.773304259] [amcl]: Cleaning up
+[map_server-1] [INFO] [1791690496.773312535] [map_server]: Cleaning up
+[map_server-1] [INFO] [1791690496.773351988] [map_server]: Destroying bond (map_server) to lifecycle manager.
+[smoother_server-5] [INFO] [1791690496.773312635] [smoother_server]: Cleaning up
+[behavior_server-6] [INFO] [1791690496.773325329] [behavior_server]: Cleaning up
+[velocity_smoother-8] [INFO] [1791690496.773334305] [velocity_smoother]: Cleaning up
+[velocity_smoother-8] [INFO] [1791690496.773368900] [velocity_smoother]: Destroying bond (velocity_smoother) to lifecycle manager.
+[bt_navigator-7] [INFO] [1791690496.773554456] [bt_navigator]: Cleaning up
+[collision_monitor-9] [INFO] [1791690496.779558372] [collision_monitor]: Destroying bond (collision_monitor) to lifecycle manager.
+[amcl-2] [INFO] [1791690496.781021448] [amcl]: Destroying bond (amcl) to lifecycle manager.
+[map_server-1] [INFO] [1791690496.788420935] [map_server]: Destroying
+[behavior_server-6] [INFO] [1791690496.789237607] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[velocity_smoother-8] [INFO] [1791690496.789342723] [velocity_smoother]: Destroying
+[controller_server-4] [INFO] [1791690496.794119483] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[smoother_server-5] [INFO] [1791690496.798656156] [smoother_server]: Destroying bond (smoother_server) to lifecycle manager.
+[collision_monitor-9] [INFO] [1791690496.802714778] [collision_monitor]: Destroying
+[planner_server-3] [INFO] [1791690496.803263991] [planner_server]: Deactivating plugin GridBased of type SmacPlanner2D
+[planner_server-3] [INFO] [1791690496.803303204] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[controller_server-4] [INFO] [1791690496.804405288] [controller_server]: Cleaning up
+[amcl-2] [INFO] [1791690496.804929985] [amcl]: Destroying
+[controller_server-4] [INFO] [1791690496.805692125] [MPPIController]: Cleaned up MPPI Controller: FollowPath
+[controller_server-4] [INFO] [1791690496.805964904] [local_costmap.local_costmap]: Cleaning up
+[smoother_server-5] [INFO] [1791690496.806543852] [smoother_server]: Destroying
+[planner_server-3] [INFO] [1791690496.813561107] [planner_server]: Cleaning up
+[planner_server-3] [INFO] [1791690496.834024685] [global_costmap.global_costmap]: Cleaning up
+[behavior_server-6] [INFO] [1791690496.839073512] [behavior_server]: Destroying
+[planner_server-3] [INFO] [1791690496.843617829] [planner_server]: Cleaning up plugin GridBased of type SmacPlanner2D
+[planner_server-3] [INFO] [1791690496.844560706] [planner_server]: Destroying plugin GridBased of type SmacPlanner2D
+[controller_server-4] [INFO] [1791690496.859792817] [controller_server]: Destroying bond (controller_server) to lifecycle manager.
+[controller_server-4] [INFO] [1791690496.864842746] [local_costmap.local_costmap]: Destroying
+[planner_server-3] [INFO] [1791690496.870922504] [planner_server]: Destroying bond (planner_server) to lifecycle manager.
+[planner_server-3] [INFO] [1791690496.875251220] [global_costmap.global_costmap]: Destroying
+[controller_server-4] [INFO] [1791690496.879641980] [controller_server]: Destroying
+[INFO] [static_transform_publisher-10]: process has finished cleanly [pid 1924455]
+[planner_server-3] [INFO] [1791690496.890216844] [planner_server]: Destroying
+[lifecycle_manager-11] [INFO] [1791690496.904486171] [lifecycle_manager_navigation]: Destroying lifecycle_manager_navigation
+[bt_navigator-7] [INFO] [1791690496.924896370] [bt_navigator]: Completed Cleaning up
+[bt_navigator-7] [INFO] [1791690496.924946112] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[bt_navigator-7] [INFO] [1791690496.927377983] [bt_navigator]: Destroying
+[INFO] [velocity_smoother-8]: process has finished cleanly [pid 1924453]
+[INFO] [map_server-1]: process has finished cleanly [pid 1924446]
+[INFO] [collision_monitor-9]: process has finished cleanly [pid 1924454]
+[INFO] [amcl-2]: process has finished cleanly [pid 1924447]
+[INFO] [smoother_server-5]: process has finished cleanly [pid 1924450]
+[INFO] [behavior_server-6]: process has finished cleanly [pid 1924451]
+[INFO] [controller_server-4]: process has finished cleanly [pid 1924449]
+[INFO] [planner_server-3]: process has finished cleanly [pid 1924448]
+[INFO] [lifecycle_manager-11]: process has finished cleanly [pid 1924456]
+[INFO] [bt_navigator-7]: process has finished cleanly [pid 1924452]
