@@ -17,7 +17,8 @@
             `- camera_link_optical   (+Z forward, +X right, +Y down)
 
   Every dimension below is measured from the SolidWorks assembly
-  (CAD Files/Old Prototype Design/Assem1.STEP), which is the robot as built.
+  (CAD Files/Old Prototype Design/Assem1.STEP), which is the robot as built -
+  except the wheels: the CAD has 119.6 mm tyres, the robot has 65 mm wheels.
   The visual meshes in meshes/ come from the same file through
   tools/step_to_meshes.py; if the CAD changes, re-run that AND update the
   numbers here. The two must agree.
@@ -30,8 +31,13 @@
   <!-- ================================================================== -->
   <!-- Drivetrain                                                          -->
   <!-- ================================================================== -->
-  <xacro:property name="wheel_radius"   value="0.0598"/>  <!-- 119.6 mm tyre -->
+  <!-- The wheels actually fitted are 65 mm (as in the firmware), not the
+       119.6 mm tyre in the CAD. Only the size changes: the axles are fixed to
+       the body, so every sensor pose below stays as measured. The CAD wheel
+       mesh is shrunk radially to match; its tread width is left as is. -->
+  <xacro:property name="wheel_radius"   value="0.0325"/>  <!-- 65 mm wheel -->
   <xacro:property name="wheel_width"    value="0.041"/>
+  <xacro:property name="cad_wheel_radius" value="0.0598"/>  <!-- size of meshes/*_wheel.stl -->
   <xacro:property name="track_width"    value="0.2146"/>  <!-- L wheel centre to R wheel centre -->
   <xacro:property name="wheelbase"      value="0.1473"/>  <!-- front axle to rear axle -->
 
@@ -172,7 +178,9 @@
 
     <link name="${prefix}_wheel">
       <visual>
-        <geometry><mesh filename="${mesh_dir}/${prefix}_wheel.stl"/></geometry>
+        <!-- Mesh axle is along Y: scale X and Z (the diameter), keep Y (the width). -->
+        <geometry><mesh filename="${mesh_dir}/${prefix}_wheel.stl"
+                        scale="${wheel_radius / cad_wheel_radius} 1 ${wheel_radius / cad_wheel_radius}"/></geometry>
         <material name="black"/>
       </visual>
       <collision>
