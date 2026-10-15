@@ -1,215 +1,281 @@
-# Haptic cane — design spec
+# Haptic handle — design spec
 
-The user-facing half of the guide dog. The rover decides where to go; the cane
-tells the person. Four directions plus stop, communicated by vibration on the
-grip. No screen, no sound.
+The user-facing half of the guide dog. The rover decides where to go; the handle
+tells the person. A rigid rod from the rover ends in a grip held in **one hand**,
+like a guide-dog harness. Four vibration motors in the grip say which way to go;
+a thumb switch lets the person ask for a turn; letting go stops the rover.
 
----
+No screen, no sound. Silence means "carry on straight".
 
-## How the person feels direction
-
-**Spatial mapping.** Four small vibration motors set into the grip at 90°
-intervals — front, back, left, right. The person feels *where* the grip
-vibrates, and that is the instruction. Nothing to memorise.
-
-The palm's two-point discrimination threshold is roughly 10 mm. On a 34 mm
-grip the motors sit ~27 mm apart around the circumference, comfortably
-distinguishable — provided the shell does not smear the vibration between
-them (see "Crosstalk" below).
-
-### Suggested vocabulary
-
-| Instruction | Pattern |
-|---|---|
-| Go forward / all clear | Silence. Default state |
-| Turn left / right | Steady buzz on that side. Stronger = sharper turn |
-| Obstacle ahead | Front motor pulsing. Faster pulses as it gets closer, like a parking sensor |
-| Stop | All four, strong, pulsing |
-| Step back | Back motor, steady |
-| Link lost | All four, three short pulses, repeating — the person needs to know the cane has gone blind |
-
-Silence-as-forward is deliberate: a cane that buzzes constantly gets tuned
-out within minutes.
+This replaces the earlier wireless-cane design (ESP32-C3, battery, ESP-NOW).
+The handle is wired to the rover: no second battery to charge, no radio link
+to drop while someone is walking.
 
 ---
 
-## Parts
+## 1. How it is held
 
-| Item | Spec | Approx ₹ |
-|---|---|---|
-| Microcontroller | **ESP32-C3 Super Mini** | 150–200 |
-| Vibration motors ×4 | **ERM coin motor, 10 mm dia × 2.7 mm, 3 V** | 30–50 each |
-| Motor driver | **ULN2003** (7-channel Darlington array, one DIP chip) | 20 |
-| Battery | Single **18650** cell or 800–1000 mAh LiPo pouch | 100–150 |
-| Charger | **TP4056** — the one you already have. It is a 1S charger; this is a 1S cane | 0 |
-| Slide switch | any | 10 |
-| Shaft | see below | 200–500 |
-| Foam grip tape | bicycle handlebar tape, or foam sheet | 50 |
-| PLA | grip + tip, ~60 g | ~50 |
+- **One hand**, arm relaxed at the side, hand at about hip height. The rod runs
+  down and forward to the rover, which walks just ahead and to one side.
+- **Usually the left hand**, as with guide dogs, leaving the right hand free for
+  doors, rails or a white cane. The firmware needs a left/right-handed setting.
+- **Palm down on a horizontal bar**: palm and finger bases across the top,
+  fingers wrapped round the front, thumb on the switch.
+- **The rigid rod is itself the strongest cue**: when the rover turns, it pulls
+  the hand. The vibration adds advance warning and detail on top.
 
-**Total: roughly ₹700–1200.** Yes, it is cheap.
-
-### Why these
-
-**ERM coin motors** are the vibration motors in every phone. Apply voltage,
-they buzz. Flat, adhesive-backed, embed easily in a printed pocket. ~80 mA
-each at 3 V. LRAs are crisper but need a resonant driver chip (DRV2605L,
-~₹300 each) — not worth it here.
-
-**ULN2003** because a GPIO cannot drive a motor. Each coin motor wants
-~80 mA; an ESP32 pin safely gives ~12 mA. The ULN2003 sinks up to 500 mA per
-channel, has flyback diodes built in, and takes 3.3 V logic directly. One
-chip drives all four motors with zero extra parts. PWM through it works, so
-intensity is controllable.
-
-**ESP32-C3 Super Mini** because the cane must talk to the rover wirelessly,
-and both ends being ESP32 unlocks **ESP-NOW** — Espressif's peer-to-peer
-radio. No WiFi network, no pairing, no router, ~200 m range, a few ms
-latency, and about 20 lines of code each side. Sending a packet is one
-function call. It coexists with the rover ESP32's micro-ROS link because
-that runs over USB.
-
-A full-size ESP32 DevKit works too but is three times the size and draws more
-idle current.
+The rover is small (27 x 26 cm) and the rod is about 1 m, a long lever. **Hinge
+the rod at the rover so it pivots up and down but is rigid side to side**:
+vertical arm movement then cannot lift the wheels, while turns still pull the
+hand. Mount the hinge low and between the wheels, through a **rubber bushing**
+(see §6).
 
 ---
 
-## Power
-
-Single-cell: 3.7 V nominal, 4.2 V full, 3.0 V empty.
-
-```
-18650 (+) --[switch]--+--> TP4056 B+     (charging)
-                      +--> ESP32-C3 "5V" pin   (onboard LDO makes 3.3 V)
-                      +--> ULN2003 COM pin, motors' common (+)
-
-18650 (-) ------------+--> TP4056 B-
-                      +--> ESP32-C3 GND
-                      +--> ULN2003 GND
-```
-
-The motors run straight off the cell through the ULN2003 — at 3.7 V minus the
-Darlington's ~1 V drop they see ~2.7 V, right in their range. No regulator
-needed for them.
-
-Draw: ESP32-C3 ~30 mA idle, ~100 mA transmitting; each motor ~80 mA when on.
-Duty is low (motors are off most of the time), so a 2000 mAh 18650 runs the
-cane for a day easily.
-
-The TP4056's OUT+/OUT- pins are the protected output — take the ESP32 and
-ULN2003 supply from there rather than straight off the cell, so the board's
-over-discharge cutoff protects the cell.
-
----
-
-## Wiring the motors
-
-```
-ESP32-C3 GPIO  -->  ULN2003 IN1..IN4
-ULN2003 OUT1..OUT4  -->  motor (-) lead of motors 1..4
-ULN2003 COM  -->  battery (+)   (enables the internal flyback diodes)
-all motor (+) leads  -->  battery (+)
-ULN2003 GND  -->  battery (-)
-```
-
-The ULN2003 is a low-side switch: it connects the motor's negative lead to
-ground when the input goes high. Motor positive stays permanently on the
-battery rail.
-
-Any four GPIOs on the C3 work. Avoid GPIO 8 and 9 (strapping pins) if you
-want it to boot reliably with the motors attached.
-
----
-
-## The 3D printed part — and the part you should not print
-
-### Do not print the shaft
-
-PLA is brittle. A 1.2 m PLA tube will crack the first time it is dropped or
-leaned on. Your printer's bed is ~250 mm, so it would be five sections glued
-together — every joint a guaranteed failure point. Real white canes are
-aluminium, fibreglass or carbon for exactly this reason.
-
-**Buy the shaft.** Either:
-
-- a 12–16 mm aluminium tube from a hardware store (~₹200), or
-- a cheap folding white cane (~₹300–500) and discard its handle
-
-Then print only the **grip** and, if you want one, a **tip**.
-
-### The grip
-
-A cylinder ~34 mm diameter, ~130 mm long, with:
-
-- a hollow core for the battery, C3 and ULN2003
-- four shallow pockets around the outside at 90°, each 11 mm dia × 3 mm deep,
-  for the coin motors, leaving a **1.0–1.2 mm wall** between motor and skin
-- a socket at one end to press-fit or glue the shaft
-- a removable end cap for the battery and the TP4056's USB port
-
-### Print settings
+## 2. The grip
 
 | | |
 |---|---|
-| Material | PLA is fine for the grip. PETG if you want it tougher |
-| Layer height | 0.2 mm |
-| Walls / perimeters | **3** (1.2 mm at a 0.4 nozzle). This is what gives it strength; infill barely matters |
-| Infill | **20–25 % gyroid**. Not 100 % — heavier, no stronger in any way that matters, and it damps vibration |
-| Top/bottom layers | 4 |
-| Orientation | Standing upright. Round cross-section prints true, and grip loads are compression not bending |
-| Supports | Only for the motor pockets if they are undercut; design them to open outward and you need none |
+| Length | **110 mm**: hand width (75–90 mm for adults) plus room at each end, so the hand need not be placed precisely. Not much shorter than 100 mm, or the side motors end up too close |
+| Cross-section | **34 x 28 mm oval**. 30–40 mm suits a full-hand grip; the oval stops it rolling, so front stays front |
+| Construction | PLA, printed as **top and bottom halves** screwed together (M2), so the cups and wires can be fitted from inside |
+| Covering | 2 mm foam handlebar tape: comfort, grip, and it damps vibration travelling sideways |
 
-"Density" in slicer terms is infill percentage. 20–25 % is right. The wall
-count is the number that actually determines how the grip feels in the hand.
+### Motor positions
 
-### Crosstalk — the design problem that actually matters
+Origin at the centre of the grip; x along the bar, y forward, z up (mm).
 
-A rigid PLA shell carries vibration everywhere. Fire the left motor and the
-whole grip buzzes; the person cannot tell left from right. This is the thing
-that makes or breaks a haptic grip, and most first attempts get it wrong.
+| Motor | Position | Under | Why there |
+|---|---|---|---|
+| **L** | (−33, 0, +14), top | palm / finger base, one end | The top is covered by the hand across its full width; the underside has gaps between fingers |
+| **R** | (+33, 0, +14), top | the other end | 66 mm apart keeps both under even a 75 mm hand |
+| **F** | (0, +17, 0), front face | middle fingers | Fingers and palm are separate areas, easy to tell apart |
+| **B** | (0, −17, 0), back face | heel of the palm | |
 
-Three fixes, use at least two:
+Spacing (target: at least 30 mm between any two, the rough limit below which
+people start to mislocate vibration on the hand):
 
-1. **Slots between zones.** Cut four 2 mm slots through the shell wall,
-   running the length of the grip, between adjacent motor pockets. Each
-   motor now sits on its own quarter-shell, mechanically decoupled from the
-   others.
-2. **Thin windows.** Keep the wall over each motor at 1.0–1.2 mm. Thin PLA
-   transmits vibration to the skin efficiently; thick PLA spreads it.
-3. **Foam overgrip.** Wrap the finished grip in thin foam tape. Foam couples
-   each motor to the skin locally and damps transmission sideways. It also
-   makes it comfortable to hold for an hour.
+| Pair | Distance |
+|---|---|
+| L – R | 66 mm |
+| L – F (closest diagonal) | √(33² + 17² + 14²) ≈ 40 mm |
+| F – B | 34 mm straight, ≈ 49 mm round the surface (half the oval's perimeter, Ramanujan's approximation with semi-axes 17 and 14) |
 
-Test with eyes shut: have someone fire one motor at random and say which.
-If you get it right nine times in ten, the isolation works.
+Left/right, the most frequent instruction, gets the most room.
 
 ---
 
-## Software, in outline
+## 3. The motor mount — the part that makes or breaks it
 
-**Cane** (ESP32-C3): boots, initialises ESP-NOW, registers the rover's MAC
-address as a peer, and sits in a loop waiting for packets. Each packet is a
-tiny struct — four intensity bytes, one for each motor, plus a pattern id.
-Motors follow the packet. If no packet arrives for 2 s, play the "link lost"
-pattern and drop all motors.
+A solid PLA bar shakes as one piece at 150 Hz: the vibration's wavelength in
+PLA is metres (≈ 11 m for compression waves, ≈ 150 mm even for bending waves
+in a 1 mm wall), far longer than the 110 mm grip. Spacing alone cannot keep
+the motors apart; **each motor has to be mechanically decoupled from the bar**.
 
-**Rover** (existing ESP32): gains an ESP-NOW sender. Whatever decides the
-direction — the Pi via micro-ROS, or the autonomous stub — calls one
-function, `haptic(front, back, left, right)`, and the packet goes out.
+### The TPU cup
 
-Both are short. The cane side is under 100 lines.
+```
+   skin ─────────────────────────────────
+   foam  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   2 mm tape
+   shell ███████   ┌──────────┐   ███████   PLA, 2.5 mm, with an 18 mm hole
+                   │ ▓▓motor▓▓│             TPU cup, 1 mm top, 0.5 mm proud
+              ═════╧══      ══╧═════        3 thin TPU spokes to a ring
+                   │  wires   │             glued under the shell
+                   ▼          ▼             air gap 3 mm all round the cup
+```
+
+- **Take the motor off its module board** (adhesive pad; desolder the two
+  leads, solder on longer twisted ones). Only the bare 10 mm motor goes in the
+  grip; the boards stay in a small pod at the base of the handle or in the rover.
+- **One TPU print per motor**: a 12 mm cup holding the motor, three spokes
+  (6 x 2 x 0.6 mm), and a 24 mm ring.
+- Push the motor into the cup, push the cup up through the shell's 18 mm hole
+  from inside, glue the ring under the shell.
+- **Cup top 0.5 mm proud of the shell.** The cup is far too soft to carry grip
+  force; gripping pushes it flush and the shell takes the load, while the cup
+  stays lightly pressed to the skin.
+- **No TPU printer:** a pocket 3 mm wider than the motor with 2–3 mm of EVA foam
+  or foam tape under it. The simulation rates it the same.
+
+### Why soft: the numbers
+
+A mount isolates only if its own natural frequency is well below the motor's
+150 Hz (at most about a third, ~50 Hz).
+
+| Mount | Stiffness | Natural frequency | Verdict |
+|---|---|---|---|
+| Glued to the bar | — | — | Each motor shakes the whole bar |
+| PLA flap ("tongue"), 15 x 15 x 1 mm | ≈ 3,900 N/m | ≈ 300 Hz | Too stiff to isolate on its own |
+| TPU spokes / foam | ≈ 150–180 N/m | ≈ 30–50 Hz with the skin | Isolates |
+
+### Simulation
+
+`_cane_later/grip_sim/grip_vibration_sim.py` models the rod (beam elements),
+the rigid grip, the four motors on each mount type, the hand and arm, the skin
+at each site, and the rover's vibration coming up the rod. It reports how far
+the skin is pushed in at each motor site.
+
+"Gap" = how much stronger the active motor is felt than the next strongest
+site. Target ≥ 10 dB (about 3x).
+
+| Mount | Gap at 150 Hz | Worst of 500 random variations of the assumed values |
+|---|---|---|
+| Glued to the bar | 7.8 dB | 7.4 dB — **fails** |
+| PLA tongue | 19 dB | 9.2 dB — marginal |
+| **TPU spoke cup** | **49.5 dB** | **34.7 dB** |
+| **Foam pad** | **49.5 dB** | **34.8 dB** |
+
+Limits: hand, skin and motor-force values are estimates (hence the variation
+run); vibration spreading *through the skin itself* is not modelled, so real
+gaps will be smaller than 49 dB. The eyes-shut test (§8) is the real check.
+
+```bash
+python _cane_later/grip_sim/grip_vibration_sim.py out_dir
+```
+
+Needs numpy and matplotlib.
 
 ---
 
-## Order of build
+## 4. The vibration language
 
-1. Breadboard it first: C3 + ULN2003 + four motors + a bench supply or the
-   18650. Send patterns over serial and confirm all four motors work.
-2. Get ESP-NOW talking between the C3 and the rover ESP32 on the bench.
-3. Design and print the grip. Iterate on the crosstalk fixes with the
-   eyes-shut test.
-4. Fit the shaft, wrap the grip, done.
+Give each direction **more than one difference** — where, rhythm, and movement —
+so a cold or tired hand still gets it right.
 
-Step 3 will take more attempts than the electronics. Print the grip before
-you finalise the electronics layout — it is easier to move a pocket than
-to bend a battery.
+| Meaning | Pattern |
+|---|---|
+| Carry on straight | **Silence** (a grip that always buzzes gets tuned out) |
+| Turn left | L motor, **short-short** (`▮ ▮`) |
+| Turn right | R motor, **long** (`▮▮▮`) |
+| Obstacle ahead / slowing | F motor, quick taps, faster as it gets closer |
+| Step back | B motor, **long-short** (`▮▮▮ ▮`) |
+| Stop | All four, strong pulses |
+| Button press accepted | Two short taps on that button's side |
+| Button press refused (blocked) | One long buzz on that side |
+| Arrived | Two soft pulses on all four, then silence |
+| Link lost | Three short pulses on all four, repeating |
+
+**Turn angle = how often the pattern repeats.** The angle is between the rover's
+heading and the planned path about 1 m ahead, so the hand is warned *before* the
+turn, as a dog leans into a corner early.
+
+| Turn ahead | Repeat rate |
+|---|---|
+| under ~10° | silent |
+| 10–30° | ~1.5 per second |
+| 30–60° | ~3 per second |
+| 60–90° | ~5 per second |
+| over 90° | continuous |
+
+**Start of a turn: a sweep.** Fire R → (F/B) → L about 60–100 ms apart; it feels
+like one buzz sliding left across the palm. Then continue with the side's rhythm.
+
+**Timing limit:** coin motors take ~50 ms to spin up and down, so pulses need at
+least ~100 ms on and 100 ms off — about 5 per second at most.
+
+**Textures:** give each motor's spot a different raised texture on the grip
+surface (lines, dots, bump, ridge), so the hand can confirm which spot is which.
+
+---
+
+## 5. Controls
+
+| Control | Where | Does |
+|---|---|---|
+| **5-way thumb switch** (up/down/left/right/press) | Top centre, under the thumb, slightly recessed | ← next left · → next right · ↓ turn around · ↑ carry on / resume · press = stop / confirm |
+| **Hold lever** (microswitch) | Under the fingers, held closed while gripping | **Released = rover stops**, immediately |
+| Speed + / − (optional) | Beside the thumb switch, a different shape | Walking pace |
+| Emergency stop (optional) | Separate and raised, far end | Backup stop |
+
+- A press counts only after **~0.3 s held**, so a brushing thumb is not a command.
+- The rover **checks the LiDAR before obeying** and always answers with
+  "accepted" or "refused" — a blind user must know the press registered.
+- **The hold lever is the most important safety part.** The ESP32 stops the
+  wheels itself when it opens, without waiting for the Pi, like the 900 ms
+  command failsafe.
+- Fingers rest only on smooth surface and motors; buttons under the fingers get
+  pressed by every squeeze.
+
+---
+
+## 6. Electronics
+
+| Part | Notes | Approx ₹ |
+|---|---|---|
+| 4 × DC vibration motor module (Robu SKU 611201) | 5 V, 60 mA running / 90 mA start, 9000 rpm = 150 Hz; MOSFET on `IN` | 236 |
+| 5 V buck converter (MP1584 or LM2596), ≥ 1 A, + 1 A fuse | Powers the modules' VCC from the 4S pack | 60–100 |
+| 5-way navigation switch + 5 resistors | Resistor ladder: five directions on one wire | 40–50 |
+| Lever microswitch + 10k resistor | Hold sensor | 20 |
+| 10-core cable + GX12 connector | Rover to handle, unpluggable | 150 |
+| TPU (or EVA foam) for 4 cups | | — |
+| Aluminium tube 12–16 mm, ~1 m; hinge mount; rubber bushing | | ~250 |
+| PLA grip halves, M2 screws, foam tape | | ~100 |
+
+**About ₹900–1,000.**
+
+### Wiring
+
+```
+5 V buck (fused, from the 4S main leads) ──► VCC of all 4 modules
+ESP32 GND ───────────────────────────────► GND of all 4 modules, buck GND
+ESP32 23 / 32 / 21 / 22 ─────────────────► IN of modules F / B / L / R
+each module's motor pads ── twisted pair up the rod ──► its motor in the grip
+ESP32 36 ◄── 5-way switch resistor ladder (3V3 / GND)
+ESP32 39 ◄── hold lever, 10k pull-up to 3V3, LOW = held
+```
+
+- **Never power the modules from the ESP32's 3V3**: four motors start at up to
+  360 mA together.
+- Pins are in `rover_microros/pins.h`. 21/22 are free because the MPU6050 is on
+  the Pi.
+- **Test one module first**: `IN` to an ESP32 pin set HIGH, `VCC` 5 V, shared
+  GND. It should buzz with 3.3 V on `IN`.
+
+### Cable cores (10)
+
+4 motor negatives + 1 shared motor +, switch signal + 3V3 + GND, hold-lever
+signal, 1 spare.
+
+---
+
+## 7. Software
+
+```
+Pi (Nav2 path, LiDAR)                          ESP32 (rover)
+  ├─ turn angle ahead ───────────/haptic──►  pulse patterns on the 4 motors
+  ├─ accept / refuse requests ◄──/buttons──  reads the 5-way switch (0.3 s hold)
+  └─ stops navigation          ◄──/grip────  reads the hold lever, and stops the
+                                             wheels itself, not waiting for the Pi
+```
+
+`_cane_later/haptics.cpp` / `.h` already drive the four PWM pins, with patterns
+and velocity-based guidance. Still to add: the rhythm vocabulary above, the
+switch and hold-lever inputs, the left/right-handed setting, and the Pi-side
+node that computes the turn angle from the Nav2 path.
+
+---
+
+## 8. Build order
+
+1. **One module on the bench.** Confirm it switches from a 3.3 V pin.
+2. **Test grip**: just the bar, four cups, four motors. **Eyes-shut test**:
+   someone fires motors at random, you name them. Aim for 19 of 20.
+   - Left/right confused → cups too stiff or touching the shell; widen the gap.
+   - A motor hard to feel → cup not proud enough, or the hand doesn't rest there.
+3. Add the thumb switch recess, hold lever and textures; print the full grip.
+4. Rod, hinge and rubber bushing on the rover.
+5. Firmware, then the Pi node.
+
+Step 2 takes the most iterations. Each test print is small; iterate there,
+before anything else is built around it.
+
+---
+
+## Not yet measured
+
+- **The rover's own vibration.** The simulation says rover vibration in the
+  100–200 Hz band barely reaches the skin (≤ 0.3 µm per m/s², against ~380 µm
+  from a motor), and lower frequencies arrive equally at all four sites as
+  "road feel". The rigid-hinge rod has a resonance near 180 Hz that a rubber
+  bushing removes. The rover's real vibration levels are unknown — measure them
+  with the MPU6050 while driving.

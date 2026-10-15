@@ -41,22 +41,30 @@
 #define PIN_ENC_R   19
 
 // ------------------------------------------------------------ IMU (I2C)
-// ESP32 default I2C pins. MPU6050 is 3.3V-safe on both lines.
+// Not used on this board: the MPU6050 is wired to the Raspberry Pi, so 21 and
+// 22 carry two of the haptic motors below. Kept for reference only.
 #define PIN_SDA     21
 #define PIN_SCL     22
 
 // ------------------------------------------- haptic handle (guide grip)
-// Four ERM coin motors set into the rigid handle at 90 degrees, driven
-// through a ULN2003 Darlington array. A GPIO cannot source 80mA; the
-// ULN2003 sinks it and has the flyback diodes built in.
-// All four are PWM-capable, so intensity is controllable.
+// Four "DC vibration motor" modules (each a MOSFET switch + coin motor),
+// one per direction; see CANE.md. The pin goes to the module's IN; VCC is a
+// separate 5V supply, never the ESP32's 3V3. All four are PWM-capable, so
+// intensity is controllable.
 #define PIN_HAP_FRONT  23
 #define PIN_HAP_BACK   32
 #define PIN_HAP_LEFT   21
 #define PIN_HAP_RIGHT  22
 
+// Handle controls, both on input-only pins (no internal pull-ups there).
+// 5-way thumb switch on a resistor ladder: one ADC1 pin reads all five.
+#define PIN_HAP_SWITCH 36   // VP; ladder between 3V3 and GND
+// Hold lever: closed while the grip is held. Needs an external 10k pull-up
+// to 3V3; reads LOW when held. Released = stop the rover.
+#define PIN_HAP_HOLD   39   // VN
+
 // ------------------------------------------------------------- indicators
 #define PIN_LED      2    // onboard LED on most DevKits. Output-only use of a
                           // strapping pin after boot is fine.
 
-// Still free: 0 (BOOT button), 5, 12, 15
+// Still free: 0 (BOOT button), 5, 12, 15, 35 (input only)
