@@ -32,25 +32,52 @@ hand. Mount the hinge low and between the wheels, through a **rubber bushing**
 
 ---
 
-## 2. The grip
+## 2. The handle
 
-| | |
-|---|---|
-| Length | **110 mm**: hand width (75–90 mm for adults) plus room at each end, so the hand need not be placed precisely. Not much shorter than 100 mm, or the side motors end up too close |
-| Cross-section | **34 x 28 mm oval**. 30–40 mm suits a full-hand grip; the oval stops it rolling, so front stays front |
-| Construction | PLA, printed as **top and bottom halves** screwed together (M2), so the cups and wires can be fitted from inside |
-| Covering | 2 mm foam handlebar tape: comfort, grip, and it damps vibration travelling sideways |
+**Dimensioned drawings:** `_cane_later/drawings/handle_views.png` (top, front,
+left, right) and `handle_details.png` (motor cup, board pod, rod and hinge).
+They are drawn from `_cane_later/handle_drawings.py`; every CAD dimension is a
+named number at the top of that file.
+
+Handle frame used everywhere: origin at the centre of the grip bar, **+X to
+the person's right, +Y forward (toward the rover), +Z up**. All mm.
+
+### Shape: a U-frame, like a guide-dog harness handle
+
+The grip bar is held between two side legs, which join below in a cross-member
+carrying the board pod and the rod socket. The hand is fully free, the front
+face of the bar is free for the F motor, and the boards have a home.
+
+| Part | Size | Notes |
+|---|---|---|
+| Grip bar | **110** long (X) × **36** deep (Y) × **30** tall (Z), rounded rectangle, corner R6 | Hollow, **2.5 wall**. Flats: 24 wide on top and bottom, 18 tall front and back |
+| Legs | 15 (X) × 24 (Y), from the top of the bar (Z +15) down to Z −75 | Inner faces at X ±55, outer at ±70. Right leg hollow (8 mm channel) for the motor wires |
+| Cross-member | 140 × 24 × 10, Z −65 to −75 | **50 mm hand gap** from the bar's underside: room for the fingers |
+| Board pod | 60 (X) × 55 (Y) × 23 (Z), under the cross-member, Z −75 to −98 | Removable lid; see §6 |
+| Rod socket | Boss Ø24 × 40 long on the pod's underside, bore **Ø16.2** | Axis tilted **55° from horizontal**, forward. M4 grub screw or cross bolt |
+| Overall | 140 wide × 113 tall (top of bar to bottom of pod) | |
+
+**Why these sizes:**
+- **Length 110:** adult hand width is ~75–90 mm; the extra lets the hand land
+  anywhere near the middle. Much under 100 and the side motors get too close.
+- **36 × 30:** full-hand grips are comfortable at roughly 30–40 mm. A
+  **rounded rectangle**, not an oval, so it cannot roll in the hand **and** has
+  flat faces for the motor cups (a cup ring cannot sit on a tightly curved end).
+- **Print:** the bar in two halves split horizontally (top and bottom shells),
+  screwed together with M2 screws, so cups and wires go in from inside. The
+  legs, cross-member and pod can be one print with the bottom shell.
+- **Covering:** 2 mm foam handlebar tape over the bar.
 
 ### Motor positions
 
-Origin at the centre of the grip; x along the bar, y forward, z up (mm).
-
-| Motor | Position | Under | Why there |
-|---|---|---|---|
-| **L** | (−33, 0, +14), top | palm / finger base, one end | The top is covered by the hand across its full width; the underside has gaps between fingers |
-| **R** | (+33, 0, +14), top | the other end | 66 mm apart keeps both under even a 75 mm hand |
-| **F** | (0, +17, 0), front face | middle fingers | Fingers and palm are separate areas, easy to tell apart |
-| **B** | (0, −17, 0), back face | heel of the palm | |
+| Motor | Centre (X, Y, Z) | Face | Under | Why there |
+|---|---|---|---|---|
+| **L** | (−33, 0, +15) | top flat | palm / finger base, one end | The top is covered by the hand across its full width; the underside has gaps between fingers |
+| **R** | (+33, 0, +15) | top flat | the other end | 66 mm apart keeps both under even a 75 mm hand |
+| **F** | (0, +18, 0) | front flat | middle fingers | Fingers and palm are separate areas, easy to tell apart |
+| **B** | (0, −18, 0) | back flat | heel of the palm | |
+| 5-way switch | (0, 0, +15) | top flat | thumb | Pocket 12 × 12 × 5 deep |
+| Hold paddle | under the bar, X −30…+30 | bottom | fingertips | 60 × 20 × 3, pivots on the rear edge (Y −12); presses a microswitch inside through a slot |
 
 Spacing (target: at least 30 mm between any two, the rough limit below which
 people start to mislocate vibration on the hand):
@@ -58,10 +85,30 @@ people start to mislocate vibration on the hand):
 | Pair | Distance |
 |---|---|
 | L – R | 66 mm |
-| L – F (closest diagonal) | √(33² + 17² + 14²) ≈ 40 mm |
-| F – B | 34 mm straight, ≈ 49 mm round the surface (half the oval's perimeter, Ramanujan's approximation with semi-axes 17 and 14) |
+| L – F (closest diagonal) | √(33² + 18² + 15²) ≈ 40 mm |
+| F – B | 36 mm straight; ≈ 61 mm round the surface (half the rounded rectangle's perimeter: 24 + 18 + π × 6) |
 
 Left/right, the most frequent instruction, gets the most room.
+
+### Rod and hinge
+
+- **Tube:** aluminium Ø16 × 1 mm. The 10-core cable runs inside it.
+- **Rover end:** a printed plug in the tube with a cross hole for a **rubber
+  grommet** on an **M6 pivot bolt**, in a clevis bracket on the rover's top
+  (two 3 mm plates, 13 mm gap, 35 tall, pivot 25 above the rover top). It
+  pivots up and down only; add stops so the rod stays between about 35° and 75°.
+- **Length** (hinge to grip centre): `L = √((H_grip − 155)² + 450²)`, with
+  `H_grip ≈ 0.45 × user height` (mm). Subtract ~140 mm for the handle and the
+  plug to get the tube length:
+
+| User height | H_grip | L | Rod angle | Cut tube to |
+|---|---|---|---|---|
+| 1.55 m | 700 | 707 | 50.5° | ~565 |
+| 1.70 m | 765 | 758 | 53.6° | ~620 |
+| 1.85 m | 830 | 811 | 56.3° | ~670 |
+
+The socket is fixed at 55°, so the grip is level for ~1.70–1.85 m users and
+tilts a few degrees for shorter ones. A telescoping tube is the later fix.
 
 ---
 
@@ -77,23 +124,30 @@ the motors apart; **each motor has to be mechanically decoupled from the bar**.
 ```
    skin ─────────────────────────────────
    foam  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   2 mm tape
-   shell ███████   ┌──────────┐   ███████   PLA, 2.5 mm, with an 18 mm hole
-                   │ ▓▓motor▓▓│             TPU cup, 1 mm top, 0.5 mm proud
-              ═════╧══      ══╧═════        3 thin TPU spokes to a ring
-                   │  wires   │             glued under the shell
-                   ▼          ▼             air gap 3 mm all round the cup
+   shell ███████   ┌──────────┐   ███████   PLA, 2.5 mm, with a 16 mm hole
+                   │ ▓▓motor▓▓│             TPU cup Ø12, 1 mm top, 0.5 mm proud
+              ═════╧══      ══╧═════        3 spiral spokes across a 2 mm gap
+                   │  wires   │             to a ring glued under the shell
+                   ▼          ▼
 ```
+
+| Part | Dimension |
+|---|---|
+| Hole in the shell | **Ø16** |
+| Cup | outside **Ø12**, cavity **Ø10.2** (motor Ø10 × 2.7, press fit), top **1.0** thick, open underneath for the wires, about 5 deep |
+| Cup top | **0.5 proud** of the shell's outer surface |
+| Spokes | **3**, spiral, **0.6 thick × 2 wide**, ~6 long, spanning the **2 mm** gap between cup and hole edge |
+| Ring, L and R | **Ø21 × 1.0**, ID 16, glued to the inside of the top flat |
+| Ring, F and B | **stadium 21 × 17**, ID 16, glued to the inside of the 18 mm front/back flat at its two ends |
 
 - **Take the motor off its module board** (adhesive pad; desolder the two
   leads, solder on longer twisted ones). Only the bare 10 mm motor goes in the
-  grip; the boards stay in a small pod at the base of the handle or in the rover.
-- **One TPU print per motor**: a 12 mm cup holding the motor, three spokes
-  (6 x 2 x 0.6 mm), and a 24 mm ring.
-- Push the motor into the cup, push the cup up through the shell's 18 mm hole
-  from inside, glue the ring under the shell.
-- **Cup top 0.5 mm proud of the shell.** The cup is far too soft to carry grip
-  force; gripping pushes it flush and the shell takes the load, while the cup
-  stays lightly pressed to the skin.
+  grip; the boards go in the pod (§6).
+- Push the motor into the cup, push the cup out through the hole from inside
+  the shell, glue the ring.
+- **Why 0.5 mm proud:** the cup is far too soft to carry grip force; gripping
+  pushes it flush and the shell takes the load, while the cup stays lightly
+  pressed to the skin.
 - **No TPU printer:** a pocket 3 mm wider than the motor with 2–3 mm of EVA foam
   or foam tape under it. The simulation rates it the same.
 
@@ -133,7 +187,8 @@ gaps will be smaller than 49 dB. The eyes-shut test (§8) is the real check.
 python _cane_later/grip_sim/grip_vibration_sim.py out_dir
 ```
 
-Needs numpy and matplotlib.
+Needs numpy and matplotlib (`pip install numpy matplotlib`). It prints the
+tables and writes four plots into `out_dir`.
 
 ---
 
@@ -206,22 +261,26 @@ surface (lines, dots, bump, ridge), so the hand can confirm which spot is which.
 | 5 V buck converter (MP1584 or LM2596), ≥ 1 A, + 1 A fuse | Powers the modules' VCC from the 4S pack | 60–100 |
 | 5-way navigation switch + 5 resistors | Resistor ladder: five directions on one wire | 40–50 |
 | Lever microswitch + 10k resistor | Hold sensor | 20 |
-| 10-core cable + GX12 connector | Rover to handle, unpluggable | 150 |
+| 10-core cable + GX16 10-pin connector | Pod to rover, inside the rod, unpluggable | 200 |
 | TPU (or EVA foam) for 4 cups | | — |
 | Aluminium tube 12–16 mm, ~1 m; hinge mount; rubber bushing | | ~250 |
-| PLA grip halves, M2 screws, foam tape | | ~100 |
+| PLA grip halves, frame and pod; M2 screws; M2.5 standoffs; foam tape | | ~150 |
 
 **About ₹900–1,000.**
 
 ### Wiring
 
+The four module boards sit in the **pod under the grip** on M2.5 standoffs at
+their two Ø3 holes (15 mm apart), headers removed. Only motor wires run inside
+the handle; one cable runs down the rod to the rover.
+
 ```
-5 V buck (fused, from the 4S main leads) ──► VCC of all 4 modules
-ESP32 GND ───────────────────────────────► GND of all 4 modules, buck GND
-ESP32 23 / 32 / 21 / 22 ─────────────────► IN of modules F / B / L / R
-each module's motor pads ── twisted pair up the rod ──► its motor in the grip
-ESP32 36 ◄── 5-way switch resistor ladder (3V3 / GND)
-ESP32 39 ◄── hold lever, 10k pull-up to 3V3, LOW = held
+in the handle:  each board's motor pads ── twisted pair up the right leg ──► its motor
+in the cable:   rover 5 V buck (fused)  ──► VCC of all 4 boards
+                rover GND               ──► GND of all 4 boards
+                ESP32 23 / 32 / 21 / 22 ──► IN of boards F / B / L / R
+                ESP32 36 ◄── 5-way switch resistor ladder (3V3 and GND also in the cable)
+                ESP32 39 ◄── hold microswitch, 10k pull-up to 3V3, LOW = held
 ```
 
 - **Never power the modules from the ESP32's 3V3**: four motors start at up to
@@ -233,8 +292,7 @@ ESP32 39 ◄── hold lever, 10k pull-up to 3V3, LOW = held
 
 ### Cable cores (10)
 
-4 motor negatives + 1 shared motor +, switch signal + 3V3 + GND, hold-lever
-signal, 1 spare.
+5 V, GND, IN × 4, 3V3, switch signal, hold signal, 1 spare.
 
 ---
 

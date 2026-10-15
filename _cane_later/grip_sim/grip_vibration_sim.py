@@ -38,10 +38,10 @@ import numpy as np
 rng = np.random.default_rng(1)
 
 # ------------------------------------------------------------------ geometry
-# Grip (revised): 110 mm long, 34 x 28 mm oval. Motor centres (x along the
+# Grip: 110 mm long, 36 x 30 mm rounded rectangle (CANE.md). Motor centres (x along the
 # bar, y forward, z up), metres. L/R 66 mm apart so they stay under an
 # 80 mm-wide hand.
-SITES = {'L': (-0.033, 0.0), 'R': (0.033, 0.0), 'F': (0.0, 0.017), 'B': (0.0, -0.017)}
+SITES = {'L': (-0.033, 0.0), 'R': (0.033, 0.0), 'F': (0.0, 0.018), 'B': (0.0, -0.018)}
 NAMES = list(SITES)
 GRIP_LEN = 0.110
 
@@ -53,7 +53,7 @@ M_MOTOR = 1.3e-3      # kg, ASSUMED: ~1.0 g motor + ~0.3 g of cup/tongue that mo
 
 M_BAR = 0.040         # kg, ASSUMED: printed PLA shell ~33 g + switch, wires
 I_PITCH = M_BAR * GRIP_LEN ** 2 / 12
-I_ROLL = M_BAR * (0.017 ** 2 + 0.014 ** 2) / 2
+I_ROLL = M_BAR * (0.018 ** 2 + 0.015 ** 2) / 2
 
 ROD = dict(E=70e9, rho=2700.0, od=0.016, id=0.014, L=1.0, n=10, eta=0.02)
 
