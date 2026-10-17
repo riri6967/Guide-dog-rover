@@ -19,7 +19,8 @@
   Every dimension below is measured from the SolidWorks assembly
   (CAD Files/Old Prototype Design/Assem1.STEP), which is the robot as built -
   except the wheels and track, measured on the robot: 110 mm wheels (CAD 119.6)
-  and a 240 mm track (CAD 214.6).
+  and a 240 mm track on the bare motor shafts (CAD 214.6), now 290 mm with the
+  25 mm shaft extenders that make room for the encoders (encoder_extender.py).
   The visual meshes in meshes/ come from the same file through
   tools/step_to_meshes.py; if the CAD changes, re-run that AND update the
   numbers here. The two must agree.
@@ -39,7 +40,7 @@
   <xacro:property name="wheel_radius"   value="0.055"/>   <!-- 110 mm wheel, measured -->
   <xacro:property name="wheel_width"    value="0.041"/>
   <xacro:property name="cad_wheel_radius" value="0.0598"/>  <!-- size of meshes/*_wheel.stl -->
-  <xacro:property name="track_width"    value="0.240"/>   <!-- L wheel centre to R wheel centre, measured -->
+  <xacro:property name="track_width"    value="0.290"/>   <!-- L wheel centre to R wheel centre: 240 + 2 x 25 extender -->
   <xacro:property name="wheelbase"      value="0.1473"/>  <!-- front axle to rear axle -->
 
   <!-- ================================================================== -->

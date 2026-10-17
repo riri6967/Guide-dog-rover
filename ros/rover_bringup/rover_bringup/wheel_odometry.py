@@ -34,11 +34,12 @@ WHEEL_JOINTS = {
 class WheelOdometry(Node):
     def __init__(self):
         super().__init__('wheel_odometry')
-        self.ticks_per_rev = self.declare_parameter('ticks_per_rev', 140.0).value
+        self.ticks_per_rev = self.declare_parameter('ticks_per_rev', 32.0).value  # 32-slot disc on the shaft extender
         self.wheel_radius = self.declare_parameter('wheel_radius', 0.055).value  # 110 mm wheels
-        # Centre of the left wheel to centre of the right wheel, measured.
-        # Keep in step with TRACK_WIDTH_M in the firmware and the URDF.
-        self.track_width = self.declare_parameter('track_width', 0.240).value
+        # Centre of the left wheel to centre of the right wheel: 0.240 measured on the
+        # bare motor shafts + 2 x 25 mm from the shaft extenders. Keep in step with
+        # TRACK_WIDTH_M in the firmware and the URDF.
+        self.track_width = self.declare_parameter('track_width', 0.290).value
         # Turning calibration for skid-steer. 0 = use track_width.
         eff = self.declare_parameter('effective_track_width', 0.0).value
         self.eff_track = eff if eff > 0.0 else self.track_width

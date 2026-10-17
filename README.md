@@ -145,7 +145,8 @@ Outstanding:
   false encoder pulses, so counts taken while driving are inflated several-fold.
   100 nF across each motor's terminals is the fix.
 - **Top speed still unmeasured** (`MAX_WHEEL_SPEED_MS`). Measured and in:
-  `TICKS_PER_REV = 140`, 110 mm wheels, 240 mm track.
+  110 mm wheels, 290 mm track (240 + the 25 mm shaft extenders), 32 ticks per
+  wheel turn from the extender's disc (confirm with `encoder_test` once fitted).
 - **L298N has a ~23 % deadband.** The firmware now starts its PWM range at the
   deadband so slow commands still move the wheels; a MOSFET driver (BTS7960)
   would remove it properly.

@@ -47,7 +47,10 @@
 // Pulses per ONE full wheel revolution. Get this from encoder_test.ino:
 // press 'c', turn one wheel exactly 10 turns by hand, divide the count by 10.
 // Do not trust the slot count printed on the disc.
-const float TICKS_PER_REV = 140.0f;        // MEASURED: 1392/1402 pulses over 10 wheel turns
+// The 32-slot disc on the shaft extender (encoder_extender.py) gives 32 rising
+// edges per wheel turn. Confirm it with encoder_test once fitted: the old disc
+// measured 140, so if you see much more than 32, the sensor is double-counting.
+const float TICKS_PER_REV = 32.0f;         // 32-slot disc on the extender: CONFIRM
 
 // Wheel diameter in metres. 110 mm = 0.110
 const float WHEEL_DIAMETER_M = 0.110f;      // MEASURED
@@ -55,7 +58,9 @@ const float WHEEL_DIAMETER_M = 0.110f;      // MEASURED
 // Track width: centre of the left wheel to centre of the right wheel, metres.
 // This sets how fast the rover thinks it is turning. Get it wrong and the
 // robot will spiral in RViz while driving straight in real life.
-const float TRACK_WIDTH_M = 0.240f;         // MEASURED
+// 0.240 measured with the wheels on the bare motor shafts; the shaft extenders
+// move each wheel 25 mm further out: 0.240 + 2 x 0.025. Re-measure once built.
+const float TRACK_WIDTH_M = 0.290f;
 
 // Top speed of one wheel at full PWM, metres/second. Used to convert the
 // m/s that ROS asks for into a PWM duty. Rough is fine to start:

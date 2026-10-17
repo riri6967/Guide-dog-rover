@@ -92,9 +92,9 @@ Done: the firmware publishes ticks only.
 Top of `rover_microros.ino`:
 
 ```cpp
-const float TICKS_PER_REV       = 140.0f;   // measured
+const float TICKS_PER_REV       = 32.0f;    // 32-slot disc on the shaft extender: confirm
 const float WHEEL_DIAMETER_M    = 0.110f;   // measured
-const float TRACK_WIDTH_M       = 0.240f;   // measured
+const float TRACK_WIDTH_M       = 0.290f;   // 240 measured + 2 x 25 mm extenders
 const float MAX_WHEEL_SPEED_MS  = 0.55f;    // <-- MEASURE
 ```
 

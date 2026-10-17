@@ -77,7 +77,7 @@ easier to write, tune and debug.
 | | Impact |
 |---|---|
 | **Motor EMI — now the top blocker** | drops the micro-ROS session *and* injects false encoder pulses. Counts taken while driving are inflated several-fold and cannot be trusted. Fix: 100 nF across each motor |
-| **Top speed still unmeasured** | `MAX_WHEEL_SPEED_MS`. Wheels (110 mm) and track (240 mm) are measured and in |
+| **Top speed still unmeasured** | `MAX_WHEEL_SPEED_MS`. Wheels (110 mm) are in; track is 290 mm with the shaft extenders (240 measured + 2 x 25); ticks per turn 32 from the extender's disc, to confirm |
 | **L298N ~23 % deadband** | small velocity commands produce no movement. Matters for nav2 tuning |
 | **Battery protection trips under load** | fixed by moving to a 4S LiPo; still check the Pi's supply with `vcgencmd get_throttled` (see WIRING.md) |
 
@@ -350,9 +350,9 @@ identical from the rover's side: commands stop arriving. Silence is treated as
 Top of `rover_microros.ino`:
 
 ```cpp
-const float TICKS_PER_REV       = 140.0f;   // measured
+const float TICKS_PER_REV       = 32.0f;    // 32-slot disc on the shaft extender: confirm
 const float WHEEL_DIAMETER_M    = 0.110f;   // measured
-const float TRACK_WIDTH_M       = 0.240f;   // measured
+const float TRACK_WIDTH_M       = 0.290f;   // 240 measured + 2 x 25 mm extenders
 const float MAX_WHEEL_SPEED_MS  = 0.55f;    // <-- MEASURE
 ```
 
