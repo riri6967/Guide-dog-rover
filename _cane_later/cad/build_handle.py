@@ -144,8 +144,9 @@ def frame():
         for z in (zc + EAR_W / 2 - 0.5, -(zc + EAR_W / 2 - 0.5)):
             f = f.cut(cyl(M3_INSERT, 7, (sx * xs, SPLIT_Y - 7, z), (0, 1, 0)))
     # bail pivot holes and the microswitch pocket in the right leg's inner face
+    # (subminiature lever switch, D2F size 12.8 x 6.5 x 5.8, lever facing the bail's tail)
     f = f.cut(cyl(M3_CLEAR, 2 * LEG_X[1] + 2, (-LEG_X[1] - 1, PIVOT[0], PIVOT[1]), (1, 0, 0)))
-    f = f.cut(box(LEG_X[0] - 0.01, LEG_X[0] + 7, -46, -36, PIVOT[1] - 6, PIVOT[1] + 4))
+    f = f.cut(box(LEG_X[0] - 0.01, LEG_X[0] + 6.2, -48, -34, PIVOT[1] - 5, PIVOT[1] + 2))
     # lid screw inserts (M2.5) in the pod's back corners
     for x in (-POD[0] / 2 + 4, POD[0] / 2 - 4):
         f = f.cut(cyl(3.6, 6, (x, POD_BOT + 4, -POD[2] / 2 - 0.01), (0, 0, 1)))
