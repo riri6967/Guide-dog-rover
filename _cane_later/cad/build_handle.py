@@ -36,7 +36,8 @@ GRIP_R = 8.4           # corner radius
 END_POCKET = (21.0, 23.0)      # board pocket in each end cap (Y, Z)
 
 # ----------------------------------------------------------------- handle parameters
-CL = 0.3               # clearance around the bar
+# Print clearances (FDM parts come out slightly oversize). Per side unless noted.
+CL = 0.5               # grip in the cradles/caps: slides in by hand; caps clamp via foam tape
 WALL = 3.0             # cradle / cap wall
 CRADLE_X0 = 48.0       # cradle covers the bar from |X| = 48 to the end
 END_T = 3.0            # end wall thickness beyond the bar end
@@ -53,14 +54,17 @@ WIRE_D = 6.0           # wire channel
 POD = (50.0, 22.0, 30.0)       # junction pod outside (X, Y, Z)
 POD_WALL = 2.5
 ROD_ANGLE = 50.0       # rod angle above horizontal
-ROD_OD, BORE = 16.0, 16.2
+ROD_OD, BORE = 16.0, 16.5     # 0.25 per side; the M4 grub screw takes up the slack
 BOSS_D, BOSS_L = 24.0, 40.0
 TUBE_LEN = 605.0       # cut length for a ~1.70 m user (see CANE.md table)
 
 PIVOT = (-30.0, -9.0)  # bail pivot (Y, Z), pin along X through both legs
 BAIL_BAR = (-26.0, -20.5, -2.0, 8.0)   # crossbar y0, y1, z0, z1 (3 mm under the bar at rest)
 
-M3_CLEAR, M3_INSERT, M4_INSERT = 3.2, 4.0, 5.6
+M3_CLEAR, M3_INSERT, M4_INSERT = 3.4, 4.0, 5.6   # inserts: maker's hole size, not enlarged
+SWITCH_POCKET = 12.6   # 12 mm switch + 0.3 per side
+TONGUE_GAP = 14.0      # bracket gap for the 12 mm tongue: 1 mm per side
+BAIL_GAP = 1.0         # bail arms to the legs
 
 BAR_BOT = -GRIP_Y / 2                  # -17.5
 XP_TOP = BAR_BOT - GAP                 # -67.5
@@ -122,6 +126,14 @@ def frame():
     pod = box(-POD[0] / 2, POD[0] / 2, POD_BOT, POD_TOP + 0.5, -POD[2] / 2, POD[2] / 2)
     boss = cyl(BOSS_D, BOSS_L, SOCKET_BASE, ROD_DIR)
     f = rc_cradle.union(lc_cradle).union(legs).union(xp).union(pod).union(boss)
+    # 10 mm gussets in the inside corners where the legs meet the cross-piece: the
+    # rod's pull and twist bend the frame there, and a sharp corner is where it cracks
+    g = 10.0
+    for sx in (1, -1):
+        x0 = sx * LEG_X[0]
+        tri = cq.Workplane('XY', origin=(0, 0, -LEG_Z)).polyline(
+            [(x0, XP_TOP), (x0 - sx * g, XP_TOP), (x0, XP_TOP + g)]).close().extrude(2 * LEG_Z)
+        f = f.union(tri)
 
     # hollow the pod, open at the back for the lid
     f = f.cut(box(-POD[0] / 2 + POD_WALL, POD[0] / 2 - POD_WALL, POD_BOT + POD_WALL, POD_TOP - 0.01,
@@ -146,7 +158,7 @@ def frame():
     # bail pivot holes and the microswitch pocket in the right leg's inner face
     # (subminiature lever switch, D2F size 12.8 x 6.5 x 5.8, lever facing the bail's tail)
     f = f.cut(cyl(M3_CLEAR, 2 * LEG_X[1] + 2, (-LEG_X[1] - 1, PIVOT[0], PIVOT[1]), (1, 0, 0)))
-    f = f.cut(box(LEG_X[0] - 0.01, LEG_X[0] + 6.2, -48, -34, PIVOT[1] - 5, PIVOT[1] + 2))
+    f = f.cut(box(LEG_X[0] - 0.01, LEG_X[0] + 6.8, -48.5, -33.5, PIVOT[1] - 5.5, PIVOT[1] + 2.5))
     # lid screw inserts (M2.5) in the pod's back corners
     for x in (-POD[0] / 2 + 4, POD[0] / 2 - 4):
         f = f.cut(cyl(3.6, 6, (x, POD_BOT + 4, -POD[2] / 2 - 0.01), (0, 0, 1)))
@@ -158,7 +170,8 @@ def caps():
     # thumb switch housing on the right cap's top (left-hand use: thumb points to +X)
     top = GRIP_Y / 2 + CL + WALL
     sw = box(CRADLE_X0 + 1, GRIP_X + CL, top - 1, top + 6, -9, 9)
-    cap_r = cap.union(sw).cut(box(54 - 6, 54 + 6, top + 1, top + 6.1, -6, 6)) \
+    h = SWITCH_POCKET / 2
+    cap_r = cap.union(sw).cut(box(54 - h, 54 + h, top + 1, top + 6.1, -h, h)) \
         .cut(cyl(WIRE_D, 10, (54, top + 1.5, 0), (0, -1, 0)))
     cap_l = cap.mirror('YZ')
     return cap_r, cap_l
@@ -170,7 +183,7 @@ def bail():
                (BAIL_BAR[1], BAIL_BAR[2] + 1), (BAIL_BAR[1], BAIL_BAR[3]), (BAIL_BAR[0], BAIL_BAR[3]),
                (PIVOT[0] - 3, PIVOT[1] + 4)]
     tail = [(PIVOT[0] - 3, PIVOT[1] - 2), (-42, PIVOT[1] - 2), (-42, PIVOT[1] + 2), (PIVOT[0] - 3, PIVOT[1] + 2)]
-    x_in = LEG_X[0] - 0.5 - t
+    x_in = LEG_X[0] - BAIL_GAP - t
     b = box(-x_in, x_in, BAIL_BAR[0], BAIL_BAR[1], BAIL_BAR[2], BAIL_BAR[3])
     for sx in (1, -1):
         x0 = x_in if sx > 0 else -x_in - t
@@ -185,7 +198,7 @@ def pod_lid():
     w, h = POD[0], POD[1]
     lid = box(-w / 2, w / 2, POD_BOT, POD_TOP, -POD[2] / 2 - 2.5, -POD[2] / 2)
     for x in (-w / 2 + 4, w / 2 - 4):
-        lid = lid.cut(cyl(2.8, 4, (x, POD_BOT + 4, -POD[2] / 2 - 3), (0, 0, 1)))
+        lid = lid.cut(cyl(3.0, 4, (x, POD_BOT + 4, -POD[2] / 2 - 3), (0, 0, 1)))
     return lid.cut(cyl(8, 4, (12, POD_BOT + h / 2, -POD[2] / 2 - 3), (0, 0, 1)))   # cable grommet hole
 
 
@@ -196,7 +209,7 @@ def rod_parts():
     tube = cyl(ROD_OD, TUBE_LEN, tube_start, ROD_DIR).cut(cyl(ROD_OD - 2, TUBE_LEN + 2, tube_start - ROD_DIR, ROD_DIR))
     t_end = tube_start + ROD_DIR * TUBE_LEN
     # plug: 25 mm inside the tube + 30 mm tongue (12 thick in X) with the grommet hole
-    plug = cyl(ROD_OD - 2.1, 25, t_end - ROD_DIR * 25, ROD_DIR)
+    plug = cyl(ROD_OD - 2 - 0.4, 25, t_end - ROD_DIR * 25, ROD_DIR)   # 0.2 per side in the tube; epoxy fills it
     perp = cq.Vector(0, ROD_DIR.z, -ROD_DIR.y)          # in the Y-Z plane, square to the rod
     pivot = t_end + ROD_DIR * 18
     tongue = (cq.Workplane('YZ', origin=(-6, 0, 0))
@@ -204,19 +217,25 @@ def rod_parts():
                                                 pivot - perp * 9 + ROD_DIR * 9, pivot + perp * 9 + ROD_DIR * 9)])
               .close().extrude(12))
     plug = plug.union(tongue).cut(cyl(12, 14, (-7, pivot.y, pivot.z), (1, 0, 0)))
+    # cable: down the middle of the plug, out sideways just past the tube end
+    exit_pt = t_end + ROD_DIR * 4
+    plug = plug.cut(cyl(6, 29, t_end - ROD_DIR * 26, ROD_DIR)).cut(cyl(6, 12, exit_pt, perp))
+    # M3 cross-bolt through tube and plug, 10 mm inside the tube (drill the tube 3.2 to match)
+    cb = t_end - ROD_DIR * 10
+    plug = plug.cut(cyl(3.2, 20, (-10, cb.y, cb.z), (1, 0, 0)))
     # rover hinge bracket: base plate on the rover top, two 3 mm plates, 13 mm gap
     top_y = pivot.y - 25
     br = box(-25, 25, top_y, top_y + 4, pivot.z - 15, pivot.z + 15)
-    for x0 in (-6.5 - 3, 6.5):
+    for x0 in (-TONGUE_GAP / 2 - 3, TONGUE_GAP / 2):
         br = br.union(box(x0, x0 + 3, top_y + 4, top_y + 35, pivot.z - 15, pivot.z + 15))
-    br = br.cut(cyl(6.4, 40, (-20, pivot.y, pivot.z), (1, 0, 0)))
+    br = br.cut(cyl(6.6, 40, (-20, pivot.y, pivot.z), (1, 0, 0)))
     for a in (35, 75):          # stop-bolt holes so the rod stays within 35-75 deg
         r = math.radians(a + 180 - 25)
         p = pivot + cq.Vector(0, math.sin(r), -math.cos(r)) * 17
-        br = br.cut(cyl(4.3, 40, (-20, p.y, p.z), (1, 0, 0)))
+        br = br.cut(cyl(4.5, 40, (-20, p.y, p.z), (1, 0, 0)))
     for x in (-19, 19):
         for dz in (-10, 10):
-            br = br.cut(cyl(3.3, 6, (x, top_y - 1, pivot.z + dz), (0, 1, 0)))
+            br = br.cut(cyl(3.5, 6, (x, top_y - 1, pivot.z + dz), (0, 1, 0)))
     return tube, plug, br, pivot, top_y
 
 
