@@ -27,12 +27,12 @@ trained policies and the Nav2 tuning do not transfer as they are.
 | | Simulated (`models/assistive_rover`) | Real rover (`ros/rover_description`) |
 |---|---|---|
 | Footprint | 0.90 × 0.76 m | 0.27 × 0.26 m |
-| Wheel radius | 0.12 m | 0.0598 m |
-| LiDAR height above floor | 0.96 m | 0.23 m |
+| Wheel radius | 0.12 m | 0.0325 m |
+| LiDAR height above floor | 0.96 m | 0.21 m |
 | Camera | RGB-D | Pi Camera v3 (no depth) |
 
 - **Obstacle heights.** Training obstacles are 1.2–1.8 m tall so a LiDAR at 0.96 m
-  can see them. The real LiDAR at 0.23 m sees low obstacles too, and misses table
+  can see them. The real LiDAR at 0.21 m sees low obstacles too, and misses table
   tops above it.
 - **The policy expects the big footprint.** Collision and the safety-stop zone are
   defined from it, so it learned clearances for a 0.76 m-wide robot.
