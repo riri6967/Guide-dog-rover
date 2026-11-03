@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+<!--
+  Guide Dog Rover - robot description.
+
+  Frames (REP-103: +X forward, +Y left, +Z up):
+
+    base_footprint            on the ground, directly under base_link
+    `- base_link              centre of the four axles, at axle height
+        +- chassis            the tub (visual/collision only, fixed)
+        +- front_left_wheel  \
+        +- front_right_wheel | continuous joints, spin about +Y; each carries
+        +- rear_left_wheel   | its shaft extender (and, at the front, the
+        +- rear_right_wheel  / encoder disc) so they turn with it
+        +- front_left_encoder    slot-sensor bracket + sensor on the side wall
+        +- front_right_encoder   (fixed; frame on the shaft axis at the wall)
+        +- handle_mount           hinge bracket on the rear top (handle.urdf.xacro)
+        |   `- handle              rod + grip, revolute about +Y (handle_joint)
+        |       +- haptic_front    vibration modules: origin on the motor face,
+        |       +- haptic_back     +X out through the grip's skin; left/right
+        |       +- haptic_left     are the robot's (+Y = left)
+        |       `- haptic_right
+        +- laser              RPLIDAR A1M8 scan centre
+        +- imu_link           MPU6050 chip
+        `- camera_link        Pi Camera lens, front face
+            `- camera_link_optical   (+Z forward, +X right, +Y down)
+
+  Every dimension below is measured from the SolidWorks assembly
+  (CAD Files/Old Prototype Design/Assem1.STEP), which is the robot as built -
+  except the wheels and track, measured on the robot: 110 mm wheels (CAD 119.6)
+  and a 240 mm track on the bare motor shafts (CAD 214.6), now 290 mm with the
+  25 mm shaft extenders that make room for the encoders (encoder_extender.py).
+  The visual meshes in meshes/ come from the same file through
+  tools/step_to_meshes.py; if the CAD changes, re-run that AND update the
+  numbers here. The two must agree.
+
+  The electronics (Pi, ESP32, L298N, battery) are not modelled - they are part
+  of the chassis. All lengths in metres, angles in radians.
+-->
+<robot name="guide_dog_rover" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ================================================================== -->
+  <!-- Drivetrain                                                          -->
+  <!-- ================================================================== -->
+  <!-- Wheel size and track are measured on the robot, not taken from the CAD
+       (119.6 mm tyres, 214.6 mm track). The axles are fixed to the body, so
+       every sensor pose below stays as measured from the CAD. The CAD wheel
+       mesh is scaled radially to match; its tread width is left as is. -->
+  <xacro:property name="wheel_radius"   value="0.055"/>   <!-- 110 mm wheel, measured -->
+  <xacro:property name="wheel_width"    value="0.041"/>
+  <xacro:property name="cad_wheel_radius" value="0.0598"/>  <!-- size of meshes/*_wheel.stl -->
+  <xacro:property name="track_width"    value="0.290"/>   <!-- L wheel centre to R wheel centre: 240 + 2 x 25 extender -->
+  <xacro:property name="wheelbase"      value="0.1473"/>  <!-- front axle to rear axle -->
+
+  <!-- Shaft extenders and encoders (encoder_extender.py, which also writes the
+       meshes). The motors sit inside the tub; only the shaft comes out through
+       the side wall. Extender, disc and bracket are all placed from the wall's
+       outer face. Visual only: the wheel collision cylinder covers them. -->
+  <xacro:property name="body_wall_y"    value="0.0813"/>  <!-- outer face of the side wall, from the CAD -->
+
+  <!-- ================================================================== -->
+  <!-- Chassis tub: outer bounding box, relative to base_link              -->
+  <!-- ================================================================== -->
+  <xacro:property name="chassis_length" value="0.2743"/>
+  <xacro:property name="chassis_width"  value="0.2083"/>
+  <xacro:property name="chassis_height" value="0.1296"/>
+  <xacro:property name="chassis_bottom" value="-0.0153"/>  <!-- underside is 15 mm below the axles -->
+
+  <!-- ================================================================== -->
+  <!-- Sensors: pose relative to base_link (x forward, y left, z up)       -->
+  <!-- ================================================================== -->
+
+  <!-- RPLIDAR A1M8. Origin is the spin axis at the height of the laser
+       emitter/receiver, i.e. the scan plane - not the bottom of the unit.
+       laser_yaw = pi because the driver's 0 deg points toward the motor
+       (the A1's narrow tail), and the tail faces the rear. Verify with the
+       box test: an object straight ahead must appear at +X in RViz. -->
+  <xacro:property name="laser_x"   value="0.08805"/>
+  <xacro:property name="laser_y"   value="-0.0011"/>
+  <xacro:property name="laser_z"   value="0.1730"/>
+  <xacro:property name="laser_yaw" value="${pi}"/>
+
+  <!-- MPU6050 on its GY-521 board, flat on the tub floor, pin header toward
+       the rear. On a GY-521 the printed +Y arrow points away from the pins and
+       +X runs along them, so the board's X faces the robot's right:
+       yaw = -pi/2. Verify with the tilt tests before trusting it. -->
+  <xacro:property name="imu_x"     value="-0.00455"/>
+  <xacro:property name="imu_y"     value="-0.0080"/>
+  <xacro:property name="imu_z"     value="-0.0097"/>
+  <xacro:property name="imu_roll"  value="0.0"/>
+  <xacro:property name="imu_pitch" value="0.0"/>
+  <xacro:property name="imu_yaw"   value="${-pi/2}"/>
+
+  <!-- Pi Camera, centre of the lens front, on the front face of the tub.
+       The CAD uses a Camera Module v2.1 model; the v3 actually fitted has the
+       same 25 x 24 mm board, so any lens offset is a few millimetres. -->
+  <xacro:property name="camera_x"     value="0.13975"/>
+  <xacro:property name="camera_y"     value="0.0"/>
+  <xacro:property name="camera_z"     value="0.0469"/>
+  <xacro:property name="camera_pitch" value="0.0"/>     <!-- positive = tilted DOWN -->
+
+  <!-- Masses, only used by simulators. -->
+  <xacro:property name="chassis_mass" value="2.0"/>
+  <xacro:property name="wheel_mass"   value="0.15"/>
+
+  <!-- ================================================================== -->
+  <!-- Derived - do not edit                                               -->
+  <!-- ================================================================== -->
+  <xacro:property name="half_track" value="${track_width / 2}"/>
+  <xacro:property name="half_base"  value="${wheelbase / 2}"/>
+  <xacro:property name="mesh_dir"   value="package://rover_description/meshes"/>
+  <xacro:property name="ext_offset" value="${half_track - body_wall_y}"/>  <!-- wheel centre to wall face -->
+  <xacro:property name="mm"         value="0.001 0.001 0.001"/>            <!-- encoder meshes are in mm -->
+
+  <!-- ================================================================== -->
+  <!-- Materials                                                           -->
+  <!-- ================================================================== -->
+  <material name="grey">  <color rgba="0.75 0.75 0.75 1"/></material>
+  <material name="black"> <color rgba="0.10 0.10 0.10 1"/></material>
+  <material name="dark">  <color rgba="0.20 0.20 0.20 1"/></material>
+  <material name="green"> <color rgba="0.10 0.45 0.20 1"/></material>
+  <material name="blue">  <color rgba="0.20 0.30 0.80 1"/></material>
+  <material name="orange"><color rgba="0.89 0.53 0.23 1"/></material>
+  <material name="sensor"><color rgba="0.17 0.54 0.32 1"/></material>
+
+  <!-- ================================================================== -->
+  <!-- Inertia helpers                                                     -->
+  <!-- ================================================================== -->
+  <xacro:macro name="box_inertia" params="m x y z *origin">
+    <inertial>
+      <xacro:insert_block name="origin"/>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(y*y+z*z)/12}" ixy="0" ixz="0"
+               iyy="${m*(x*x+z*z)/12}" iyz="0"
+               izz="${m*(x*x+y*y)/12}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- Cylinder with its axis along the link's Y (how the wheels are built). -->
+  <xacro:macro name="wheel_inertia" params="m r h">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0"
+               iyy="${m*r*r/2}"          iyz="0"
+               izz="${m*(3*r*r+h*h)/12}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- ================================================================== -->
+  <!-- Base                                                                -->
+  <!-- ================================================================== -->
+  <link name="base_footprint"/>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child  link="base_link"/>
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link"/>
+
+  <!-- The chassis link shares base_link's origin so its mesh drops straight
+       in; the collision box is offset to where the tub actually is. -->
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="chassis"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="chassis">
+    <visual>
+      <geometry><mesh filename="${mesh_dir}/chassis.stl"/></geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 ${chassis_bottom + chassis_height / 2}" rpy="0 0 0"/>
+      <geometry><box size="${chassis_length} ${chassis_width} ${chassis_height}"/></geometry>
+    </collision>
+    <xacro:box_inertia m="${chassis_mass}" x="${chassis_length}" y="${chassis_width}" z="${chassis_height}">
+      <origin xyz="0 0 ${chassis_bottom + chassis_height / 2}" rpy="0 0 0"/>
+    </xacro:box_inertia>
+  </link>
+
+  <!-- ================================================================== -->
+  <!-- Wheels                                                              -->
+  <!--                                                                    -->
+  <!-- Skid-steer: both wheels on a side are driven together and share one  -->
+  <!-- encoder, so kinematically this is a differential drive with         -->
+  <!-- track_width as the separation. Four are modelled because four touch  -->
+  <!-- the ground (footprint, collision, simulation).                      -->
+  <!-- ================================================================== -->
+  <!-- side: +1 left, -1 right. Extender meshes have X out of the wall, so they
+       are yawed by side * pi/2 and moved from the wheel centre back to the wall. -->
+  <xacro:macro name="wheel" params="prefix x side encoder">
+    <xacro:property name="y" value="${side * half_track}"/>
+    <joint name="${prefix}_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child  link="${prefix}_wheel"/>
+      <origin xyz="${x} ${y} 0" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+
+    <link name="${prefix}_wheel">
+      <visual>
+        <!-- Mesh axle is along Y: scale X and Z (the diameter), keep Y (the width). -->
+        <geometry><mesh filename="${mesh_dir}/${prefix}_wheel.stl"
+                        scale="${wheel_radius / cad_wheel_radius} 1 ${wheel_radius / cad_wheel_radius}"/></geometry>
+        <material name="black"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+      </collision>
+      <visual>
+        <origin xyz="0 ${-side * ext_offset} 0" rpy="0 0 ${side * pi/2}"/>
+        <geometry><mesh filename="${mesh_dir}/shaft_extender.stl" scale="${mm}"/></geometry>
+        <material name="orange"/>
+      </visual>
+      <xacro:if value="${encoder}">
+        <visual>
+          <origin xyz="0 ${-side * ext_offset} 0" rpy="0 0 ${side * pi/2}"/>
+          <geometry><mesh filename="${mesh_dir}/encoder_disc.stl" scale="${mm}"/></geometry>
+          <material name="black"/>
+        </visual>
+      </xacro:if>
+      <xacro:wheel_inertia m="${wheel_mass}" r="${wheel_radius}" h="${wheel_width}"/>
+    </link>
+
+    <!-- Slot sensor and its wall bracket: fixed to the body, the disc turns through the fork. -->
+    <xacro:if value="${encoder}">
+      <xacro:property name="hand" value="${'left' if side > 0 else 'right'}"/>
+      <joint name="${prefix}_encoder_joint" type="fixed">
+        <parent link="base_link"/>
+        <child  link="${prefix}_encoder"/>
+        <origin xyz="${x} ${side * body_wall_y} 0" rpy="0 0 ${side * pi/2}"/>
+      </joint>
+      <link name="${prefix}_encoder">
+        <visual>
+          <geometry><mesh filename="${mesh_dir}/encoder_holder_${hand}.stl" scale="${mm}"/></geometry>
+          <material name="blue"/>
+        </visual>
+        <visual>
+          <geometry><mesh filename="${mesh_dir}/encoder_sensor_${hand}.stl" scale="${mm}"/></geometry>
+          <material name="sensor"/>
+        </visual>
+      </link>
+    </xacro:if>
+  </xacro:macro>
+
+  <!-- One encoder per side, on the front wheels; the rear extenders have no disc. -->
+  <xacro:wheel prefix="front_left"  x="${ half_base}" side="1"  encoder="true"/>
+  <xacro:wheel prefix="front_right" x="${ half_base}" side="-1" encoder="true"/>
+  <xacro:wheel prefix="rear_left"   x="${-half_base}" side="1"  encoder="false"/>
+  <xacro:wheel prefix="rear_right"  x="${-half_base}" side="-1" encoder="false"/>
+
+  <!-- ================================================================== -->
+  <!-- LiDAR                                                               -->
+  <!-- ================================================================== -->
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="laser"/>
+    <origin xyz="${laser_x} ${laser_y} ${laser_z}" rpy="0 0 ${laser_yaw}"/>
+  </joint>
+
+  <link name="laser">
+    <visual>
+      <geometry><mesh filename="${mesh_dir}/lidar.stl"/></geometry>
+      <material name="dark"/>
+    </visual>
+    <!-- Unit plus its mount: 62 mm tall, top 9 mm above the scan plane. -->
+    <collision>
+      <origin xyz="0 0 -0.0221" rpy="0 0 0"/>
+      <geometry><cylinder radius="0.036" length="0.0626"/></geometry>
+    </collision>
+  </link>
+
+  <!-- ================================================================== -->
+  <!-- IMU                                                                 -->
+  <!-- ================================================================== -->
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="imu_link"/>
+    <origin xyz="${imu_x} ${imu_y} ${imu_z}" rpy="${imu_roll} ${imu_pitch} ${imu_yaw}"/>
+  </joint>
+
+  <link name="imu_link">
+    <visual>
+      <geometry><mesh filename="${mesh_dir}/imu.stl"/></geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <!-- ================================================================== -->
+  <!-- Camera                                                              -->
+  <!-- ================================================================== -->
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="camera_link"/>
+    <origin xyz="${camera_x} ${camera_y} ${camera_z}" rpy="0 ${camera_pitch} 0"/>
+  </joint>
+
+  <link name="camera_link">
+    <visual>
+      <geometry><mesh filename="${mesh_dir}/camera.stl"/></geometry>
+      <material name="green"/>
+    </visual>
+  </link>
+
+  <!-- Image pipelines (OpenCV, image_proc, AprilTag, ...) expect the optical
+       convention. Set the camera driver's frame_id to this one. -->
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/>
+    <child  link="camera_link_optical"/>
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+  </joint>
+
+  <link name="camera_link_optical"/>
+
+  <!-- ================================================================== -->
+  <!-- Haptic handle (generated by tools/handle_to_urdf.py)                -->
+  <!--   xacro rover.urdf.xacro handle:=false          without the handle   -->
+  <!--   xacro rover.urdf.xacro handle_joint:=fixed    hinge locked (sim)   -->
+  <!-- ================================================================== -->
+  <xacro:arg name="handle"       default="true"/>
+  <xacro:arg name="handle_joint" default="revolute"/>
+  <xacro:include filename="handle.urdf.xacro"/>
+  <xacro:if value="$(arg handle)">
+    <xacro:haptic_handle joint_type="$(arg handle_joint)"/>
+  </xacro:if>
+
+</robot>

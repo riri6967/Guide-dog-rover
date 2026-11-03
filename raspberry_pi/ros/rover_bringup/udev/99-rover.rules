@@ -1,0 +1,25 @@
+# Stable names for the two USB serial devices:
+#     /dev/esp32    -> the ESP32 (micro-ROS)
+#     /dev/rplidar  -> the RPLIDAR A1M8
+#
+# Both appear as /dev/ttyUSB*, and the number depends on plug order, so without
+# these the agent can open the LiDAR and the LiDAR driver the ESP32.
+#
+# 1. Plug in ONE device, then read its identity:
+#        udevadm info -a -n /dev/ttyUSB0 | grep -m3 -E 'idVendor|idProduct|serial'
+# 2. Fill in the values below and delete the rules you do not need.
+#    - Different USB chips (the A1M8 adapter is a CP2102, 10c4:ea60; many
+#      ESP32 DevKits use a CH340, 1a86:7523): idVendor/idProduct is enough.
+#    - Same chip on both (CP2102 on each): add ATTRS{serial}, which CP2102s
+#      report and which differs per board.
+# 3. Install:
+#        sudo cp 99-rover.rules /etc/udev/rules.d/
+#        sudo udevadm control --reload-rules && sudo udevadm trigger
+#        ls -l /dev/esp32 /dev/rplidar
+
+# RPLIDAR A1M8 (CP2102 adapter). Add ATTRS{serial}=="..." if the ESP32 is also a CP2102.
+SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="rplidar", MODE="0666"
+
+# ESP32 DevKit with a CH340 chip. If yours is a CP2102 instead, use 10c4/ea60
+# plus its ATTRS{serial}, and add the LiDAR's serial to the rule above.
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", SYMLINK+="esp32", MODE="0666"

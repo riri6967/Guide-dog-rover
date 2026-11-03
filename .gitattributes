@@ -1,3 +1,12 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 *.stl binary
+
+# Files that run on the Raspberry Pi keep LF even in a Windows checkout:
+# a CRLF shell script fails there with "bad interpreter".
+*.sh    text eol=lf
+*.py    text eol=lf
+*.yaml  text eol=lf
+*.rules text eol=lf
+*.xacro text eol=lf
+*.urdf  text eol=lf
