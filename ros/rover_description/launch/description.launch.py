@@ -24,12 +24,18 @@ def generate_launch_description():
     xacro_file = os.path.join(
         get_package_share_directory('rover_description'), 'urdf', 'rover.urdf.xacro')
 
-    robot_description = ParameterValue(Command(['xacro ', xacro_file]), value_type=str)
+    robot_description = ParameterValue(
+        Command(['xacro ', xacro_file, ' handle_joint:=', LaunchConfiguration('handle_joint')]),
+        value_type=str)
 
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         DeclareLaunchArgument('joint_states', default_value='true',
                               description='Publish zero wheel angles'),
+        # Nothing measures the handle hinge yet, so with joint_states:=false a
+        # revolute handle never reaches TF. Lock it for the real robot.
+        DeclareLaunchArgument('handle_joint', default_value='revolute',
+                              description='revolute or fixed'),
 
         Node(
             package='robot_state_publisher',

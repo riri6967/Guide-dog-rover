@@ -8,9 +8,17 @@
     `- base_link              centre of the four axles, at axle height
         +- chassis            the tub (visual/collision only, fixed)
         +- front_left_wheel  \
-        +- front_right_wheel | continuous joints, spin about +Y
-        +- rear_left_wheel   |
-        +- rear_right_wheel  /
+        +- front_right_wheel | continuous joints, spin about +Y; each carries
+        +- rear_left_wheel   | its shaft extender (and, at the front, the
+        +- rear_right_wheel  / encoder disc) so they turn with it
+        +- front_left_encoder    slot-sensor bracket + sensor on the side wall
+        +- front_right_encoder   (fixed; frame on the shaft axis at the wall)
+        +- handle_mount           hinge bracket on the rear top (handle.urdf.xacro)
+        |   `- handle              rod + grip, revolute about +Y (handle_joint)
+        |       +- haptic_front    vibration modules: origin on the motor face,
+        |       +- haptic_back     +X out through the grip's skin; left/right
+        |       +- haptic_left     are the robot's (+Y = left)
+        |       `- haptic_right
         +- laser              RPLIDAR A1M8 scan centre
         +- imu_link           MPU6050 chip
         `- camera_link        Pi Camera lens, front face
@@ -42,6 +50,12 @@
   <xacro:property name="cad_wheel_radius" value="0.0598"/>  <!-- size of meshes/*_wheel.stl -->
   <xacro:property name="track_width"    value="0.290"/>   <!-- L wheel centre to R wheel centre: 240 + 2 x 25 extender -->
   <xacro:property name="wheelbase"      value="0.1473"/>  <!-- front axle to rear axle -->
+
+  <!-- Shaft extenders and encoders (encoder_extender.py, which also writes the
+       meshes). The motors sit inside the tub; only the shaft comes out through
+       the side wall. Extender, disc and bracket are all placed from the wall's
+       outer face. Visual only: the wheel collision cylinder covers them. -->
+  <xacro:property name="body_wall_y"    value="0.0813"/>  <!-- outer face of the side wall, from the CAD -->
 
   <!-- ================================================================== -->
   <!-- Chassis tub: outer bounding box, relative to base_link              -->
@@ -94,6 +108,8 @@
   <xacro:property name="half_track" value="${track_width / 2}"/>
   <xacro:property name="half_base"  value="${wheelbase / 2}"/>
   <xacro:property name="mesh_dir"   value="package://rover_description/meshes"/>
+  <xacro:property name="ext_offset" value="${half_track - body_wall_y}"/>  <!-- wheel centre to wall face -->
+  <xacro:property name="mm"         value="0.001 0.001 0.001"/>            <!-- encoder meshes are in mm -->
 
   <!-- ================================================================== -->
   <!-- Materials                                                           -->
@@ -103,6 +119,8 @@
   <material name="dark">  <color rgba="0.20 0.20 0.20 1"/></material>
   <material name="green"> <color rgba="0.10 0.45 0.20 1"/></material>
   <material name="blue">  <color rgba="0.20 0.30 0.80 1"/></material>
+  <material name="orange"><color rgba="0.89 0.53 0.23 1"/></material>
+  <material name="sensor"><color rgba="0.17 0.54 0.32 1"/></material>
 
   <!-- ================================================================== -->
   <!-- Inertia helpers                                                     -->
@@ -170,7 +188,10 @@
   <!-- track_width as the separation. Four are modelled because four touch  -->
   <!-- the ground (footprint, collision, simulation).                      -->
   <!-- ================================================================== -->
-  <xacro:macro name="wheel" params="prefix x y">
+  <!-- side: +1 left, -1 right. Extender meshes have X out of the wall, so they
+       are yawed by side * pi/2 and moved from the wheel centre back to the wall. -->
+  <xacro:macro name="wheel" params="prefix x side encoder">
+    <xacro:property name="y" value="${side * half_track}"/>
     <joint name="${prefix}_wheel_joint" type="continuous">
       <parent link="base_link"/>
       <child  link="${prefix}_wheel"/>
@@ -189,14 +210,47 @@
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
       </collision>
+      <visual>
+        <origin xyz="0 ${-side * ext_offset} 0" rpy="0 0 ${side * pi/2}"/>
+        <geometry><mesh filename="${mesh_dir}/shaft_extender.stl" scale="${mm}"/></geometry>
+        <material name="orange"/>
+      </visual>
+      <xacro:if value="${encoder}">
+        <visual>
+          <origin xyz="0 ${-side * ext_offset} 0" rpy="0 0 ${side * pi/2}"/>
+          <geometry><mesh filename="${mesh_dir}/encoder_disc.stl" scale="${mm}"/></geometry>
+          <material name="black"/>
+        </visual>
+      </xacro:if>
       <xacro:wheel_inertia m="${wheel_mass}" r="${wheel_radius}" h="${wheel_width}"/>
     </link>
+
+    <!-- Slot sensor and its wall bracket: fixed to the body, the disc turns through the fork. -->
+    <xacro:if value="${encoder}">
+      <xacro:property name="hand" value="${'left' if side > 0 else 'right'}"/>
+      <joint name="${prefix}_encoder_joint" type="fixed">
+        <parent link="base_link"/>
+        <child  link="${prefix}_encoder"/>
+        <origin xyz="${x} ${side * body_wall_y} 0" rpy="0 0 ${side * pi/2}"/>
+      </joint>
+      <link name="${prefix}_encoder">
+        <visual>
+          <geometry><mesh filename="${mesh_dir}/encoder_holder_${hand}.stl" scale="${mm}"/></geometry>
+          <material name="blue"/>
+        </visual>
+        <visual>
+          <geometry><mesh filename="${mesh_dir}/encoder_sensor_${hand}.stl" scale="${mm}"/></geometry>
+          <material name="sensor"/>
+        </visual>
+      </link>
+    </xacro:if>
   </xacro:macro>
 
-  <xacro:wheel prefix="front_left"  x="${ half_base}" y="${ half_track}"/>
-  <xacro:wheel prefix="front_right" x="${ half_base}" y="${-half_track}"/>
-  <xacro:wheel prefix="rear_left"   x="${-half_base}" y="${ half_track}"/>
-  <xacro:wheel prefix="rear_right"  x="${-half_base}" y="${-half_track}"/>
+  <!-- One encoder per side, on the front wheels; the rear extenders have no disc. -->
+  <xacro:wheel prefix="front_left"  x="${ half_base}" side="1"  encoder="true"/>
+  <xacro:wheel prefix="front_right" x="${ half_base}" side="-1" encoder="true"/>
+  <xacro:wheel prefix="rear_left"   x="${-half_base}" side="1"  encoder="false"/>
+  <xacro:wheel prefix="rear_right"  x="${-half_base}" side="-1" encoder="false"/>
 
   <!-- ================================================================== -->
   <!-- LiDAR                                                               -->
@@ -260,5 +314,17 @@
   </joint>
 
   <link name="camera_link_optical"/>
+
+  <!-- ================================================================== -->
+  <!-- Haptic handle (generated by tools/handle_to_urdf.py)                -->
+  <!--   xacro rover.urdf.xacro handle:=false          without the handle   -->
+  <!--   xacro rover.urdf.xacro handle_joint:=fixed    hinge locked (sim)   -->
+  <!-- ================================================================== -->
+  <xacro:arg name="handle"       default="true"/>
+  <xacro:arg name="handle_joint" default="revolute"/>
+  <xacro:include filename="handle.urdf.xacro"/>
+  <xacro:if value="$(arg handle)">
+    <xacro:haptic_handle joint_type="$(arg handle_joint)"/>
+  </xacro:if>
 
 </robot>

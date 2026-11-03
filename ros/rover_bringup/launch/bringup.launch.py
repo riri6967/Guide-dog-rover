@@ -47,7 +47,8 @@ def generate_launch_description():
                        condition=on('agent')),
 
         # Wheel joints come from the odometry node, so no zero-angle publisher.
-        include(description, 'description.launch.py', {'joint_states': 'false'}),
+        include(description, 'description.launch.py',
+                {'joint_states': 'false', 'handle_joint': 'fixed'}),
 
         Node(package='rover_bringup', executable='wheel_odometry', output='screen',
              condition=on('odometry')),

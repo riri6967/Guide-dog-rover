@@ -36,7 +36,10 @@ from OCP.TopExp import TopExp_Explorer
 from OCP.TopLoc import TopLoc_Location
 from OCP.TopoDS import TopoDS
 from OCP.XCAFDoc import XCAFDoc_DocumentTool
-from OCP.collections import Sequence_TDF_Label
+try:
+    from OCP.collections import Sequence_TDF_Label
+except ImportError:                     # older OCP (the one CadQuery 2.x installs)
+    from OCP.TDF import TDF_LabelSequence as Sequence_TDF_Label
 
 # base_link origin in CAD coordinates (mm): midpoint of the four wheel centres.
 # Wheel centres are at x 434.6 / 649.2, y 917.8, z 1268.6 / 1415.9.
