@@ -141,7 +141,8 @@ Raspberry Pi (`raspberry_pi/README.md`).
 21/22 are free for the handle because the MPU6050 is on the Pi's I2C, not the
 ESP32's. Handle design: `docs/CANE.md`; its code: `haptic_handle/`.
 
-Free: 0 (BOOT button), 4, 5, 12, 15, 16, 17, 35.
+Free: 0 (BOOT button), 4, 5, 12, 15, 35 (input only). 16 and 17 are not broken
+out on this DevKit.
 
 ### Why these pins and not others
 

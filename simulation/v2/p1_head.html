@@ -1,0 +1,305 @@
+<title>Guide Dog Rover Simulator</title>
+<!--FONTS-->
+<style>
+/* Layout: mission console. Scenario + person on the left, 3D world and the robot's reasoning in the centre, sensors and the grip on the right. Deliberately single dark theme. */
+:root{
+  --bg:#0A0F15; --panel:#0F1720; --panel-2:#141E29; --raise:#1A2633; --line:#1E2B39; --line-2:#2A3A4C;
+  --ink:#E8EEF4; --muted:#8FA0B3; --dim:#5D6E81;
+  --amber:#F2B33D; --cyan:#5CC6E6; --coral:#FF6B57; --violet:#AE92FF; --green:#4CC38A; --red:#FF5E5E; --warn:#F0A43A;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --r:10px; color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--font-body);font-size:14px;line-height:1.45;padding-inline:14px;padding-block:0 32px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+button,select{font:inherit;color:var(--ink)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:8px}
+.eyebrow .live{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(255,94,94,.18)}
+.app{max-width:1720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:10px 14px;margin-inline:-14px;background:rgba(10,15,21,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand svg{flex:none}
+.b1{font-weight:700;font-size:1.05rem;letter-spacing:-.005em}
+.b2{font-size:.75rem;color:var(--muted)}
+.field{display:flex;align-items:center;gap:8px}
+.field label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+select{background:var(--panel-2);border:1px solid var(--line-2);border-radius:8px;padding:7px 10px;min-width:230px;max-width:100%}
+.btn{background:var(--panel-2);border:1px solid var(--line-2);border-radius:8px;padding:7px 12px;cursor:pointer;line-height:1.2}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--amber);color:#1A1205;border-color:var(--amber);font-weight:700}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;background:var(--panel-2)}
+.seg button{background:transparent;border:0;border-right:1px solid var(--line-2);padding:7px 11px;cursor:pointer;color:var(--muted)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--raise);color:var(--ink);box-shadow:inset 0 -2px 0 var(--amber)}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted);cursor:pointer}
+.chk input{accent-color:var(--amber)}
+
+/* main grid */
+.grid{display:grid;grid-template-columns:300px minmax(0,1fr) 360px;grid-template-areas:"left main right";gap:12px;align-items:start}
+.col-left{grid-area:left}.col-main{grid-area:main}.col-right{grid-area:right}
+.col-left,.col-main,.col-right{display:flex;flex-direction:column;gap:12px;min-width:0}
+@media (max-width:1320px){.grid{grid-template-columns:290px minmax(0,1fr);grid-template-areas:"left main" "right right"}.col-right{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:start}}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "left" "right"}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+
+/* scenario card */
+.sc-title{font-size:1.25rem;font-weight:700;line-height:1.2}
+.who{display:flex;gap:10px;align-items:center}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--raise);border:1px solid var(--line-2);display:grid;place-items:center;font-weight:700;color:var(--violet);flex:none}
+.who .n{font-weight:700}.who .t{font-size:.82rem;color:var(--muted)}
+.brief{color:var(--ink);opacity:.92}
+.why{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:.86rem;color:var(--muted)}
+.why li{padding-left:14px;position:relative}
+.why li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:2px;background:var(--violet)}
+.steps{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:.88rem}
+.steps li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;align-items:start;color:var(--dim)}
+.steps li i{width:12px;height:12px;border-radius:50%;border:2px solid var(--line-2);margin-top:3px}
+.steps li.cur{color:var(--ink)}.steps li.cur i{border-color:var(--amber);background:rgba(242,179,61,.25)}
+.steps li.done{color:var(--muted)}.steps li.done i{border-color:var(--green);background:var(--green)}
+.steps li.fail i{border-color:var(--red);background:var(--red)}
+.debrief{background:var(--panel-2);border:1px solid var(--line-2);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:6px;font-size:.86rem}
+.debrief b{color:var(--amber)}
+
+/* person card */
+.gauge{display:grid;grid-template-columns:62px minmax(0,1fr) 42px;gap:8px;align-items:center;font-size:.82rem}
+.gauge .lbl{color:var(--muted)}
+.track{height:8px;border-radius:99px;background:var(--raise);overflow:hidden}
+.fill{height:100%;border-radius:99px;transition:width .3s}
+.fill.trust{background:var(--green)}.fill.stress{background:var(--coral)}.fill.pace{background:var(--cyan)}
+.voice{background:var(--panel-2);border:1px solid var(--line-2);border-radius:10px 10px 10px 2px;padding:10px 12px;font-style:italic;min-height:58px;position:relative}
+.voice::after{content:attr(data-who);position:absolute;right:10px;bottom:-9px;font-style:normal;font-size:.68rem;background:var(--panel);padding:0 6px;color:var(--violet);letter-spacing:.06em;text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.74rem;padding:3px 8px;border-radius:99px;border:1px solid var(--line-2);color:var(--muted);background:var(--panel-2)}
+.chip.on{color:var(--ink);border-color:var(--violet)}
+
+/* viewport */
+.viewport{position:relative;height:clamp(380px,60vh,760px);border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#06090D}
+.viewport canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+.viewport canvas:active{cursor:grabbing}
+.ov{position:absolute;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ov-tl{left:10px;top:10px}.ov-tr{right:10px;top:10px;justify-content:flex-end;max-width:60%}
+.ov-bl{left:10px;bottom:10px;right:10px;justify-content:space-between;pointer-events:none}
+.ov-bl > *{pointer-events:auto}
+.glass{background:rgba(10,15,21,.78);border:1px solid var(--line-2);border-radius:8px;backdrop-filter:blur(6px)}
+.layers{display:flex;flex-wrap:wrap;gap:4px 12px;padding:6px 10px}
+.status{display:flex;align-items:center;gap:10px;padding:7px 11px;max-width:100%}
+.pill{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;background:var(--raise);display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--muted)}
+.pill[data-s="nav"]::before{background:var(--amber)}.pill[data-s="ok"]::before{background:var(--green)}
+.pill[data-s="warn"]::before{background:var(--warn)}.pill[data-s="bad"]::before{background:var(--red)}
+.status .txt{font-size:.88rem;min-width:0}
+.tools{padding:6px 8px;display:flex;align-items:center;gap:8px}
+.tools[hidden]{display:none!important}
+.lift-hud{position:absolute;left:50%;top:56px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:8px 16px;font-family:var(--font-mono)}
+.lift-hud b{font-size:1.6rem;color:var(--amber)}
+.vp-msg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);text-align:center;padding:20px}
+.compass{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);padding:6px 9px}
+
+/* thought process */
+.think-grid{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px 12px;font-size:.9rem}
+.think-grid dt{font-size:.68rem;text-transform:uppercase;letter-spacing:.11em;font-weight:700;padding-top:3px}
+.think-grid dd{margin:0;min-width:0}
+.k-say{color:var(--green)}.k-see{color:var(--cyan)}.k-think{color:var(--amber)}.k-do{color:var(--green)}.k-tell{color:var(--coral)}.k-user{color:var(--violet)}.k-event{color:var(--muted)}
+.headline{font-size:1.02rem;font-weight:700}
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;max-height:250px;overflow-y:auto;border-top:1px solid var(--line);padding-top:8px}
+.timeline li{display:grid;grid-template-columns:44px 58px minmax(0,1fr);gap:8px;font-size:.84rem;padding:3px 0}
+.timeline time{font-family:var(--font-mono);font-size:.74rem;color:var(--dim);padding-top:2px}
+.timeline .tag{font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;padding-top:3px}
+.timeline .u{font-style:italic;color:#D9CCFF}
+
+/* sensors */
+.feed{position:relative;width:100%;aspect-ratio:4/3;border-radius:7px;overflow:hidden;background:#000;border:1px solid var(--line-2)}
+.feed canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.dets{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px;font-family:var(--font-mono);font-size:.76rem;max-height:118px;overflow-y:auto}
+.dets li{display:grid;grid-template-columns:minmax(0,1fr) 46px 58px;gap:6px;color:var(--muted)}
+.dets li b{color:var(--ink);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.polar{width:100%;aspect-ratio:1/1;max-width:330px;margin:0 auto;display:block}
+.kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px;font-size:.8rem}
+.kv div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding:2px 0}
+.kv span:first-child{color:var(--muted);font-family:var(--font-mono);font-size:.74rem}
+.kv span:last-child{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.grip-wrap{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:center}
+.grip-wrap svg{width:100%;height:auto}
+.pat-name{font-size:1.1rem;font-weight:700}
+.pat-say{color:var(--muted);font-size:.88rem}
+.speaker{display:flex;flex-direction:column;gap:3px;background:var(--panel-2);border:1px solid var(--line-2);border-left:3px solid var(--green);border-radius:6px;padding:7px 10px;font-size:.88rem}
+.packet{font-family:var(--font-mono);font-size:.74rem;background:var(--panel-2);border:1px solid var(--line-2);border-radius:6px;padding:6px 8px;overflow-x:auto;white-space:nowrap;color:var(--muted)}
+.packet b{color:var(--ink);font-weight:500}
+.vocab{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:1px;font-size:.8rem}
+.vocab li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:8px;padding:3px 8px;border-radius:5px;color:var(--dim)}
+.vocab li b{color:var(--muted);font-weight:700}
+.vocab li.on{background:var(--raise);color:var(--ink);box-shadow:inset 3px 0 0 var(--coral)}
+.vocab li.on b{color:var(--ink)}
+.vocab li.v2 b::after{content:" v2";color:var(--amber);font-size:.65rem;letter-spacing:.06em}
+.vocab li.off{display:none}
+
+/* lower */
+.lower{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);gap:12px;align-items:start}
+@media (max-width:1100px){.lower{grid-template-columns:minmax(0,1fr)}}
+.chart{width:100%;height:170px;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.78rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.notes{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:5px;font-size:.84rem;color:var(--muted)}
+.notes code{font-family:var(--font-mono);font-size:.76rem;color:var(--ink);word-break:break-all}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="app">
+  <header class="bar">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" rx="8" fill="#141E29" stroke="#2A3A4C"/><rect x="8" y="14" width="16" height="9" rx="2" fill="#F2B33D"/><circle cx="11" cy="24" r="2.4" fill="#0A0F15"/><circle cx="21" cy="24" r="2.4" fill="#0A0F15"/><path d="M16 14 V9 H27" stroke="#E8EEF4" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="27" cy="9" r="2.2" fill="#FF6B57"/></svg>
+      <div><div class="b1">Guide Dog Rover Simulator</div><div class="b2">URDF rover · house, laboratory, hospital · person, handle and voice</div></div>
+    </div>
+    <div class="seg" role="group" aria-label="World">
+      <button data-world="house" aria-pressed="true">House</button><button data-world="lab" aria-pressed="false">Laboratory</button><button data-world="hospital" aria-pressed="false">Hospital</button>
+    </div>
+    <div class="field"><label for="selScen">Scenario</label><select id="selScen"></select></div>
+    <button class="btn" id="btnPlay">Pause</button>
+    <button class="btn" id="btnRestart">Restart</button>
+    <div class="seg" role="group" aria-label="Simulation speed">
+      <button data-speed="1" aria-pressed="false">1×</button><button data-speed="2" aria-pressed="true">2×</button><button data-speed="4" aria-pressed="false">4×</button>
+    </div>
+    <div class="seg" role="group" aria-label="Handle cue set">
+      <button data-cue="v2" aria-pressed="true">Adaptive cues</button><button data-cue="orig" aria-pressed="false">Original firmware</button>
+    </div>
+    <div class="field"><label for="selVoice">Rover voice</label><select id="selVoice" style="min-width:0">
+      <option value="off">Off</option><option value="key" selected>Key moments</option><option value="describe">Describe rooms too</option></select></div>
+    <div class="field"><label for="selUnits">Distances</label><select id="selUnits" style="min-width:0">
+      <option value="m+steps" selected>Metres + steps</option><option value="m">Metres</option><option value="ft+steps">Feet + steps</option><option value="ft">Feet</option><option value="steps">Steps only</option></select></div>
+    <div class="field"><label for="selDir">Directions</label><select id="selDir" style="min-width:0">
+      <option value="lr" selected>Left / right</option><option value="clock">Clock face</option></select></div>
+    <label class="chk"><input type="checkbox" id="chkSpeak"> Speak aloud</label>
+    <label class="chk"><input type="checkbox" id="chkInner"> Inner voice aloud</label>
+    <label class="chk"><input type="checkbox" id="chkSound"> Grip sound</label>
+  </header>
+
+  <main class="grid">
+    <aside class="col-left">
+      <section class="card" aria-labelledby="scTitle">
+        <div class="eyebrow">Scenario <span class="mono" id="scIdx"></span></div>
+        <h2 class="sc-title" id="scTitle"></h2>
+        <p class="brief" id="scBrief"></p>
+        <div class="eyebrow">Why this is hard</div>
+        <ul class="why" id="scWhy"></ul>
+        <div class="eyebrow">Route</div>
+        <ol class="steps" id="scSteps"></ol>
+        <div class="debrief" id="scDebrief" hidden></div>
+      </section>
+      <section class="card" aria-labelledby="pName">
+        <div class="eyebrow">The person on the handle</div>
+        <div class="who"><div class="avatar" id="pInit">R</div><div><div class="n" id="pName"></div><div class="t" id="pTag"></div></div></div>
+        <div class="gauge"><span class="lbl">Trust</span><div class="track"><div class="fill trust" id="gTrust"></div></div><span class="mono" id="vTrust"></span></div>
+        <div class="gauge"><span class="lbl">Stress</span><div class="track"><div class="fill stress" id="gStress"></div></div><span class="mono" id="vStress"></span></div>
+        <div class="gauge"><span class="lbl">Pace</span><div class="track"><div class="fill pace" id="gPace"></div></div><span class="mono" id="vPace"></span></div>
+        <div class="voice" id="voice" data-who="inner voice" aria-live="polite"></div>
+        <div class="chips" id="pChips"></div>
+      </section>
+    </aside>
+
+    <section class="col-main">
+      <div class="viewport" id="vp">
+        <canvas id="c3d" aria-label="3D view of the rover leading the person through the house"></canvas>
+        <div class="vp-msg" id="vpMsg" hidden></div>
+        <div class="lift-hud glass" id="liftHud" hidden></div>
+        <div class="ov ov-tl">
+          <div class="seg glass" role="group" aria-label="Camera">
+            <button data-view="follow" aria-pressed="true">Follow</button><button data-view="orbit" aria-pressed="false">Orbit</button><button data-view="top" aria-pressed="false">Top</button><button data-view="rover" aria-pressed="false">Rover</button><button data-view="pov" aria-pressed="false">Person</button>
+          </div>
+        </div>
+        <div class="ov ov-tr">
+          <div class="layers glass">
+            <label class="chk"><input type="checkbox" id="lyLidar" checked> LiDAR</label>
+            <label class="chk"><input type="checkbox" id="lyPath" checked> Path</label>
+            <label class="chk"><input type="checkbox" id="lyCost"> Costmap</label>
+            <label class="chk"><input type="checkbox" id="lyCam" checked> Camera view</label>
+            <label class="chk"><input type="checkbox" id="lyCut" checked> Cut walls</label>
+          </div>
+        </div>
+        <div class="ov ov-bl">
+          <div class="status glass"><span class="pill" id="stPill" data-s="nav">Ready</span><span class="txt" id="stTxt"></span></div>
+          <div class="tools glass" id="tools" hidden>
+            <span class="eyebrow">Click floor to</span>
+            <div class="seg" role="group" aria-label="Click action">
+              <button data-tool="goal" aria-pressed="true">Go here</button><button data-tool="bag" aria-pressed="false">Drop bag</button><button data-tool="box" aria-pressed="false">Drop box</button><button data-tool="walker" aria-pressed="false">Add walker</button>
+            </div>
+            <button class="btn" id="btnHold">Hold</button><button class="btn" id="btnLink">Cut link</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="card" aria-labelledby="thH">
+        <div class="eyebrow" id="thH"><span class="live"></span>Robot thought process</div>
+        <div class="headline" id="thHead"></div>
+        <dl class="think-grid">
+          <dt class="k-see">Sees</dt><dd id="thSee"></dd>
+          <dt class="k-think">Thinks</dt><dd id="thThink"></dd>
+          <dt class="k-do">Does</dt><dd id="thDo" class="mono" style="font-size:.84rem"></dd>
+          <dt class="k-tell" id="thTellLbl">Tells</dt><dd id="thTell"></dd>
+        </dl>
+        <ol class="timeline" id="timeline" aria-label="Decision timeline"></ol>
+      </section>
+    </section>
+
+    <aside class="col-right">
+      <section class="card" aria-labelledby="camH">
+        <div class="eyebrow" id="camH"><span class="live"></span>Pi camera · /camera/image + detections</div>
+        <div class="feed"><canvas id="cFeed" width="480" height="360"></canvas><canvas id="cFeedOv" width="480" height="360"></canvas></div>
+        <ul class="dets" id="dets"></ul>
+      </section>
+      <section class="card" aria-labelledby="lidH">
+        <div class="eyebrow" id="lidH"><span class="live"></span>LiDAR · /scan · 360 beams at 0.96 m</div>
+        <canvas class="polar" id="cPolar" width="330" height="330"></canvas>
+        <div class="kv" id="lidKv"></div>
+      </section>
+      <section class="card" aria-labelledby="gripH">
+        <div class="eyebrow" id="gripH">Handle grip · what the hand feels</div>
+        <div class="grip-wrap">
+          <svg viewBox="0 0 240 250" aria-hidden="true">
+            <circle cx="120" cy="130" r="74" fill="#141E29" stroke="#3A4B5E" stroke-width="2"/>
+            <circle cx="120" cy="130" r="38" fill="none" stroke="#2A3A4C" stroke-dasharray="3 4"/>
+            <g stroke="#2A3A4C" stroke-width="3"><line x1="172" y1="78" x2="149" y2="101"/><line x1="68" y1="78" x2="91" y2="101"/><line x1="172" y1="182" x2="149" y2="159"/><line x1="68" y1="182" x2="91" y2="159"/></g>
+            <g id="motors"></g>
+            <text x="120" y="134" text-anchor="middle" font-size="10" fill="#8FA0B3" font-family="IBM Plex Mono, monospace">34 mm grip</text>
+          </svg>
+          <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+            <div class="pat-name" id="patName">Silence</div>
+            <div class="pat-say" id="patSay">Carry on straight.</div>
+          </div>
+        </div>
+        <div class="speaker" id="speaker"><span class="eyebrow">Rover speaker</span><span id="speakerTxt">—</span></div>
+        <div class="packet" id="packet"></div>
+        <ul class="vocab" id="vocab"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <section class="lower">
+    <section class="card" aria-labelledby="telH">
+      <div class="eyebrow" id="telH">Telemetry</div>
+      <div class="kv" id="tele"></div>
+    </section>
+    <section class="card" aria-labelledby="chH">
+      <div class="eyebrow" id="chH">Trust and stress over this walk</div>
+      <canvas class="chart" id="cChart" width="700" height="170"></canvas>
+      <div class="legend"><span><i style="background:var(--green)"></i>Trust</span><span><i style="background:var(--coral)"></i>Stress</span><span><i style="background:var(--amber)"></i>Turn announced</span><span><i style="background:var(--red)"></i>Surprise</span></div>
+    </section>
+    <section class="card" aria-labelledby="bfH">
+      <div class="eyebrow" id="bfH">Built from your project</div>
+      <ul class="notes">
+        <li>Rover drawn from the <code>rover_description</code> URDF meshes (chassis, wheels, encoders, RPLIDAR, Pi camera, IMU, handle and the four vibration modules), placed at the URDF joint origins.</li>
+        <li>Physics uses the URDF sizes: 0.27 × 0.33 m footprint, LiDAR at 0.23 m (it sees table and chair legs, not tabletops), camera at 0.10 m, grip 0.52 m behind and 0.77 m up. Speed limit 0.3 m/s from the Nav2 setup.</li>
+        <li>House layout and the bed, table and chair in each room come from <code>baseline_20261010/world/assistive_world.sdf</code>; the rest of the furniture, the laboratory and the hospital are added for these scenarios.</li>
+        <li>"Original firmware" cues are <code>_cane_later/haptics.cpp</code> line for line. "Adaptive cues" add warnings before turns, doorway, slow-down, passing and waiting signals, and a turn-around sweep. These are proposals, not existing firmware.</li>
+        <li>The person's trust and stress model is a design aid built from guide-dog and cane-training practice, not measured data.</li>
+      </ul>
+    </section>
+  </section>
+</div>

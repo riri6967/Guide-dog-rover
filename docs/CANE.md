@@ -188,7 +188,8 @@ python haptic_handle/grip_sim/grip_vibration_sim.py out_dir
 ```
 
 Needs numpy and matplotlib (`pip install numpy matplotlib`). It prints the
-tables and writes four plots into `out_dir`.
+tables and writes four plots into `out_dir`. The plots from the last run are in
+`haptic_handle/grip_sim/results/`.
 
 ---
 

@@ -140,6 +140,7 @@ Full detail including the mistakes that cost the most time: **WIRING.md**
 | `esp32/tests/motor_smoketest/` | Raw `digitalWrite` diagnostic — no PWM, no logic. For when nothing works |
 | `esp32/tests/encoder_test/` | Measures ticks per revolution |
 | `esp32/tests/drive_and_measure/` | **Drives the motors and reports encoder RPM together.** No ROS, no Pi — the quickest way to prove the drivetrain and sensors cooperate, and where the calibration constants come from |
+| `esp32/tests/vibrator_test/` | Bench test for the four handle vibration modules: wiring, active level, PWM response, minimum start duty. No ROS |
 
 Each is a self-contained Arduino sketch. `rover_microros` and `rover_control`
 have several files that **must stay in their folder together** — the IDE
