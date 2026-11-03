@@ -20,7 +20,7 @@ esp32/                  ESP32 firmware — flashed from the Arduino IDE on Windo
   rover_microros/         THE firmware: motors + encoders, micro-ROS node
   rover_control/          standalone WiFi + phone web UI, no ROS (drivetrain testing)
   tests/                  bench sketches: rover_base, motor_smoketest,
-                          encoder_test, drive_and_measure
+                          encoder_test, drive_and_measure, vibrator_test
 
 raspberry_pi/           everything that runs on the Pi 5 — START HERE for the Pi
   README.md               step-by-step: wiring to the Pi, setup, run, checks

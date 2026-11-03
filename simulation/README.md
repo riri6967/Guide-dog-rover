@@ -57,3 +57,16 @@ retrain.
   numpy actors for runs 2–4 are in `training/deploy/`.
 - **Paths.** Scripts use absolute paths under `/home/pushkar/assistive_robot_ws`.
   Adjust them for another machine.
+
+## Browser simulators
+
+Two single-file pages that run offline in any browser, no ROS needed:
+
+| | |
+|---|---|
+| `guide_dog_simulator.html` | 2D: the house world, the rover and the handle's vibration cues |
+| `guide_dog_simulator_3d.html` | 3D (three.js), built from `v2/` |
+
+`v2/` holds the 3D simulator's source parts. `v2/build.sh` joins them into
+`guide_dog_simulator_3d.html`; `v2/tools/export_urdf_meshes.py` regenerates
+`v2/p0_meshes.js` from the rover's URDF meshes in `raspberry_pi/ros/rover_description`.
