@@ -18,7 +18,7 @@ steered — the way a real guide dog harness works.
 | Motor drivers | 2 × L298N, one per side |
 | Motors | 4 × 12 V brushed DC, two per side in parallel |
 | Encoders | 2 × LM393 slot optical sensors, one per side |
-| Battery | 3S LiPo, 11.1 V |
+| Battery | 4S LiPo, 14.8 V |
 | Companion computer | Raspberry Pi 5 — LiDAR, IMU, camera, nav2 |
 
 Wiring is in **[WIRING.md](WIRING.md)**, including the pin map and the mistakes
@@ -70,15 +70,26 @@ Node **`rover_base`**:
 | subscribes | `/cmd_vel` | `geometry_msgs/msg/Twist` |
 | publishes | `/ticks_left` | `std_msgs/msg/Int32` |
 | publishes | `/ticks_right` | `std_msgs/msg/Int32` |
-| publishes | `/odom` | `nav_msgs/msg/Odometry` |
 
 Motors stop if no `/cmd_vel` arrives within 900 ms. Every way of losing control
 looks the same from the rover's side — commands stop arriving — so silence is
 treated as "stop", never as "carry on".
 
-**`/odom` is probably going to be disabled** — see INTEGRATION.md. The Pi
-already computes odometry from ticks and feeds an EKF; two sources would
-double-count the same wheel data.
+Odometry is computed **on the Pi** from the ticks (`ros/rover_bringup`), not on
+the ESP32, so the constants can be tuned without reflashing — INTEGRATION.md
+decision 2.
+
+## Starting the whole robot on the Pi
+
+`ros/rover_bringup` starts everything with one command: the micro-ROS agent,
+the URDF, wheel odometry, the MPU6050, the EKF, the RPLIDAR and the camera.
+
+```bash
+ros2 launch rover_bringup bringup.launch.py
+```
+
+Setup, the udev rules for the two USB serial devices, and the calibration
+tests are in [ros/rover_bringup/README.md](ros/rover_bringup/README.md).
 
 ---
 
@@ -104,7 +115,7 @@ upload. All five files in that folder must stay together.
 ```
 
 ```bash
-ros2 topic list          # /cmd_vel /odom /ticks_left /ticks_right
+ros2 topic list          # /cmd_vel /ticks_left /ticks_right
 ```
 
 ```bash
@@ -133,9 +144,13 @@ Outstanding:
 - **Motor EMI** is the top blocker. It drops the micro-ROS session *and* injects
   false encoder pulses, so counts taken while driving are inflated several-fold.
   100 nF across each motor's terminals is the fix.
-- **Three calibration constants still unmeasured** — wheel diameter, track width,
-  top speed. `TICKS_PER_REV = 140` is measured and in. Raw tick topics are
-  unaffected by the rest.
-- **L298N has a ~23 % deadband**, so small velocity commands do nothing. Matters
-  for nav2 tuning. A MOSFET driver (BTS7960) would remove it.
-- Navigation stack, haptic handle, and autonomous behaviour not started.
+- **Top speed still unmeasured** (`MAX_WHEEL_SPEED_MS`). Measured and in:
+  110 mm wheels, 290 mm track (240 + the 25 mm shaft extenders), 32 ticks per
+  wheel turn from the extender's disc (confirm with `encoder_test` once fitted).
+- **L298N has a ~23 % deadband.** The firmware now starts its PWM range at the
+  deadband so slow commands still move the wheels; a MOSFET driver (BTS7960)
+  would remove it properly.
+- **Closed-loop speed PID** is written but switched off (`USE_SPEED_PID`) until
+  the motor capacitors stop the EMI.
+- Pi-side bringup (odometry, IMU, EKF, LiDAR, camera) is written but not yet run
+  on the robot. SLAM, Nav2, haptic handle and autonomous behaviour not started.

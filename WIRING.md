@@ -3,81 +3,66 @@
 ## Power chain
 
 ```
-NEAKO 3S1P 18650 pack, 12.6V full / 9.0V empty
+4S LiPo, 14.8 V nominal / 16.8 V full / 13.2 V empty (3.3 V per cell)
    |
-   +-- female barrel jack on the pack
-         |
-   [male barrel plug -> bare red/black adapter cable]
-         |
-   red  ------ [switch] -----> L298N "12V" terminal
-   black -------------------> L298N "GND" terminal
-                                     |
-                              L298N "5V" pin (output, jumper ON)
-                                     |
-                                     +-----------> ESP32 VIN pin
+   +-- main leads (XT60) -- [fuse] -- [switch] --+--> left  L298N "12V" terminal
+   |                                             +--> right L298N "12V" terminal
+   |   black ---------------------------------------> both L298N "GND" terminals
+   |
+   +-- balance plug -- 2S-6S balance-to-USB-C module (5 V out) --> Raspberry Pi 5
+                                                                       |
+                                                        USB --> ESP32 (powered by the Pi)
 
 ESP32 GND -------------------------> L298N "GND"   <-- mandatory
 ```
 
-No separate converter is needed. The L298N has a 78M05 regulator on board that
-makes 5V from the 12V input, and that 5V pin can run the ESP32.
+- **The ESP32 is powered over USB from the Pi.** That cable is also the
+  micro-ROS link, so the L298N 5V -> ESP32 VIN wire stays **disconnected** (see
+  "USB and the 5V pin" below). Only GND joins the ESP32 to the drivers.
+- **The 5V-EN jumper stays ON.** Each L298N's 78M05 then powers only its own
+  logic, a few tens of mA. At 16.8 V that is about 0.4 W, which is fine. It
+  would not be fine feeding the ESP32 as well: (16.8 - 5) V x 0.25 A is 3 W in a
+  regulator with no heatsink.
 
-### The XL6009 is not usable here
-XL6009E1 is a **boost** (step-up) converter — it only raises voltage. It cannot
-make 5V from 12V. Leave it out of this project entirely.
+### Motor voltage
+The motors are rated 12 V. A full 4S pack minus the L298N's ~2 V drop puts up to
+~14.8 V across them at 100 % duty, about 25 % over. Short bursts are fine; long
+runs flat out make them hot. Nav2's speed limit (0.3 m/s against a ~0.55 m/s
+top speed) keeps the duty well below full in normal driving.
 
-### If the ESP32 keeps resetting, this is why
-The 78M05 is a linear regulator burning (12.6 − 5) × current as heat, and it is
-rated ~500mA while ESP32 WiFi transmit peaks near that. Symptoms of it running
-out: random reboots, "Brownout detector was triggered" on the serial monitor, or
-WiFi that drops when the motors start.
+### Check the balance-to-USB-C module once
+"Type-C to balance head" cables exist in two kinds: battery -> 5 V USB output
+(what this needs), and USB-C charger -> battery (for charging the pack). They
+look identical. Before the first connection to the Pi, measure the USB-C end
+with the module on the battery: it must read **5 V**, not 13-17 V.
 
-The fix is an **LM2596 buck module** (~₹60) between the battery and the ESP32:
-set its output to exactly 5.0V with a multimeter *before* connecting it, feed
-it from the 12V rail, take the 5V-EN jumper off the L298N, and run its output
-to the ESP32 VIN. Worth buying, but you can get everything working first
-without it.
+Then, with the robot driving and the LiDAR spinning, check on the Pi:
 
-## Connecting the NEAKO pack
+```bash
+vcgencmd get_throttled
+```
 
-The pack ends in a barrel jack, and the second cable is the mating plug with
-bare red/black tails. Plug them together and the bare ends screw straight into
-the L298N's 12V and GND terminals. Nothing else is required.
+`throttled=0x0` means no undervoltage. Anything else means the module cannot
+supply the Pi 5 (it wants 5 V / 5 A); swap to a 5 V 5 A buck converter fed from
+the main leads through a fuse.
 
-### Meter the bare ends first — every time
+### Low-voltage alarm
+Nothing in this system stops the motors draining the pack below a safe voltage;
+the L298Ns will keep pulling current. Fit a LiPo cell-voltage buzzer on the
+balance plug (a balance splitter lets it share the plug with the USB-C module).
 
-Barrel connectors are not standardised for polarity, and the wire colours on a
-cheap adapter cable are not a promise. Before those tails go anywhere near the
-driver:
-
-1. Plug the adapter into the battery.
-2. Multimeter on DC volts, red probe on the red tail, black on the black tail.
-3. You want **+12.x V**. A *negative* reading means the colours are reversed —
-   swap which tail goes to which terminal.
-
-Reverse polarity kills an L298N instantly and it does not fail gracefully.
-Thirty seconds with a meter is cheaper than the board.
+### Meter new leads before connecting
+Wire colours on cheap adapters are not a promise. Multimeter on DC volts, red
+probe on the red lead: you want **+14 to +16.8 V**. A negative reading means the
+colours are swapped. Reverse polarity kills an L298N instantly.
 
 ### Put a switch in the red wire
-Cut the red tail and wire a rocker or toggle switch (rated 5A+) into the break.
-Unplugging a barrel jack to stop a moving rover is not a control you want to
-rely on, and repeated plugging wears the connector out.
-
-### About the 2.2A on the label
-That pack is 3S**1P** — a single string of cells, so its current capability is
-whatever one 18650 can deliver, and the label prints 2.2A. Four 12V gearmotors
-starting together will ask for considerably more than that.
-
-Expect this to work for gentle driving on a light chassis and to complain when
-you load it: the BMS cuts out on overcurrent, so the symptom is the whole rover
-dying instantly and coming back when you release the throttle. If that happens
-it is the battery, not your code, and the answer is a pack with a higher
-discharge rating (a 2P or 3P build) rather than anything in software.
+A switch (rated 5 A+) in the positive lead, after the fuse. Pulling a connector
+to stop a moving rover is not a control you want to rely on.
 
 ### Charging
-Charge only with a **12.6V lithium (3S) charger**. A generic 12V DC adapter is
-not a charger — it has no cell balancing and no termination, and using one on a
-lithium pack is how these catch fire. Never leave it charging unattended.
+Charge only with a **LiPo balance charger set to 4S**, through the balance plug.
+Never leave it charging unattended, and never charge a puffed pack.
 
 ## L298N jumpers
 
@@ -362,7 +347,8 @@ the L298N's regulator, and the two will fight — one backfeeds the other.
 | Stage | ESP32 power | 5V wire to VIN |
 |---|---|---|
 | Flashing / bench testing | USB | **disconnected** |
-| Running standalone | L298N 5V | connected, USB unplugged |
+| Running with the Pi (micro-ROS, the normal setup) | USB from the Pi | **disconnected** |
+| Running standalone (`rover_control`, no Pi) | L298N 5V | connected, USB unplugged — only below 12.6 V input; on 4S use a buck converter instead |
 
 The **GND wire stays connected in both cases.** That one is never removed.
 

@@ -34,7 +34,9 @@ class Monitor(Node):
         self.create_subscription(Twist, 'cmd_vel', self.on_cmd, 10)
         self.create_subscription(Int32, 'ticks_left', self.on_tl, 10)
         self.create_subscription(Int32, 'ticks_right', self.on_tr, 10)
-        self.create_subscription(Odometry, 'odom', self.on_odom, 10)
+        # Odometry is computed on the Pi now (rover_bringup wheel_odometry);
+        # the ESP32 publishes raw ticks only.
+        self.create_subscription(Odometry, 'wheel/odom', self.on_odom, 10)
         self.create_timer(0.5, self.report)
 
     def on_cmd(self, m):

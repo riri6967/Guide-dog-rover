@@ -214,16 +214,18 @@ ros2 topic list
 
 ```
 /cmd_vel
-/odom
 /parameter_events
 /rosout
+/ticks_left
+/ticks_right
 ```
 
 ```bash
-ros2 topic echo /odom
+ros2 topic echo /ticks_left
 ```
 
-Publishing at 20 Hz. Spin a wheel by hand and `pose.position.x` moves.
+Publishing at 20 Hz. Spin a wheel by hand and the count moves. (Odometry is
+computed on the Pi from these counts, by `ros/rover_bringup`.)
 
 The ESP32's onboard LED lights when connected to the agent — the only debug
 output available, since the USB port belongs to micro-ROS.

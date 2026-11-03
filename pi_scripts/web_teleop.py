@@ -4,7 +4,8 @@ Drive the rover from a phone browser, with the full ROS stack in the loop.
 
 Serves a touch control page on the Pi and publishes /cmd_vel from it, so the
 path is:  phone -> Pi web page -> /cmd_vel -> micro-ROS -> ESP32 -> motors,
-with /odom and the encoder ticks coming back the other way.
+with the encoder ticks (and /wheel/odom, if rover_bringup is running) coming
+back the other way.
 
     python3 web_teleop.py
 
@@ -137,7 +138,7 @@ class Teleop(Node):
         self.pub = self.create_publisher(Twist, 'cmd_vel', 10)
         self.create_subscription(Int32, 'ticks_left', self._tl, 10)
         self.create_subscription(Int32, 'ticks_right', self._tr, 10)
-        self.create_subscription(Odometry, 'odom', self._odom, 10)
+        self.create_subscription(Odometry, 'wheel/odom', self._odom, 10)
         self.create_timer(1.0 / PUBLISH_HZ, self._tick)
 
         self.v = self.w = 0.0
