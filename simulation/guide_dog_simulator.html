@@ -1,0 +1,1063 @@
+<title>Guide Dog Rover Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: instrument console. Big top-down map on the left, the handle grip and telemetry on the right, results below. */
+:root{
+  --bg:#EAEEF2; --surface:#FFFFFF; --surface-2:#F4F6F9; --ink:#15202B; --muted:#5A6676; --line:#CBD3DC;
+  --accent:#1D5BD0; --accent-ink:#FFFFFF; --rover:#F0B400; --haptic:#E2412A; --ok:#1C8648; --warn:#B86E00; --bad:#C2321F;
+  --floor:#F9FAFB; --room:#EEF3F8; --wall:#1E2935; --furn:#C7D0DA; --furn-ink:#4A5664; --cost:#E2412A; --lidar:#1D5BD0; --person:#6B3FA0;
+  --font-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono:"IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0E141B; --surface:#161F29; --surface-2:#1C2733; --ink:#E5EAF0; --muted:#94A1B0; --line:#2B3845;
+  --accent:#6F9CFF; --accent-ink:#0E141B; --rover:#F5C02E; --haptic:#FF6B52; --ok:#4CC27E; --warn:#F0A43A; --bad:#FF7A66;
+  --floor:#121A22; --room:#17212C; --wall:#C9D3DE; --furn:#33414F; --furn-ink:#B3BFCC; --cost:#FF6B52; --lidar:#6F9CFF; --person:#B794E8;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0E141B; --surface:#161F29; --surface-2:#1C2733; --ink:#E5EAF0; --muted:#94A1B0; --line:#2B3845;
+  --accent:#6F9CFF; --accent-ink:#0E141B; --rover:#F5C02E; --haptic:#FF6B52; --ok:#4CC27E; --warn:#F0A43A; --bad:#FF7A66;
+  --floor:#121A22; --room:#17212C; --wall:#C9D3DE; --furn:#33414F; --furn-ink:#B3BFCC; --cost:#FF6B52; --lidar:#6F9CFF; --person:#B794E8;
+  color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:16px 40px}
+.app{max-width:1360px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+h1,h2,h3{margin:0;text-wrap:balance}
+h1{font-size:1.6rem;letter-spacing:-.01em}
+h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
+p{margin:0}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px}
+.top p{color:var(--muted);max-width:70ch}
+.clock{font-family:var(--font-mono);font-size:.85rem;color:var(--muted);white-space:nowrap}
+.clock b{color:var(--ink);font-weight:600}
+
+.toolbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
+.grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.grp-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-right:2px}
+button{font:inherit;font-size:.9rem;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:6px 11px;cursor:pointer;line-height:1.2}
+button:hover{border-color:var(--muted)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+button.alert[aria-pressed="true"]{background:var(--haptic);border-color:var(--haptic);color:#fff}
+.seg{gap:0}
+.seg button{border-radius:0;margin-left:-1px}
+.seg button:first-of-type{border-radius:7px 0 0 7px;margin-left:0}
+.seg button:last-of-type{border-radius:0 7px 7px 0}
+
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:14px;align-items:start}
+@media (max-width:980px){.layout{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.mapcard{padding:10px;gap:8px}
+.canvaswrap{position:relative;width:100%;border-radius:7px;overflow:hidden;background:var(--floor)}
+canvas#map{display:block;width:100%;touch-action:none;cursor:crosshair}
+.maphint{position:absolute;left:8px;bottom:8px;font-size:.8rem;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:3px 8px;color:var(--muted);pointer-events:none;max-width:calc(100% - 16px)}
+@media (max-width:560px){.maphint{display:none}}
+.layers{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.88rem;color:var(--muted);padding:2px 4px}
+.layers label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.layers input{accent-color:var(--accent)}
+.status-line{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:.92rem;padding:0 4px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2)}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.pill[data-s="nav"]::before{background:var(--accent)}
+.pill[data-s="ok"]::before{background:var(--ok)}
+.pill[data-s="warn"]::before{background:var(--warn)}
+.pill[data-s="bad"]::before{background:var(--bad)}
+
+.side{display:flex;flex-direction:column;gap:14px;min-width:0}
+.grip-wrap{display:grid;grid-template-columns:180px minmax(0,1fr);gap:12px;align-items:center}
+@media (max-width:420px){.grip-wrap{grid-template-columns:minmax(0,1fr)}.grip-wrap svg{max-width:220px;margin:0 auto}}
+.grip-wrap svg{width:100%;height:auto;display:block}
+.pattern-name{font-size:1.15rem;font-weight:700}
+.pattern-say{color:var(--muted);font-size:.92rem}
+.packet{font-family:var(--font-mono);font-size:.8rem;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:6px 8px;overflow-x:auto;white-space:nowrap}
+.packet .lbl{color:var(--muted)}
+.vocab{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;font-size:.86rem}
+.vocab li{display:grid;grid-template-columns:118px minmax(0,1fr);gap:8px;padding:4px 8px;border-radius:6px;color:var(--muted)}
+.vocab li b{color:var(--ink);font-weight:700}
+.vocab li.on{background:var(--surface-2);color:var(--ink);box-shadow:inset 3px 0 0 var(--haptic)}
+
+dl.tele{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;margin:0;font-size:.88rem}
+dl.tele dt{font-family:var(--font-mono);color:var(--muted);font-size:.8rem;padding-top:1px}
+dl.tele dd{margin:0;font-family:var(--font-mono);font-variant-numeric:tabular-nums;text-align:right}
+
+ol.log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;max-height:220px;overflow-y:auto;font-size:.86rem}
+ol.log li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px}
+ol.log time{font-family:var(--font-mono);color:var(--muted);font-size:.78rem;padding-top:1px}
+ol.log li.k-bad{color:var(--bad)} ol.log li.k-ok{color:var(--ok)} ol.log li.k-warn{color:var(--warn)}
+
+.below{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:980px){.below{grid-template-columns:minmax(0,1fr)}}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700}
+td.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;text-align:right}
+th.num{text-align:right}
+tr.cur td{background:var(--surface-2)}
+.r-ok{color:var(--ok);font-weight:700}.r-bad{color:var(--bad);font-weight:700}.r-run{color:var(--accent);font-weight:700}
+.note{font-size:.86rem;color:var(--muted)}
+.facts{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:.88rem}
+.facts code{font-family:var(--font-mono);font-size:.8rem;background:var(--surface-2);padding:1px 4px;border-radius:4px;word-break:break-all}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:10px;border-radius:2px;display:inline-block}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>Guide Dog Rover Simulator</h1>
+      <p>Your rover leading a blind person through the Gazebo test house. The person holds the rigid handle; the four motors in the grip tell them where they are about to be steered.</p>
+    </div>
+    <div class="clock">sim time <b id="clock">0:00</b> · <span id="speedLbl">2×</span> real speed</div>
+  </header>
+
+  <div class="toolbar" role="toolbar" aria-label="Simulation controls">
+    <div class="grp">
+      <button id="btnTour" class="primary">Run 6-goal tour</button>
+      <button id="btnHome">Back to start</button>
+    </div>
+    <div class="grp">
+      <span class="grp-label" id="modeLbl">Click map to</span>
+      <div class="grp seg" role="group" aria-labelledby="modeLbl">
+        <button data-mode="goal" aria-pressed="true">Set goal</button>
+        <button data-mode="box" aria-pressed="false">Drop box</button>
+        <button data-mode="walker" aria-pressed="false">Add walker</button>
+      </div>
+    </div>
+    <div class="grp">
+      <button id="btnHold" class="alert" aria-pressed="false">Hold (stop)</button>
+      <button id="btnLink" class="alert" aria-pressed="false">Cut handle link</button>
+    </div>
+    <div class="grp">
+      <span class="grp-label" id="spdLbl">Speed</span>
+      <div class="grp seg" role="group" aria-labelledby="spdLbl">
+        <button data-speed="1" aria-pressed="false">1×</button>
+        <button data-speed="2" aria-pressed="true">2×</button>
+        <button data-speed="4" aria-pressed="false">4×</button>
+        <button data-speed="8" aria-pressed="false">8×</button>
+      </div>
+      <button id="btnPause" aria-pressed="false">Pause</button>
+      <button id="btnReset">Reset</button>
+    </div>
+  </div>
+
+  <main class="layout">
+    <section class="panel mapcard" aria-label="Map">
+      <div class="status-line">
+        <span class="pill" id="statePill" data-s="nav">Navigating</span>
+        <span id="stateText">Starting the tour</span>
+      </div>
+      <div class="canvaswrap" id="wrap">
+        <canvas id="map" role="img" aria-label="Top-down map of the test house: corridor, Room 1 at top left, Room 2 at bottom right, the rover, its LiDAR, its planned path and the person following it."></canvas>
+        <div class="maphint" id="hint">Click to send the rover somewhere · arrow keys or WASD to drive it yourself</div>
+      </div>
+      <div class="layers">
+        <label><input type="checkbox" id="lyLidar" checked> LiDAR beams</label>
+        <label><input type="checkbox" id="lyCost" checked> Costmap</label>
+        <label><input type="checkbox" id="lyPath" checked> Planned path</label>
+        <label><input type="checkbox" id="lyFollow"> Follow rover</label>
+        <label><input type="checkbox" id="lySound"> Hear the grip (headphones)</label>
+      </div>
+      <div class="legend" aria-hidden="true">
+        <span><i class="sw" style="background:var(--rover)"></i>Rover 0.90 × 0.76 m</span>
+        <span><i class="sw" style="background:var(--person)"></i>Person on the handle</span>
+        <span><i class="sw" style="background:var(--accent)"></i>Planned path</span>
+        <span><i class="sw" style="background:var(--cost);opacity:.45"></i>Too close for the rover / seen by LiDAR</span>
+        <span><i class="sw" style="background:var(--furn)"></i>Furniture</span>
+      </div>
+    </section>
+
+    <aside class="side">
+      <section class="panel" aria-labelledby="gripH">
+        <h2 id="gripH">Handle grip · what the person feels</h2>
+        <div class="grip-wrap">
+          <svg viewBox="0 0 240 250" aria-hidden="true">
+            <circle cx="120" cy="130" r="74" fill="var(--surface-2)" stroke="var(--ink)" stroke-width="2"/>
+            <circle cx="120" cy="130" r="38" fill="none" stroke="var(--line)" stroke-dasharray="3 4"/>
+            <g stroke="var(--line)" stroke-width="3">
+              <line x1="172" y1="78" x2="149" y2="101"/><line x1="68" y1="78" x2="91" y2="101"/>
+              <line x1="172" y1="182" x2="149" y2="159"/><line x1="68" y1="182" x2="91" y2="159"/>
+            </g>
+            <g id="motors"></g>
+            <text x="120" y="127" text-anchor="middle" font-size="10" fill="var(--muted)" font-family="var(--font-mono)">34 mm grip</text>
+            <text x="120" y="141" text-anchor="middle" font-size="9" fill="var(--muted)" font-family="var(--font-mono)">seen from above</text>
+          </svg>
+          <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+            <div class="pattern-name" id="patName">Silence</div>
+            <div class="pattern-say" id="patSay">Carry on straight.</div>
+          </div>
+        </div>
+        <div class="packet" id="packet" title="ESP-NOW packet: four intensity bytes plus a pattern id"></div>
+        <ul class="vocab" id="vocab">
+          <li data-v="none"><b>Silence</b><span>Go forward, all clear</span></li>
+          <li data-v="turn"><b>Left / right</b><span>Steady buzz on that side, stronger = sharper turn</span></li>
+          <li data-v="obstacle"><b>Front pulsing</b><span>Obstacle ahead, faster as it gets closer</span></li>
+          <li data-v="stop"><b>All four pulsing</b><span>Stop walking</span></li>
+          <li data-v="backup"><b>Back steady</b><span>Step back</span></li>
+          <li data-v="arrived"><b>Two soft pulses</b><span>Arrived</span></li>
+          <li data-v="lost"><b>Three short pulses</b><span>Link lost, the handle has gone blind</span></li>
+        </ul>
+      </section>
+
+      <section class="panel" aria-labelledby="teleH">
+        <h2 id="teleH">On the ROS graph</h2>
+        <dl class="tele">
+          <dt>/cmd_vel linear.x</dt><dd id="tLin">0.00 m/s</dd>
+          <dt>/cmd_vel angular.z</dt><dd id="tAng">0.00 rad/s</dd>
+          <dt>/scan nearest</dt><dd id="tScan">–</dd>
+          <dt>clear space ahead</dt><dd id="tGap">–</dd>
+          <dt>/ticks_left</dt><dd id="tTl">0</dd>
+          <dt>/ticks_right</dt><dd id="tTr">0</dd>
+          <dt>pose x, y, yaw</dt><dd id="tPose">0.00, 0.00, 0°</dd>
+          <dt>distance to goal</dt><dd id="tGoal">–</dd>
+        </dl>
+      </section>
+
+      <section class="panel" aria-labelledby="logH">
+        <h2 id="logH">Event log</h2>
+        <ol class="log" id="log" aria-live="polite"></ol>
+      </section>
+    </aside>
+  </main>
+
+  <section class="below">
+    <div class="panel">
+      <h2>Tour results · the 6 goals from <span class="mono">nav2/goals.csv</span></h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Goal</th><th>Where</th><th>This run</th><th class="num">Time</th><th class="num">Driven</th><th class="num">Closest</th><th>Gazebo Nav2 baseline</th></tr></thead>
+          <tbody id="results"></tbody>
+        </table>
+      </div>
+      <p class="note">Goals run back-to-back, each starting where the last one ended, like <span class="mono">auto_nav2_eval_v2.py</span>. A goal counts as reached within 0.25 m; it times out after 150 s of sim time. The last column is the frozen Gazebo baseline (3 passes each). In the full Gazebo comparison Nav2 reached 26/36 goals (72%) and the DRL + MPPI hybrid 25/36 (69%).</p>
+    </div>
+    <div class="panel">
+      <h2>Built from your project</h2>
+      <ul class="facts">
+        <li>House layout, walls, door posts and furniture from <code>simulation/assistive_robot/baseline_20261010/world/assistive_world.sdf</code>, to scale.</li>
+        <li>Rover footprint 0.90 × 0.76 m, speed up to 0.3 m/s, turn up to 1.0 rad/s, goal tolerance 0.15 m, from <code>nav2_params.yaml</code>.</li>
+        <li>LiDAR: 360 beams, 0.12 to 15 m; new obstacles are marked within 3.5 m, as in the tuned costmap.</li>
+        <li>Grip feedback ported line for line from <code>haptic_handle/haptics.cpp</code>: duty levels 70 / 150 / 255, deadbands 0.03 m/s and 0.10 rad/s, stop at 5 Hz, link-lost triple pulse every 1.6 s.</li>
+        <li>Encoder ticks: 32 per wheel turn, the slotted disc in <code>rover_microros.ino</code>.</li>
+      </ul>
+      <p class="note">Simplified here: the planner is A* on a 10 cm grid with a pure-pursuit follower instead of SmacPlanner2D + MPPI, the rover knows its true position (no AMCL drift), and the DRL policy is not included. Treat the times as illustrative, not as new measurements.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+/* ---------------- World: baseline_20261010/world/assistive_world.sdf ---------------- */
+const WALLS = [[-12,0,0.2,16],[12,0,0.2,16],[0,8,24,0.2],[0,-8,24,0.2],
+  [-8,1.5,4,0.2],[5.3,1.5,9.4,0.2],[-5,-1.5,10,0.2],[8,-1.5,4,0.2],
+  [-9,4.75,0.2,6.5],[-1,4.75,0.2,6.5],[-5,7.9,8,0.2],[-7.5,1.5,3,0.2],[-2.5,1.5,3,0.2],
+  [1,-4.75,0.2,6.5],[9,-4.75,0.2,6.5],[5,-7.9,8,0.2],[2,-1.5,2,0.2],[8,-1.5,2,0.2]];
+const POSTS = [[-6,1.5],[-4,1.5],[6,-1.5]];
+const FURN = [['Bed',-7.3,5.5,2.8,1.5],['Table',-3,4,1.3,1.0],['Chair',-3,5.6,0.7,0.7],
+              ['Bed',7.3,-5.5,2.8,1.5],['Table',3,-4,1.3,1.0],['Chair',3,-5.6,0.7,0.7]];
+const AREAS = [['Room 1',-9,1.5,-1,7.9],['Room 2',1,-7.9,9,-1.5],['Corridor',-10,-1.5,10,1.5]];
+const GOALS = [
+  {name:'candidate_1', x:-5, y:4,   where:'Room 1, middle',            base:'1/3'},
+  {name:'candidate_2', x:5,  y:-4,  where:'Room 2, middle',            base:'3/3'},
+  {name:'candidate_3', x:-3, y:0,   where:'Corridor, west',            base:'3/3'},
+  {name:'candidate_4', x:3,  y:4,   where:'North hall',                base:'3/3'},
+  {name:'candidate_5', x:5,  y:2,   where:'North hall, 0.40 m from wall', base:'0/3'},
+  {name:'candidate_6', x:-5, y:2.5, where:'Room 1, inside the door',   base:'2/3'},
+];
+const box = (cx,cy,sx,sy,kind,label) => ({x0:cx-sx/2,y0:cy-sy/2,x1:cx+sx/2,y1:cy+sy/2,cx,cy,kind,label});
+const STATIC = [
+  ...WALLS.map(w => box(w[0],w[1],w[2],w[3],'wall')),
+  ...POSTS.map(p => box(p[0],p[1],0.12,0.12,'post')),
+  ...FURN.map(f => box(f[1],f[2],f[3],f[4],'furn',f[0])),
+];
+
+/* ---------------- Rover and sensor constants ---------------- */
+const HL = 0.45, HW = 0.38;            // footprint half length / half width
+const VMAX = 0.30, WMAX = 1.0;         // nav2 limits
+const ACC_V = 0.5, ACC_W = 2.0;        // velocity smoother
+const XY_TOL = 0.15, SUCCESS_R = 0.25, GOAL_TIMEOUT = 150;
+const LIDAR_N = 360, LIDAR_MIN = 0.12, LIDAR_MAX = 15, MARK_RANGE = 3.5;
+const STOP_GAP = 0.25, SLOW_GAP = 1.4, WARN_GAP = 1.5;
+const WHEEL_R = 0.12, TRACK = 0.68, TICKS_PER_REV = 32;
+const STICK = 0.95;                    // elongation stick, rover to hand
+const R_LETHAL = 0.45;                 // planner keeps the rover centre this far from anything
+
+/* ---------------- Grid ---------------- */
+const RES = 0.1, OX = -12.5, OY = -8.5, NX = 250, NY = 170, N = NX*NY;
+const occ = new Uint8Array(N), marks = new Uint8Array(N), dist = new Float32Array(N);
+const cx2i = x => Math.floor((x-OX)/RES), cy2j = y => Math.floor((y-OY)/RES);
+const cellX = i => OX + (i+0.5)*RES, cellY = j => OY + (j+0.5)*RES;
+for (let j=0;j<NY;j++) for (let i=0;i<NX;i++) {
+  const x = cellX(i), y = cellY(j);
+  for (const b of STATIC) if (x>b.x0-0.05 && x<b.x1+0.05 && y>b.y0-0.05 && y<b.y1+0.05) { occ[j*NX+i]=1; break; }
+}
+function computeDist() {
+  const INF = 1e9, d = dist, S2 = Math.SQRT2;
+  for (let k=0;k<N;k++) d[k] = (occ[k]||marks[k]) ? 0 : INF;
+  for (let j=0;j<NY;j++) for (let i=0;i<NX;i++) { const k=j*NX+i; let v=d[k]; if (!v) continue;
+    if (i>0) v=Math.min(v,d[k-1]+1);
+    if (j>0) { v=Math.min(v,d[k-NX]+1); if (i>0) v=Math.min(v,d[k-NX-1]+S2); if (i<NX-1) v=Math.min(v,d[k-NX+1]+S2); }
+    d[k]=v; }
+  for (let j=NY-1;j>=0;j--) for (let i=NX-1;i>=0;i--) { const k=j*NX+i; let v=d[k]; if (!v) continue;
+    if (i<NX-1) v=Math.min(v,d[k+1]+1);
+    if (j<NY-1) { v=Math.min(v,d[k+NX]+1); if (i<NX-1) v=Math.min(v,d[k+NX+1]+S2); if (i>0) v=Math.min(v,d[k+NX-1]+S2); }
+    d[k]=v; }
+  for (let k=0;k<N;k++) d[k] = Math.max(0, d[k]*RES - 0.05);
+  costDirty = true;
+}
+const clearanceAt = (x,y) => { const i=cx2i(x), j=cy2j(y); if (i<0||j<0||i>=NX||j>=NY) return 0; return dist[j*NX+i]; };
+
+/* ---------------- A* planner ---------------- */
+const gS = new Float32Array(N), came = new Int32Array(N), closed = new Uint8Array(N);
+const heapI = new Int32Array(N*4), heapF = new Float32Array(N*4);
+function plan(sx, sy, gx, gy) {
+  const si = cx2i(sx), sj = cy2j(sy);
+  let gi = cx2i(gx), gj = cy2j(gy);
+  if (si<0||sj<0||si>=NX||sj>=NY||gi<0||gj<0||gi>=NX||gj>=NY) return null;
+  let snapped = false;
+  if (dist[gj*NX+gi] < R_LETHAL) {           // nearest cell the rover fits in, within 1 m
+    let best=null, bd=1e9;
+    for (let dj=-10;dj<=10;dj++) for (let di=-10;di<=10;di++) {
+      const i=gi+di, j=gj+dj; if (i<0||j<0||i>=NX||j>=NY) continue;
+      const d2=di*di+dj*dj; if (d2>100||d2>=bd) continue;
+      if (dist[j*NX+i] >= R_LETHAL) { bd=d2; best=[i,j]; }
+    }
+    if (!best) return null;
+    gi=best[0]; gj=best[1]; snapped = true;
+  }
+  const passable = (i,j) => {
+    const c = dist[j*NX+i];
+    if (c >= R_LETHAL) return true;
+    const dx=(i-si)*RES, dy=(j-sj)*RES;   // allow working out of a tight start
+    return c >= 0.12 && dx*dx+dy*dy < 0.8*0.8;
+  };
+  gS.fill(Infinity); came.fill(-1); closed.fill(0);
+  let hn = 0;
+  const push = (k,f) => { let c=hn++; heapI[c]=k; heapF[c]=f;
+    while (c>0) { const p=(c-1)>>1; if (heapF[p]<=heapF[c]) break;
+      [heapI[p],heapI[c]]=[heapI[c],heapI[p]]; [heapF[p],heapF[c]]=[heapF[c],heapF[p]]; c=p; } };
+  const pop = () => { const top=heapI[0]; hn--; heapI[0]=heapI[hn]; heapF[0]=heapF[hn];
+    let c=0; for(;;){ const l=2*c+1, r=l+1; let m=c;
+      if (l<hn && heapF[l]<heapF[m]) m=l; if (r<hn && heapF[r]<heapF[m]) m=r; if (m===c) break;
+      [heapI[m],heapI[c]]=[heapI[c],heapI[m]]; [heapF[m],heapF[c]]=[heapF[c],heapF[m]]; c=m; }
+    return top; };
+  const h = (i,j) => { const dx=Math.abs(i-gi), dy=Math.abs(j-gj); return (dx+dy+(Math.SQRT2-2)*Math.min(dx,dy)); };
+  const pen = d => d >= 1.2 ? 0 : 4.0*((1.2-d)/(1.2-R_LETHAL))**2;
+  const sk = sj*NX+si, gk = gj*NX+gi;
+  gS[sk]=0; push(sk, h(si,sj));
+  const D = [[1,0,1],[-1,0,1],[0,1,1],[0,-1,1],[1,1,Math.SQRT2],[1,-1,Math.SQRT2],[-1,1,Math.SQRT2],[-1,-1,Math.SQRT2]];
+  let found=false;
+  while (hn>0 && hn < heapI.length-8) {
+    const k = pop(); if (closed[k]) continue; closed[k]=1;
+    if (k===gk) { found=true; break; }
+    const i=k%NX, j=(k/NX)|0;
+    for (const [di,dj,len] of D) {
+      const ni=i+di, nj=j+dj; if (ni<1||nj<1||ni>=NX-1||nj>=NY-1) continue;
+      const nk=nj*NX+ni; if (closed[nk] || !passable(ni,nj)) continue;
+      if (di&&dj && (!passable(i+di,j)||!passable(i,j+dj))) continue;
+      const g = gS[k] + len*(1+pen(dist[nk]));
+      if (g < gS[nk]) { gS[nk]=g; came[nk]=k; push(nk, g + h(ni,nj)); }
+    }
+  }
+  if (!found) return null;
+  const cells=[]; for (let k=gk; k!==-1; k=came[k]) cells.push(k);
+  cells.reverse();
+  let pts = cells.map(k => [cellX(k%NX), cellY((k/NX)|0)]);
+  pts[0] = [sx, sy];
+  if (!snapped) pts[pts.length-1] = [gx, gy];
+  // smooth, never into tighter space than the rover has
+  for (let it=0; it<40; it++) for (let n=1; n<pts.length-1; n++) {
+    const a=pts[n-1], p=pts[n], b=pts[n+1];
+    const nx = p[0]+0.3*(a[0]+b[0]-2*p[0]), ny = p[1]+0.3*(a[1]+b[1]-2*p[1]);
+    if (clearanceAt(nx,ny) >= Math.min(clearanceAt(p[0],p[1]), 0.75)) pts[n]=[nx,ny];
+  }
+  // resample every 0.1 m
+  const out=[pts[0]];
+  for (let n=1;n<pts.length;n++) {
+    const last=out[out.length-1], p=pts[n], L=Math.hypot(p[0]-last[0],p[1]-last[1]);
+    if (L < 0.1) { if (n===pts.length-1) out.push(p); continue; }
+    const steps = Math.floor(L/0.1);
+    for (let s=1;s<=steps;s++) out.push([last[0]+(p[0]-last[0])*s/steps, last[1]+(p[1]-last[1])*s/steps]);
+  }
+  return {pts:out, snapped, goal:[cellX(gi),cellY(gj)]};
+}
+
+/* ---------------- Geometry helpers ---------------- */
+const wrap = a => { while (a>Math.PI) a-=2*Math.PI; while (a<-Math.PI) a+=2*Math.PI; return a; };
+const clamp = (v,a,b) => v<a?a:v>b?b:v;
+function rayBox(ox,oy,dx,dy,b,maxR){
+  let tmin=0, tmax=maxR;
+  if (Math.abs(dx)<1e-9) { if (ox<b.x0||ox>b.x1) return Infinity; }
+  else { let t1=(b.x0-ox)/dx, t2=(b.x1-ox)/dx; if (t1>t2){const t=t1;t1=t2;t2=t;} if(t1>tmin)tmin=t1; if(t2<tmax)tmax=t2; if (tmin>tmax) return Infinity; }
+  if (Math.abs(dy)<1e-9) { if (oy<b.y0||oy>b.y1) return Infinity; }
+  else { let t1=(b.y0-oy)/dy, t2=(b.y1-oy)/dy; if (t1>t2){const t=t1;t1=t2;t2=t;} if(t1>tmin)tmin=t1; if(t2<tmax)tmax=t2; if (tmin>tmax) return Infinity; }
+  return tmin;
+}
+function rayCircle(ox,oy,dx,dy,cx,cy,r){
+  const fx=ox-cx, fy=oy-cy, b=fx*dx+fy*dy, c=fx*fx+fy*fy-r*r, disc=b*b-c;
+  if (disc<0) return Infinity; const t=-b-Math.sqrt(disc); return t>=0?t:Infinity;
+}
+const inBox = (x,y,b,m=0) => x>b.x0-m && x<b.x1+m && y>b.y0-m && y<b.y1+m;
+
+/* ---------------- Simulation state ---------------- */
+let S;
+const WALKER_R = 0.22;
+function freshState() {
+  return {
+    t:0, x:0, y:0, th:0, v:0, w:0, cmdV:0, cmdW:0,
+    px:-HL-STICK, py:0, pth:0,                         // person
+    ticksL:0, ticksR:0, accL:0, accR:0,
+    boxes:[box(1.6,0.35,0.5,0.5,'box','Box')],        // one sample obstacle in the corridor
+    walkers:[],
+    scan:new Float32Array(LIDAR_N).fill(LIDAR_MAX), scanDyn:new Uint8Array(LIDAR_N),
+    gap:Infinity, rearGap:Infinity, nearest:Infinity,
+    mode:'idle', goal:null, path:null, pathIdx:0, tour:null, tourIdx:-1,
+    progT:0, progX:0, progY:0,
+    blockedT:0, blockReplanned:false, backups:0, backupDist:0, backupT:0, noPathT:0,
+    lastReplan:-9, lastPathCheck:0, nextGoalAt:null,
+    run:null, stopReason:null, obstUrg:0, bumped:false,
+    hold:false, linkLost:false, manual:{v:0,w:0}, lastScanT:-1, ctrlAcc:0,
+  };
+}
+
+/* ---------------- Logging & results ---------------- */
+const logEl = document.getElementById('log');
+const fmtT = t => { const m=Math.floor(t/60), s=Math.floor(t%60); return m+':'+String(s).padStart(2,'0'); };
+function log(msg, kind) {
+  const li = document.createElement('li'); if (kind) li.className='k-'+kind;
+  li.innerHTML = '<time></time><span></span>';
+  li.firstChild.textContent = fmtT(S.t); li.lastChild.textContent = msg;
+  logEl.prepend(li);
+  while (logEl.children.length > 60) logEl.lastChild.remove();
+}
+let rows = [];
+function renderResults() {
+  const tb = document.getElementById('results'); tb.innerHTML='';
+  GOALS.forEach((g,i) => {
+    const r = rows[i];
+    const tr = document.createElement('tr');
+    if (S.tour && S.tourIdx===i && S.mode!=='idle') tr.className='cur';
+    let res='<span class="note">not run</span>', time='–', dr='–', cl='–';
+    if (r) {
+      if (r.status==='running') res='<span class="r-run">driving…</span>';
+      else if (r.status==='ok') res='<span class="r-ok">Reached</span> <span class="note">'+r.err.toFixed(2)+' m</span>';
+      else res='<span class="r-bad">'+r.status+'</span> <span class="note">'+(r.err!=null?r.err.toFixed(2)+' m off':'')+'</span>';
+      time = r.time!=null ? r.time.toFixed(0)+' s' : '–';
+      dr = r.driven.toFixed(1)+' m';
+      cl = isFinite(r.minScan) ? r.minScan.toFixed(2)+' m' : '–';
+    }
+    tr.innerHTML = `<td class="mono">${g.name.replace('candidate_','c')}</td><td>${g.where} <span class="note mono">(${g.x}, ${g.y})</span></td><td>${res}</td><td class="num">${time}</td><td class="num">${dr}</td><td class="num">${cl}</td><td class="mono">${g.base}</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+/* ---------------- Navigation control ---------------- */
+function startGoal(goal, tourIdx) {
+  S.goal = goal; S.mode='nav'; S.blockedT=0; S.blockReplanned=false; S.backups=0; S.noPathT=0;
+  S.run = {start:S.t, driven:0, minScan:Infinity, tourIdx};
+  S.progT=S.t; S.progX=S.x; S.progY=S.y;
+  if (tourIdx!=null) rows[tourIdx] = {status:'running', driven:0, minScan:Infinity, time:null, err:null};
+  replan(true);
+  renderResults();
+}
+function replan(first) {
+  computeDist();
+  S.lastReplan = S.t;
+  const p = plan(S.x, S.y, S.goal.x, S.goal.y);
+  if (!p) { S.path=null; if (first) log(`No route to ${S.goal.label} yet. Waiting for the way to clear.`, 'warn'); return false; }
+  S.path = p.pts; S.pathIdx = 0; S.noPathT = 0;
+  if (p.snapped && first) { log(`${S.goal.label} is too tight for a 0.76 m rover; aiming for the nearest spot it fits.`, 'warn'); S.goal.x=p.goal[0]; S.goal.y=p.goal[1]; }
+  if (first) log(`Heading to ${S.goal.label}, ${(S.path.length*0.1).toFixed(1)} m route.`);
+  else log('Route changed around something the LiDAR saw.');
+  return true;
+}
+function finishGoal(ok, status) {
+  const err = Math.hypot(S.x-S.goal.x, S.y-S.goal.y);
+  const idx = S.run ? S.run.tourIdx : null;
+  if (ok) { log(`Arrived at ${S.goal.label} (${err.toFixed(2)} m off) after ${(S.t-S.run.start).toFixed(0)} s.`, 'ok'); hap.setPattern(P.ARRIVED); arrivedFlag = true; }
+  else { log(`${S.goal.label}: ${status}, stopped ${err.toFixed(2)} m from the goal.`, 'bad'); }
+  if (idx!=null) rows[idx] = {status: ok?'ok':status, driven:S.run.driven, minScan:S.run.minScan, time:S.t-S.run.start, err};
+  S.mode='idle'; S.path=null; S.goal=null; S.run=null; S.cmdV=0; S.cmdW=0;
+  if (S.tour && idx!=null) {
+    if (S.tourIdx < GOALS.length-1) { S.nextGoalAt = S.t + 2; }
+    else {
+      const n = rows.filter(r=>r&&r.status==='ok').length;
+      log(`Tour finished: ${n} of 6 goals reached.`, n===6?'ok':'warn'); S.tour=null;
+    }
+  }
+  renderResults();
+}
+function startTour() {
+  rows = []; S.tour = true; S.tourIdx = 0; S.nextGoalAt=null;
+  log('Tour started: the 6 goals from goals.csv, back-to-back.');
+  startGoal(goalObj(0), 0);
+}
+const goalObj = i => ({x:GOALS[i].x, y:GOALS[i].y, label:GOALS[i].name});
+
+function pathBlocked() {
+  if (!S.path) return false;
+  const end = Math.min(S.path.length-1, S.pathIdx+40);
+  for (let k=S.pathIdx; k<=end; k+=2) {
+    const [px,py] = S.path[k], ci=cx2i(px), cj=cy2j(py);
+    for (let dj=-4;dj<=4;dj++) for (let di=-4;di<=4;di++) {
+      const i=ci+di, j=cj+dj; if (i<0||j<0||i>=NX||j>=NY) continue;
+      if (!marks[j*NX+i]) continue;
+      if (Math.hypot(cellX(i)-px, cellY(j)-py) < R_LETHAL) return true;
+    }
+  }
+  return false;
+}
+
+function control(dt) {
+  S.stopReason = null; S.obstUrg = 0;
+  let v=0, w=0;
+  if (S.linkLost || S.hold) { S.cmdV=0; S.cmdW=0; return; }
+
+  if (S.mode==='manual') {
+    v = S.manual.v; w = S.manual.w;
+    if (v>0 && S.gap<WARN_GAP) S.obstUrg = clamp(1-(S.gap-STOP_GAP)/(WARN_GAP-STOP_GAP),0,1);
+    if (v>0 && S.gap<SLOW_GAP) v *= clamp((S.gap-STOP_GAP)/(SLOW_GAP-STOP_GAP),0,1);
+    if (S.manual.v>0 && S.gap<STOP_GAP) { v=0; S.stopReason='obstacle'; }
+  }
+  else if (S.mode==='backup') {
+    v = -0.1; w = 0; S.backupT += dt;
+    if (S.t - S.run.start > GOAL_TIMEOUT) return finishGoal(false, 'TIMEOUT');
+    if (S.rearGap < 0.2 || S.backupDist >= 0.3 || S.backupT > 5 || (S.bumped && S.backupT > 0.3)) {
+      S.mode='nav'; S.blockedT=0; S.blockReplanned=false; v=0;
+      replan(false);
+    }
+  }
+  else if (S.mode==='nav') {
+    const g=S.goal, dGoal=Math.hypot(g.x-S.x, g.y-S.y);
+    if (dGoal < XY_TOL) return finishGoal(true);
+    if (S.t - S.run.start > GOAL_TIMEOUT) return finishGoal(false, 'TIMEOUT');
+    if (!S.path) {
+      S.noPathT += dt;
+      if (S.t - S.lastReplan > 2) replan(false);
+      if (S.noPathT > 20) return finishGoal(false, 'NO ROUTE');
+    } else {
+      if (S.t - S.lastPathCheck > 0.5) { S.lastPathCheck=S.t; if (S.t-S.lastReplan>1 && pathBlocked()) replan(false); }
+    }
+    if (S.path) {
+      const pts=S.path; let best=S.pathIdx, bd=Infinity;
+      for (let k=S.pathIdx; k<Math.min(pts.length, S.pathIdx+40); k++) { const d=(pts[k][0]-S.x)**2+(pts[k][1]-S.y)**2; if (d<bd){bd=d;best=k;} }
+      S.pathIdx = best;
+      const tk = Math.min(pts.length-1, best+8), tx=pts[tk][0], ty=pts[tk][1];
+      const e = wrap(Math.atan2(ty-S.y, tx-S.x) - S.th);
+      if (Math.abs(e) > 1.0) { v=0; w=Math.sign(e)*0.7; }
+      else { v = VMAX*(1-0.8*Math.abs(e)); w = clamp(1.8*e, -WMAX, WMAX); }
+      v = Math.min(v, 0.6*dGoal+0.04);
+      const wantsForward = v>0.01;
+      if (wantsForward && S.gap<WARN_GAP) S.obstUrg = clamp(1-(S.gap-STOP_GAP)/(WARN_GAP-STOP_GAP),0,1);
+      if (wantsForward && S.gap<SLOW_GAP) v = Math.max(Math.min(v,0.03), v*clamp((S.gap-STOP_GAP)/(SLOW_GAP-STOP_GAP),0,1));
+      if (wantsForward && S.gap<STOP_GAP) { v=0; w=0; S.stopReason='obstacle'; }
+    }
+    // progress checker, as in Nav2: at least 0.2 m every 10 s, unless a walker is in the way
+    if (S.t - S.progT > 10) {
+      const moved = Math.hypot(S.x-S.progX, S.y-S.progY), walkerNear = S.walkers.some(wk => Math.hypot(wk.x-S.x, wk.y-S.y) < 2);
+      S.progT=S.t; S.progX=S.x; S.progY=S.y;
+      if (moved < 0.2 && !walkerNear && S.path) {
+        if (S.backups >= 3) return finishGoal(false, 'STUCK');
+        log('No progress in 10 s. Recovering: back up, then plan again.', 'warn');
+        S.mode='backup'; S.backupDist=0; S.backupT=0; S.backups++; return;
+      }
+    }
+    const stuck = S.stopReason==='obstacle' || S.bumped || !S.path;
+    if (stuck) S.blockedT += dt; else S.blockedT = 0;
+    if (S.blockedT > 3 && dGoal < SUCCESS_R) return finishGoal(true);
+    if (S.blockedT > 2.5 && !S.blockReplanned && S.path) { S.blockReplanned=true; replan(false); }
+    if (S.blockedT > 6) {
+      if (S.backups >= 3) return finishGoal(false, 'STUCK');
+      if (S.rearGap > 0.35) { S.mode='backup'; S.backupDist=0; S.backupT=0; S.backups++; log('Blocked. Backing up 0.3 m to try another way.', 'warn'); }
+      else if (S.blockedT > 12) return finishGoal(false, 'STUCK');
+    }
+  }
+  else if (S.mode==='idle' && S.nextGoalAt!=null && S.t>=S.nextGoalAt) {
+    S.nextGoalAt=null; S.tourIdx++; startGoal(goalObj(S.tourIdx), S.tourIdx);
+    return;
+  }
+  // velocity smoother
+  S.cmdV += clamp(v-S.cmdV, -ACC_V*dt, ACC_V*dt);
+  S.cmdW += clamp(w-S.cmdW, -ACC_W*dt, ACC_W*dt);
+  if (S.stopReason==='obstacle') { S.cmdV = Math.min(S.cmdV, 0); }
+}
+
+/* ---------------- Physics ---------------- */
+const FP = (() => { const pts=[]; const step=0.1;
+  for (let x=-HL;x<=HL+1e-6;x+=step) { pts.push([x,-HW]); pts.push([x,HW]); }
+  for (let y=-HW+step;y<HW;y+=step) { pts.push([-HL,y]); pts.push([HL,y]); }
+  return pts; })();
+function collides(x,y,th) {
+  const c=Math.cos(th), s=Math.sin(th);
+  for (const [fx,fy] of FP) {
+    const wx=x+fx*c-fy*s, wy=y+fx*s+fy*c;
+    for (const b of STATIC) if (inBox(wx,wy,b)) return true;
+    for (const b of S.boxes) if (inBox(wx,wy,b)) return true;
+  }
+  const small = (ox,oy,r) => { const dx=ox-x, dy=oy-y, lx=dx*c+dy*s, ly=-dx*s+dy*c; return Math.abs(lx)<HL+r && Math.abs(ly)<HW+r; };
+  for (const p of POSTS) if (small(p[0],p[1],0.06)) return true;
+  for (const b of STATIC) if (b.kind!=='post' && (small(b.x0,b.y0,0)||small(b.x1,b.y0,0)||small(b.x0,b.y1,0)||small(b.x1,b.y1,0))) return true;
+  for (const b of S.boxes) if (small(b.x0,b.y0,0)||small(b.x1,b.y0,0)||small(b.x0,b.y1,0)||small(b.x1,b.y1,0)) return true;
+  for (const wk of S.walkers) if (small(wk.x,wk.y,WALKER_R)) return true;
+  return false;
+}
+function physics(dt) {
+  const v=S.cmdV, w=S.cmdW;
+  const nth = S.th + w*dt, nx = S.x + v*Math.cos(S.th)*dt, ny = S.y + v*Math.sin(S.th)*dt;
+  S.bumped = false;
+  let ox=S.x, oy=S.y;
+  if (!collides(nx,ny,nth)) { S.x=nx; S.y=ny; S.th=wrap(nth); }
+  else if (Math.abs(w)>1e-3 && !collides(S.x,S.y,nth)) { S.th=wrap(nth); S.bumped = Math.abs(v)>0.02; }
+  else if (Math.abs(v)>1e-3 && !collides(nx,ny,S.th)) { S.x=nx; S.y=ny; S.bumped = Math.abs(w)>0.05; }
+  else if (Math.abs(v)>1e-3||Math.abs(w)>1e-3) S.bumped = true;
+  const moved = Math.hypot(S.x-ox, S.y-oy);
+  if (S.run) S.run.driven += moved;
+  if (S.mode==='backup') S.backupDist += moved;
+  // encoders: real wheel travel from the motion actually achieved
+  const realV = (v>=0?1:-1)*moved/dt, realW = S.bumped&&!Math.abs(w) ? 0 : w;
+  const vl = realV - realW*TRACK/2, vr = realV + realW*TRACK/2, perTick = 2*Math.PI*WHEEL_R/TICKS_PER_REV;
+  S.accL += vl*dt; S.accR += vr*dt;
+  while (Math.abs(S.accL) >= perTick) { const sgn=Math.sign(S.accL); S.ticksL+=sgn; S.accL-=sgn*perTick; }
+  while (Math.abs(S.accR) >= perTick) { const sgn=Math.sign(S.accR); S.ticksR+=sgn; S.accR-=sgn*perTick; }
+  // the person: walks to stay one stick-length behind the handle mount
+  const ax = S.x - HL*Math.cos(S.th), ay = S.y - HL*Math.sin(S.th);
+  const tx = ax - STICK*Math.cos(S.th), ty = ay - STICK*Math.sin(S.th);
+  const k = Math.min(1, dt*3.0);
+  S.px += (tx-S.px)*k; S.py += (ty-S.py)*k;
+  const dx=ax-S.px, dy=ay-S.py, L=Math.hypot(dx,dy);
+  if (L > STICK*1.05) { S.px = ax - dx/L*STICK*1.05; S.py = ay - dy/L*STICK*1.05; }
+  S.pth = Math.atan2(ay-S.py, ax-S.px);
+  // walkers
+  for (const wk of S.walkers) {
+    wk.life -= dt;
+    const tx2 = wk.dir>0 ? wk.bx : wk.ax, ty2 = wk.dir>0 ? wk.by : wk.ay;
+    const ddx=tx2-wk.x, ddy=ty2-wk.y, dd=Math.hypot(ddx,ddy);
+    if (dd < 0.05) { wk.dir*=-1; continue; }
+    const st = Math.min(dd, 0.8*dt), nx2 = wk.x+ddx/dd*st, ny2 = wk.y+ddy/dd*st;
+    const c=Math.cos(S.th), s=Math.sin(S.th), rx=nx2-S.x, ry=ny2-S.y, lx=rx*c+ry*s, ly=-rx*s+ry*c;
+    const nearRover = Math.abs(lx)<HL+WALKER_R+0.25 && Math.abs(ly)<HW+WALKER_R+0.25;
+    const nearPerson = Math.hypot(nx2-S.px, ny2-S.py) < 0.6;
+    if (!nearRover && !nearPerson) { wk.x=nx2; wk.y=ny2; wk.face=Math.atan2(ddy,ddx); }
+  }
+  const before = S.walkers.length;
+  S.walkers = S.walkers.filter(w2 => w2.life > 0);
+  if (S.walkers.length < before) log('A walker left the area.');
+}
+
+/* ---------------- LiDAR ---------------- */
+function scanLidar() {
+  const ox=S.x, oy=S.y;
+  let near=Infinity, gap=Infinity, rgap=Infinity;
+  const c=Math.cos(S.th), s=Math.sin(S.th);
+  for (let n=0;n<LIDAR_N;n++) {
+    const a = S.th - Math.PI + n*2*Math.PI/LIDAR_N, dx=Math.cos(a), dy=Math.sin(a);
+    let r=LIDAR_MAX, dyn=0;
+    for (const b of STATIC) { const t=rayBox(ox,oy,dx,dy,b,r); if (t<r && t>=LIDAR_MIN) r=t; }
+    for (const b of S.boxes) { const t=rayBox(ox,oy,dx,dy,b,r); if (t<r && t>=LIDAR_MIN) { r=t; dyn=1; } }
+    for (const wk of S.walkers) { const t=rayCircle(ox,oy,dx,dy,wk.x,wk.y,WALKER_R); if (t<r && t>=LIDAR_MIN) { r=t; dyn=1; } }
+    S.scan[n]=r; S.scanDyn[n]=dyn;
+    if (r<near) near=r;
+    if (r < LIDAR_MAX) {
+      const hx=dx*r, hy=dy*r, lx=hx*c+hy*s, ly=-hx*s+hy*c;
+      if (Math.abs(ly) < HW+0.1) { if (lx>HL) gap=Math.min(gap,lx-HL); else if (lx<-HL) rgap=Math.min(rgap,-lx-HL); }
+    }
+    // costmap: clear along the beam, mark the hit (new obstacles only; walls are already on the map)
+    const lim = Math.min(r, MARK_RANGE);
+    for (let t=0.2; t<lim-0.15; t+=RES) { const i=cx2i(ox+dx*t), j=cy2j(oy+dy*t); if (i>=0&&j>=0&&i<NX&&j<NY) { const k=j*NX+i; if (marks[k]) { marks[k]=0; costDirty=true; } } }
+    if (r <= MARK_RANGE) {
+      const hx=ox+dx*r, hy=oy+dy*r, i=cx2i(hx+dx*0.03), j=cy2j(hy+dy*0.03);
+      if (i>0&&j>0&&i<NX-1&&j<NY-1) {
+        let known=false;
+        for (let dj=-1;dj<=1&&!known;dj++) for (let di=-1;di<=1;di++) if (occ[(j+dj)*NX+i+di]) { known=true; break; }
+        const k=j*NX+i; if (!known && !marks[k]) { marks[k]=1; costDirty=true; }
+      }
+    }
+  }
+  S.nearest=near; S.gap=gap; S.rearGap=rgap;
+  if (S.run) S.run.minScan = Math.min(S.run.minScan, near);
+}
+
+/* ---------------- Haptics: port of haptic_handle/haptics.cpp ---------------- */
+const P = {NONE:0, STOP:1, OBSTACLE:2, BACKUP:3, LOST:4, ARRIVED:5};
+const PNAME = ['NONE','STOP','OBSTACLE','BACKUP','LOST','ARRIVED'];
+const hap = (() => {
+  const MIN_DUTY=70, GUIDE_DUTY=150, ALERT_DUTY=255, LIN_DB=0.03, ANG_DB=0.10, ANG_FULL=1.0;
+  let current=P.NONE, urgency=0, patternStart=performance.now();
+  let gF=0,gB=0,gL=0,gR=0;
+  const out=[0,0,0,0];
+  const apply=(f,b,l,r)=>{ out[0]=f<MIN_DUTY?0:f; out[1]=b<MIN_DUTY?0:b; out[2]=l<MIN_DUTY?0:l; out[3]=r<MIN_DUTY?0:r; };
+  const phase=(period,now)=> Math.floor((now-patternStart)/(period/2))%2===0;
+  return {
+    get pattern(){return current;}, out,
+    fromVelocity(lin, ang){ gF=gB=gL=gR=0;
+      if (Math.abs(ang)>ANG_DB) { const sharp=Math.abs(ang)/ANG_FULL; const d=MIN_DUTY+Math.floor((GUIDE_DUTY-MIN_DUTY)*clamp(sharp,0,1)); if (ang>0) gL=d; else gR=d; }
+      else if (lin < -LIN_DB) gB=GUIDE_DUTY; },
+    setPattern(p){ if (p===current) return; current=p; patternStart=performance.now(); },
+    setUrgency(u){ urgency=clamp(u,0,1); },
+    update(now){
+      switch(current){
+        case P.NONE: apply(gF,gB,gL,gR); break;
+        case P.STOP: if (phase(200,now)) apply(255,255,255,255); else apply(0,0,0,0); break;
+        case P.OBSTACLE: { const period=600-Math.floor(450*urgency); if (phase(period,now)) apply(ALERT_DUTY,0,0,0); else apply(0,0,0,0); break; }
+        case P.BACKUP: apply(0,ALERT_DUTY,0,0); break;
+        case P.LOST: { const t=(now-patternStart)%1600; const on=t<120||(t>240&&t<360)||(t>480&&t<600); if(on) apply(255,255,255,255); else apply(0,0,0,0); break; }
+        case P.ARRIVED: { const t=now-patternStart; if (t<1200){ const on=t<300||(t>600&&t<900); if(on) apply(GUIDE_DUTY,GUIDE_DUTY,GUIDE_DUTY,GUIDE_DUTY); else apply(0,0,0,0);} else { current=P.NONE; apply(gF,gB,gL,gR);} break; }
+      }
+    }
+  };
+})();
+let arrivedFlag=false;
+function decidePattern() {
+  // rover side: what the handle should be saying right now
+  hap.fromVelocity(S.cmdV, S.cmdW);
+  let want = P.NONE;
+  if (S.linkLost) want=P.LOST;
+  else if (S.hold) want=P.STOP;
+  else if (S.stopReason==='obstacle') want=P.STOP;
+  else if (S.mode==='backup') want=P.BACKUP;
+  else if (S.obstUrg>0 && S.cmdV>0.02) { want=P.OBSTACLE; hap.setUrgency(S.obstUrg); }
+  if (hap.pattern===P.ARRIVED && want===P.NONE) return;   // let the one-shot finish
+  hap.setPattern(want);
+}
+
+/* ---------------- Grip panel ---------------- */
+const motorG = document.getElementById('motors');
+const MOT = [['Front',120,56,120,22],['Back',120,204,120,244],['Left',46,130,34,174],['Right',194,130,206,174]];
+const motorEls = MOT.map(([name,x,y,lx,ly]) => {
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.innerHTML = `<circle class="halo" cx="${x}" cy="${y}" r="16" fill="var(--haptic)" opacity="0"/>
+    <circle cx="${x}" cy="${y}" r="13" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.5"/>
+    <circle class="core" cx="${x}" cy="${y}" r="9" fill="var(--haptic)" opacity="0"/>
+    <text x="${lx}" y="${ly}" text-anchor="middle" font-size="11" fill="var(--ink)" font-family="var(--font-mono)">${name==='Front'?'Front ▲':name} <tspan class="duty" fill="var(--muted)">0</tspan></text>`;
+  motorG.appendChild(g);
+  return {halo:g.querySelector('.halo'), core:g.querySelector('.core'), duty:g.querySelector('.duty')};
+});
+const SAY = {
+  silent:['Silence','Carry on straight. Nothing to do.'],
+  left:['Left buzz','The rover is about to steer you left.'],
+  right:['Right buzz','The rover is about to steer you right.'],
+  backv:['Back buzz','The rover is reversing.'],
+  [P.STOP]:['Stop','All four motors pulsing hard at 5 Hz. Stop walking.'],
+  [P.OBSTACLE]:['Obstacle ahead','Front motor pulsing, faster as it gets closer.'],
+  [P.BACKUP]:['Step back','Back motor steady. The rover is reversing out.'],
+  [P.LOST]:['Link lost','Three short pulses on all four. The handle has stopped hearing the rover.'],
+  [P.ARRIVED]:['Arrived','Two soft pulses, then silence.'],
+};
+let lastVocab='', lastPatLogged=-1;
+function renderGrip() {
+  const o = hap.out;
+  o.forEach((d,i) => { const m=motorEls[i], f=d/255;
+    m.halo.setAttribute('opacity', (f*0.35).toFixed(2)); m.halo.setAttribute('r', (16+f*12).toFixed(1));
+    m.core.setAttribute('opacity', f.toFixed(2)); m.duty.textContent = d; });
+  let key, vocab;
+  const p = hap.pattern;
+  if (p!==P.NONE) { key=p; vocab={1:'stop',2:'obstacle',3:'backup',4:'lost',5:'arrived'}[p]; }
+  else if (o[2]) { key='left'; vocab='turn'; } else if (o[3]) { key='right'; vocab='turn'; }
+  else if (o[1]) { key='backv'; vocab='backup'; } else { key='silent'; vocab='none'; }
+  const [nm, say] = SAY[key];
+  setText('patName', nm); setText('patSay', say);
+  if (vocab!==lastVocab) { lastVocab=vocab; document.querySelectorAll('#vocab li').forEach(li => li.classList.toggle('on', li.dataset.v===vocab)); }
+  const hx = n => n.toString(16).toUpperCase().padStart(2,'0');
+  const pk = document.getElementById('packet');
+  const html = S.linkLost
+    ? '<span class="lbl">ESP-NOW</span> no packet for 2 s → LINK LOST'
+    : `<span class="lbl">ESP-NOW →</span> F ${hx(o[0])} · B ${hx(o[1])} · L ${hx(o[2])} · R ${hx(o[3])} · pat ${p} <span class="lbl">${PNAME[p]}</span>`;
+  if (pk._h!==html) { pk.innerHTML=html; pk._h=html; }
+  if (p!==lastPatLogged) {
+    if (p===P.STOP && !S.hold && !S.linkLost) log('Handle: STOP. Something is right in front of the rover.', 'warn');
+    if (p===P.OBSTACLE) log(`Handle: obstacle ahead, ${S.gap.toFixed(1)} m.`);
+    lastPatLogged=p;
+  }
+  sound(o);
+}
+const textCache={};
+function setText(id, t){ if (textCache[id]!==t) { textCache[id]=t; document.getElementById(id).textContent=t; } }
+
+/* ---------------- Sound: each motor gets its own tone and ear ---------------- */
+let audio=null;
+function initAudio() {
+  if (audio) return;
+  try {
+    const ctx = new (window.AudioContext||window.webkitAudioContext)();
+    const master = ctx.createGain(); master.gain.value=0.6; master.connect(ctx.destination);
+    const spec = [[200,0],[110,0],[150,-1],[150,1]];
+    const ch = spec.map(([f,pan]) => {
+      const o=ctx.createOscillator(); o.type='sawtooth'; o.frequency.value=f;
+      const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=500;
+      const g=ctx.createGain(); g.gain.value=0;
+      const p=ctx.createStereoPanner? ctx.createStereoPanner():null;
+      o.connect(lp); lp.connect(g); if (p){ p.pan.value=pan; g.connect(p); p.connect(master);} else g.connect(master);
+      o.start(); return g; });
+    audio={ctx,ch};
+  } catch(e) { audio=null; }
+}
+let soundOn=false;
+function sound(o) {
+  if (!audio) return;
+  const t=audio.ctx.currentTime;
+  audio.ch.forEach((g,i) => g.gain.setTargetAtTime(soundOn ? (o[i]/255)*0.12 : 0, t, 0.01));
+}
+
+/* ---------------- Rendering ---------------- */
+const cv = document.getElementById('map'), ctx = cv.getContext('2d'), wrapEl = document.getElementById('wrap');
+let C = {}, W=0, H=0, dpr=1, scale=1, camX=0, camY=0;
+const VIEW_W = 24.6, VIEW_H = 16.6;
+function readColors() {
+  const cs = getComputedStyle(document.documentElement);
+  for (const k of ['bg','surface','surface-2','ink','muted','line','accent','rover','haptic','ok','warn','bad','floor','room','wall','furn','furn-ink','cost','lidar','person'])
+    C[k] = cs.getPropertyValue('--'+k).trim();
+  costDirty = true;
+}
+function resize() {
+  dpr = Math.min(window.devicePixelRatio||1, 2);
+  W = wrapEl.clientWidth; H = Math.round(W*VIEW_H/VIEW_W);
+  cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); cv.style.height = H+'px';
+}
+const costCv = document.createElement('canvas'); costCv.width=NX; costCv.height=NY;
+const costCtx = costCv.getContext('2d');
+let costDirty = true;
+function hexRGB(h){ h=h.replace('#',''); if (h.length===3) h=h.split('').map(c=>c+c).join(''); const n=parseInt(h,16); return [(n>>16)&255,(n>>8)&255,n&255]; }
+function buildCostImage() {
+  const img = costCtx.createImageData(NX,NY), d=img.data, [r,g,b]=hexRGB(C.cost||'#E2412A');
+  for (let j=0;j<NY;j++) for (let i=0;i<NX;i++) {
+    const k=j*NX+i, p=k*4, c=dist[k];   // row 0 = bottom of the world; the y-up transform puts it there
+    let a=0;
+    if (marks[k]) a=220;
+    else if (!occ[k]) { if (c<R_LETHAL) a=70; else if (c<1.0) a=Math.round(36*(1-(c-R_LETHAL)/(1.0-R_LETHAL))); }
+    d[p]=r; d[p+1]=g; d[p+2]=b; d[p+3]=a;
+  }
+  costCtx.putImageData(img,0,0); costDirty=false;
+}
+const sx = x => (x-camX)*scale + W/2, sy = y => H/2 - (y-camY)*scale;
+function worldT() { ctx.setTransform(dpr*scale,0,0,-dpr*scale, dpr*(W/2-camX*scale), dpr*(H/2+camY*scale)); }
+function screenT() { ctx.setTransform(dpr,0,0,dpr,0,0); }
+function rectW(b, fill, stroke, lw) { ctx.beginPath(); ctx.rect(b.x0,b.y0,b.x1-b.x0,b.y1-b.y0); if (fill){ctx.fillStyle=fill;ctx.fill();} if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw/scale;ctx.stroke();} }
+function label(t, x, y, color, size=11, weight=400, align='center') {
+  screenT(); ctx.font=`${weight} ${size}px ${getComputedStyle(document.body).fontFamily}`; ctx.fillStyle=color; ctx.textAlign=align; ctx.textBaseline='middle';
+  ctx.fillText(t, sx(x), sy(y)); worldT();
+}
+const layers = {lidar:true, cost:true, path:true, follow:false};
+function draw() {
+  const follow = layers.follow;
+  const fitScale = Math.min(W/VIEW_W, H/VIEW_H);
+  scale = follow ? fitScale*2.4 : fitScale;
+  if (follow) { camX = S.x; camY = S.y; } else { camX=0; camY=0; }
+  screenT(); ctx.fillStyle=C.floor; ctx.fillRect(0,0,W,H);
+  worldT();
+  // area tints and 1 m grid
+  for (const [, x0,y0,x1,y1] of AREAS) { ctx.fillStyle=C.room; ctx.fillRect(x0,y0,x1-x0,y1-y0); }
+  ctx.strokeStyle=C.line; ctx.lineWidth=0.5/scale; ctx.globalAlpha=0.5; ctx.beginPath();
+  for (let x=-12;x<=12;x++){ctx.moveTo(x,-8);ctx.lineTo(x,8);} for (let y=-8;y<=8;y++){ctx.moveTo(-12,y);ctx.lineTo(12,y);} ctx.stroke(); ctx.globalAlpha=1;
+  // costmap
+  if (layers.cost) { if (costDirty) buildCostImage(); ctx.imageSmoothingEnabled=false; ctx.drawImage(costCv, OX, OY, NX*RES, NY*RES); }
+  // furniture, walls, posts
+  for (const b of STATIC) if (b.kind==='furn') rectW(b, C.furn, C['furn-ink'], 1);
+  for (const b of STATIC) if (b.kind==='wall') rectW(b, C.wall);
+  for (const b of STATIC) if (b.kind==='post') rectW(b, C.wall);
+  for (const b of S.boxes) { rectW(b, C.warn, C.ink, 1.2); ctx.beginPath(); ctx.moveTo(b.x0,b.y0); ctx.lineTo(b.x1,b.y1); ctx.moveTo(b.x0,b.y1); ctx.lineTo(b.x1,b.y0); ctx.strokeStyle=C.ink; ctx.lineWidth=1/scale; ctx.stroke(); }
+  // labels
+  const fs = Math.max(10, Math.min(14, scale*0.42));
+  for (const [n,x0,y0,x1,y1] of AREAS) label(n, n==='Corridor'?7.5:(x0+x1)/2, n==='Corridor'?0.95:(n==='Room 1'?y1-0.55:y0+0.5), C.muted, fs, 700);
+  label('North hall', 6.5, 6.8, C.muted, fs, 700);
+  for (const b of STATIC) if (b.kind==='furn') label(b.label, b.cx, b.cy, C['furn-ink'], Math.max(9, fs-2));
+  // goals
+  GOALS.forEach((g,i) => {
+    const active = S.goal && S.goal.label===g.name;
+    ctx.beginPath(); ctx.arc(g.x,g.y,0.18,0,7); ctx.fillStyle = active?C.accent:C.surface; ctx.fill();
+    ctx.strokeStyle=C.accent; ctx.lineWidth=2/scale; ctx.stroke();
+    label('c'+(i+1), g.x+0.42, g.y+0.32, C.accent, Math.max(10,fs-1), 700);
+  });
+  if (S.goal && !GOALS.some(g=>g.name===S.goal.label)) {
+    ctx.beginPath(); ctx.arc(S.goal.x,S.goal.y,0.2,0,7); ctx.fillStyle=C.accent; ctx.fill();
+    ctx.beginPath(); ctx.arc(S.goal.x,S.goal.y,0.36,0,7); ctx.strokeStyle=C.accent; ctx.lineWidth=1.5/scale; ctx.stroke();
+  }
+  // path
+  if (layers.path && S.path) {
+    ctx.beginPath(); ctx.moveTo(S.x,S.y);
+    for (let k=S.pathIdx;k<S.path.length;k++) ctx.lineTo(S.path[k][0],S.path[k][1]);
+    ctx.strokeStyle=C.accent; ctx.lineWidth=2.5/scale; ctx.setLineDash([6/scale,4/scale]); ctx.stroke(); ctx.setLineDash([]);
+  }
+  // lidar
+  if (layers.lidar) {
+    ctx.strokeStyle=C.lidar; ctx.globalAlpha=0.13; ctx.lineWidth=1/scale; ctx.beginPath();
+    for (let n=0;n<LIDAR_N;n+=3) { const a=S.th-Math.PI+n*2*Math.PI/LIDAR_N, r=Math.min(S.scan[n],6); ctx.moveTo(S.x,S.y); ctx.lineTo(S.x+Math.cos(a)*r, S.y+Math.sin(a)*r); }
+    ctx.stroke(); ctx.globalAlpha=1;
+    const ps=2.2/scale;
+    for (let n=0;n<LIDAR_N;n++) { const r=S.scan[n]; if (r>=LIDAR_MAX) continue; const a=S.th-Math.PI+n*2*Math.PI/LIDAR_N;
+      ctx.fillStyle = S.scanDyn[n] ? C.haptic : C.lidar; ctx.fillRect(S.x+Math.cos(a)*r-ps/2, S.y+Math.sin(a)*r-ps/2, ps, ps); }
+  }
+  // walkers
+  for (const wk of S.walkers) {
+    ctx.save(); ctx.translate(wk.x,wk.y); ctx.rotate(wk.face||0);
+    ctx.beginPath(); ctx.ellipse(0,0,0.13,WALKER_R,0,0,7); ctx.fillStyle=C.muted; ctx.fill();
+    ctx.beginPath(); ctx.arc(0.02,0,0.1,0,7); ctx.fillStyle=C.surface; ctx.fill(); ctx.strokeStyle=C.ink; ctx.lineWidth=1/scale; ctx.stroke();
+    ctx.restore();
+  }
+  // person + stick
+  const ax = S.x - HL*Math.cos(S.th), ay = S.y - HL*Math.sin(S.th);
+  const hx = S.px + 0.2*Math.cos(S.pth), hy = S.py + 0.2*Math.sin(S.pth);
+  ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(hx,hy); ctx.strokeStyle=C.ink; ctx.lineWidth=3/scale; ctx.stroke();
+  const grip = hap.out.reduce((a,b)=>Math.max(a,b),0)/255;
+  if (grip>0) { ctx.beginPath(); ctx.arc(hx,hy,0.1+0.14*grip,0,7); ctx.fillStyle=C.haptic; ctx.globalAlpha=0.35+0.4*grip; ctx.fill(); ctx.globalAlpha=1; }
+  ctx.save(); ctx.translate(S.px,S.py); ctx.rotate(S.pth);
+  ctx.beginPath(); ctx.ellipse(0,0,0.14,0.25,0,0,7); ctx.fillStyle=C.person; ctx.fill();
+  ctx.beginPath(); ctx.arc(0.03,0,0.11,0,7); ctx.fillStyle=C.surface; ctx.fill(); ctx.strokeStyle=C.person; ctx.lineWidth=2/scale; ctx.stroke();
+  ctx.restore();
+  // rover
+  ctx.save(); ctx.translate(S.x,S.y); ctx.rotate(S.th);
+  ctx.fillStyle=C.ink;
+  for (const [wx,wy] of [[0.27,0.34],[-0.27,0.34],[0.27,-0.34],[-0.27,-0.34]]) ctx.fillRect(wx-0.12,wy-0.04,0.24,0.08);
+  ctx.beginPath(); ctx.roundRect ? ctx.roundRect(-0.45,-0.30,0.90,0.60,0.06) : ctx.rect(-0.45,-0.30,0.90,0.60);
+  ctx.fillStyle=C.rover; ctx.fill(); ctx.strokeStyle=C.ink; ctx.lineWidth=1.5/scale; ctx.stroke();
+  ctx.beginPath(); ctx.arc(0,0,0.1,0,7); ctx.fillStyle=C.ink; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(0.40,0); ctx.lineTo(0.22,0.11); ctx.lineTo(0.22,-0.11); ctx.closePath(); ctx.fillStyle=C.ink; ctx.fill();
+  ctx.restore();
+  if (S.linkLost || S.hold) label(S.linkLost?'LINK LOST':'HOLD', S.x, S.y+0.75, C.haptic, 12, 700);
+}
+
+/* ---------------- Telemetry & status ---------------- */
+function renderTelemetry() {
+  setText('tLin', (S.cmdV>=0?' ':'')+S.cmdV.toFixed(2)+' m/s');
+  setText('tAng', (S.cmdW>=0?' ':'')+S.cmdW.toFixed(2)+' rad/s');
+  setText('tScan', isFinite(S.nearest)? S.nearest.toFixed(2)+' m':'–');
+  setText('tGap', isFinite(S.gap)? (S.gap>=6?'> 6 m':S.gap.toFixed(2)+' m') : 'nothing in line');
+  setText('tTl', String(S.ticksL)); setText('tTr', String(S.ticksR));
+  setText('tPose', `${S.x.toFixed(2)}, ${S.y.toFixed(2)}, ${Math.round(S.th*180/Math.PI)}°`);
+  setText('tGoal', S.goal ? Math.hypot(S.goal.x-S.x,S.goal.y-S.y).toFixed(2)+' m' : '–');
+  setText('clock', fmtT(S.t));
+  let pill='Idle', ps='', txt='Waiting. Click the map to set a goal, or run the tour.';
+  if (S.linkLost) { pill='Link lost'; ps='bad'; txt='The handle cannot hear the rover. The rover halts until the link is back.'; }
+  else if (S.hold) { pill='Holding'; ps='bad'; txt='Stopped by you. Press Hold again to carry on.'; }
+  else if (S.mode==='manual') { pill='Manual'; ps='warn'; txt='You are driving. Arrow keys or WASD; Esc to stop.'; }
+  else if (S.mode==='backup') { pill='Backing up'; ps='warn'; txt='Reversing 0.3 m to find another way past.'; }
+  else if (S.mode==='nav') {
+    pill='Navigating'; ps='nav';
+    txt = `To ${S.goal.label}` + (S.tour?` · tour goal ${S.tourIdx+1} of 6`:'');
+    if (S.stopReason==='obstacle') { pill='Blocked'; ps='warn'; txt += ' · waiting for the way ahead to clear'; }
+    else if (!S.path) { pill='No route'; ps='warn'; txt += ' · no way through right now'; }
+  } else if (S.nextGoalAt!=null) { pill='Arrived'; ps='ok'; txt='Next tour goal in a moment.'; }
+  const el=document.getElementById('statePill'); if (el.dataset.s!==ps) el.dataset.s=ps; setText('statePill', pill); setText('stateText', txt);
+}
+
+/* ---------------- Main loop ---------------- */
+let speed=2, paused=false, last=performance.now(), frame=0;
+function tick(now) {
+  let real = Math.min(0.1, (now-last)/1000); last=now;
+  if (!paused) {
+    let simDt = real*speed;
+    const DT=0.02;
+    while (simDt > 1e-6) {
+      const dt=Math.min(DT, simDt); simDt-=dt; S.t+=dt;
+      if (S.t - S.lastScanT >= 0.1) { S.lastScanT=S.t; scanLidar(); }
+      S.ctrlAcc += dt; if (S.ctrlAcc >= 0.05) { control(S.ctrlAcc); S.ctrlAcc=0; }
+      physics(dt);
+    }
+  }
+  decidePattern();
+  hap.update(now);
+  draw();
+  renderGrip();
+  if ((frame++ & 3)===0) { renderTelemetry(); if (S.run && S.run.tourIdx!=null && rows[S.run.tourIdx]) { rows[S.run.tourIdx].driven=S.run.driven; rows[S.run.tourIdx].minScan=S.run.minScan; if ((frame&31)===1) renderResults(); } }
+  requestAnimationFrame(tick);
+}
+
+/* ---------------- Input ---------------- */
+let clickMode='goal';
+const HINTS = {goal:'Click to send the rover somewhere · arrow keys or WASD to drive it yourself',
+  box:'Click to drop a 0.5 m box the rover has never seen · click a box to remove it',
+  walker:'Click a free spot to add a person walking back and forth across it'};
+document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => {
+  clickMode=b.dataset.mode; document.querySelectorAll('[data-mode]').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+  document.getElementById('hint').textContent=HINTS[clickMode];
+}));
+document.querySelectorAll('[data-speed]').forEach(b => b.addEventListener('click', () => {
+  speed=+b.dataset.speed; document.querySelectorAll('[data-speed]').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+  document.getElementById('speedLbl').textContent=speed+'×';
+}));
+function toWorld(ev) { const r=cv.getBoundingClientRect(); const px=ev.clientX-r.left, py=ev.clientY-r.top; return [(px-W/2)/scale+camX, (H/2-py)/scale+camY]; }
+const freeAt = (x,y,m) => !STATIC.some(b=>inBox(x,y,b,m)) && Math.abs(x)<11.8 && Math.abs(y)<7.8;
+cv.addEventListener('click', ev => {
+  const [x,y] = toWorld(ev);
+  if (clickMode==='goal') {
+    if (!freeAt(x,y,0.05)) { log('That spot is inside a wall or furniture. Pick open floor.', 'warn'); return; }
+    S.tour=null; S.nextGoalAt=null; if (S.mode==='manual'||S.mode==='backup') S.mode='idle';
+    startGoal({x, y, label:`(${x.toFixed(1)}, ${y.toFixed(1)})`}, null);
+  } else if (clickMode==='box') {
+    const hit = S.boxes.findIndex(b=>inBox(x,y,b,0.05));
+    if (hit>=0) { S.boxes.splice(hit,1); log('Box removed.'); return; }
+    const b = box(x,y,0.5,0.5,'box','Box');
+    const nearRover = Math.hypot(x-S.x,y-S.y) < 0.95, nearPerson = Math.hypot(x-S.px,y-S.py) < 0.6;
+    if (!freeAt(x,y,0.25) || nearRover || nearPerson) { log('No room for a box there.', 'warn'); return; }
+    S.boxes.push(b); log(`Box dropped at (${x.toFixed(1)}, ${y.toFixed(1)}). The rover only learns about it when the LiDAR sees it.`);
+  } else {
+    if (!freeAt(x,y,0.3) || Math.hypot(x-S.x,y-S.y)<1) { log('Pick open floor at least 1 m from the rover for a walker.', 'warn'); return; }
+    const reach = (dx,dy) => { let r=2.2; for (const b of STATIC) { const t=rayBox(x,y,dx,dy,b,r); if (t<r) r=t; } return Math.max(0, Math.min(1.8, r-0.35)); };
+    const ex=[reach(1,0),reach(-1,0)], ey=[reach(0,1),reach(0,-1)];
+    const tx=ex[0]+ex[1], ty=ey[0]+ey[1];   // cross the narrow way, like someone stepping across a corridor
+    const useX = ty < 1 ? true : tx < 1 ? false : tx < ty, e = useX?ex:ey;
+    if (e[0]+e[1] < 1) { log('Too tight for a walker there.', 'warn'); return; }
+    S.walkers.push({x, y, ax: useX?x-e[1]:x, ay: useX?y:y-e[1], bx: useX?x+e[0]:x, by: useX?y:y+e[0], dir:1, life:45, face:0});
+    log('A walker is crossing back and forth. Watch the rover slow, stop, and wait.');
+  }
+});
+document.getElementById('btnTour').addEventListener('click', () => { if (S.mode==='manual') S.mode='idle'; startTour(); });
+document.getElementById('btnHome').addEventListener('click', () => { S.tour=null; S.nextGoalAt=null; if (S.mode!=='nav') S.mode='idle'; startGoal({x:0,y:0,label:'start (0, 0)'}, null); });
+const holdBtn=document.getElementById('btnHold'), linkBtn=document.getElementById('btnLink'), pauseBtn=document.getElementById('btnPause');
+holdBtn.addEventListener('click', () => { S.hold=!S.hold; holdBtn.setAttribute('aria-pressed', String(S.hold)); log(S.hold?'Hold: rover stopped, handle says STOP.':'Hold released.', S.hold?'warn':null); });
+linkBtn.addEventListener('click', () => { S.linkLost=!S.linkLost; linkBtn.setAttribute('aria-pressed', String(S.linkLost)); linkBtn.textContent = S.linkLost?'Restore handle link':'Cut handle link'; log(S.linkLost?'Handle link cut. No ESP-NOW packets reach the grip.':'Handle link restored.', S.linkLost?'bad':'ok'); });
+pauseBtn.addEventListener('click', () => { paused=!paused; pauseBtn.setAttribute('aria-pressed', String(paused)); pauseBtn.textContent=paused?'Resume':'Pause'; });
+document.getElementById('btnReset').addEventListener('click', () => reset(false));
+const bindLayer = (id,key) => document.getElementById(id).addEventListener('change', e => { layers[key]=e.target.checked; });
+bindLayer('lyLidar','lidar'); bindLayer('lyCost','cost'); bindLayer('lyPath','path'); bindLayer('lyFollow','follow');
+document.getElementById('lySound').addEventListener('change', e => { soundOn=e.target.checked; if (soundOn) { initAudio(); audio && audio.ctx.resume && audio.ctx.resume(); } });
+const keys = new Set();
+function updateManual() {
+  const f = keys.has('ArrowUp')||keys.has('w'), b = keys.has('ArrowDown')||keys.has('s');
+  const l = keys.has('ArrowLeft')||keys.has('a'), r = keys.has('ArrowRight')||keys.has('d');
+  S.manual.v = f ? VMAX : b ? -0.15 : 0; S.manual.w = l ? 0.8 : r ? -0.8 : 0;
+}
+window.addEventListener('keydown', e => {
+  if (e.target.closest && e.target.closest('input,textarea,select')) return;
+  const k = e.key.length===1 ? e.key.toLowerCase() : e.key;
+  if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d'].includes(k)) {
+    e.preventDefault();
+    if (S.mode!=='manual') { if (S.mode==='nav') log('Manual driving. The current goal is cancelled.', 'warn'); S.mode='manual'; S.tour=null; S.nextGoalAt=null; S.goal=null; S.path=null; S.run=null; renderResults(); }
+    keys.add(k); updateManual();
+  } else if (k==='Escape' && S.mode==='manual') { keys.clear(); updateManual(); S.mode='idle'; }
+});
+window.addEventListener('keyup', e => { const k = e.key.length===1 ? e.key.toLowerCase() : e.key; keys.delete(k); updateManual(); });
+window.addEventListener('blur', () => { keys.clear(); if (S) updateManual(); });
+
+function reset(initial) {
+  marks.fill(0);
+  S = freshState(); rows=[]; logEl.innerHTML='';
+  holdBtn.setAttribute('aria-pressed','false'); linkBtn.setAttribute('aria-pressed','false'); linkBtn.textContent='Cut handle link';
+  computeDist(); scanLidar();
+  log(initial ? 'Rover at (0, 0) facing +x, as after a fresh Gazebo start. One box the map does not know about sits in the corridor.' : 'Reset.');
+  startTour();
+}
+
+readColors(); resize();
+if (W < 500) { layers.follow = true; document.getElementById('lyFollow').checked = true; }   // small screens: zoom in on the rover
+new ResizeObserver(resize).observe(wrapEl);
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', readColors);
+new MutationObserver(readColors).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+document.fonts && document.fonts.ready.then(readColors);
+reset(true);
+requestAnimationFrame(t => { last=t; requestAnimationFrame(tick); });
+// test hook: run the sim forward without waiting for animation frames
+window.__guideSim = { advance(sec) { const DT=0.02; for (let t=0;t<sec;t+=DT) { S.t+=DT; if (S.t-S.lastScanT>=0.1){S.lastScanT=S.t;scanLidar();} S.ctrlAcc+=DT; if (S.ctrlAcc>=0.05){control(S.ctrlAcc);S.ctrlAcc=0;} physics(DT); decidePattern(); }
+  hap.update(performance.now()); draw(); renderGrip(); renderTelemetry(); renderResults(); return {t:S.t, x:S.x, y:S.y, th:S.th, mode:S.mode, goal:S.goal&&S.goal.label, rows}; } };
+})();
+</script>

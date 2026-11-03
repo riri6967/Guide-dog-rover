@@ -8,12 +8,12 @@ build/
 # Packaged handoff archives — rebuild rather than version them
 *.zip
 # ...except the trained SAC model kept with the simulation results
-!sim/assistive_robot/training/runs/*/model.zip
+!simulation/assistive_robot/training/runs/*/model.zip
 
 # OpenSCAD exports
 *.stl
 # ...but the URDF meshes are source, not exports - the Pi needs them
-!ros/rover_description/meshes/*.stl
+!raspberry_pi/ros/rover_description/meshes/*.stl
 *.3mf
 *.gcode
 
