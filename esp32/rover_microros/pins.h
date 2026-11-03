@@ -67,4 +67,5 @@
 #define PIN_LED      2    // onboard LED on most DevKits. Output-only use of a
                           // strapping pin after boot is fine.
 
-// Still free: 0 (BOOT button), 5, 12, 15, 35 (input only)
+// Still free: 0 (BOOT button), 4, 5, 12, 15, 35 (input only). 16/17 are not
+// broken out on this DevKit.

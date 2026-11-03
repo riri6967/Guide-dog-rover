@@ -23,16 +23,14 @@
 #include <Arduino.h>
 
 // ------------------------------------------------------------------ pins
-// Avoiding 21/22 (they collide with I2C), 12 (held HIGH at reset the board
-// will not boot) and 16/17 (not broken out on this DevKit).
-//
-// 5 and 15 are strapping pins. Driving them as outputs after boot is fine,
-// but if the board ever refuses to boot, unplug these two first — a module
-// pulling on a strapping pin at reset is the thing to rule out.
+// Same as PIN_HAP_* in esp32/rover_microros/pins.h. 21/22 are free for this
+// because the MPU6050 is on the Raspberry Pi's I2C, not the ESP32's. Avoiding
+// 12 (held HIGH at reset the board will not boot) and 16/17 (not broken out
+// on this DevKit).
 const int PIN_FRONT = 23;
 const int PIN_BACK  = 32;
-const int PIN_LEFT  = 5;
-const int PIN_RIGHT = 15;
+const int PIN_LEFT  = 21;
+const int PIN_RIGHT = 22;
 
 const int PINS[4]   = { PIN_FRONT, PIN_BACK, PIN_LEFT, PIN_RIGHT };
 const char *NAMES[4] = { "FRONT", "BACK ", "LEFT ", "RIGHT" };
