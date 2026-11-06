@@ -47,7 +47,7 @@ LM393_STEP = REPO.parent / 'CAD Files' /'lm393-motor-speed-sensor-1.snapshot.3' 
 # ----------------------------------------------------------------- motor and wheel (from the user)
 SHAFT_D = 5.0          # motor shaft, round (measured: about 5 mm)
 SHAFT_OUT = 20.0       # motor shaft length outside the wall's outer face (measured: about 2 cm)
-HUB_DEPTH = 15.0       # wheel hub hole is 10-15 mm deep: give it the full 15
+HUB_DEPTH = 15.0       # wheel hub hole is 10-15 mm deep: sets where the hub face sits (track width)
 SHIFT = 25.0           # how much further out the wheel sits (2-3 cm asked)
 WALL_T = 7.6           # body side wall (CAD), only used for the stand-ins
 MOTOR_D = 37.0         # stand-in only: the motor is inside the body (diameter not measured)
@@ -55,9 +55,7 @@ MOTOR_LEN = 30.0       # motor body length (measured: about 3 cm)
 
 # ----------------------------------------------------------------- extender
 GAP = 1.0              # extender starts this far off the wall: it must not rub
-BORE = SHAFT_D + 0.9   # 5 mm shaft + print clearance (FDM holes come out small; +0.3 and +0.6 were too tight in PLA)
 BODY_D = 16.0          # thick body so the set screws have plastic to bite
-OUT_D = 6.3            # new shaft for the wheel hub (measured hole: about 7 mm; FDM pins come out fat: 6.9 and 6.6 were too fat)
 OUT_FLAT = 0.5         # flat on the new shaft for the wheel's set screw
 SET_PILOT = 1.4        # M1.7 set screws: pilot hole to tap/self-tap into
 # The motor shaft ends before the disc's far side, so the set screws sit between the wall and
@@ -68,7 +66,23 @@ SET_SCREWS = ((5.0, (0, 0, -1)), (9.0, (0, 1, 0)))
 # encoder disc: a separate flat print, slid on from the wheel end and glued against a shoulder
 DISC_X0 = 14.0         # disc's inner face off the wall: open space between the wall and the encoder
 DISC_D, DISC_T = 46.0, 2.0
-DISC_BORE = BODY_D + 1.0   # slides over the 16 body (+0.3 and +0.8 were too tight)
+
+# ----------------------------------------------------------------- fit iterations
+# Print all three and keep whichever fits each part best. History of what did NOT fit:
+#   motor-shaft bore:   5.3, 5.6, 5.9 too tight on the 5 mm shaft
+#   wheel pin:          6.9, 6.6, 6.3 too fat for the ~7 mm hub hole (and 15 long was too short)
+#   encoder disc bore:  16.3, 16.8, 17.0 too tight on the 16 mm body
+# bore: motor-shaft socket   out_d: wheel pin   out_len: wheel pin length   disc_bore: encoder disc hole
+VARIANTS = {
+    'A': dict(bore=6.2, out_d=6.0, out_len=18.0, disc_bore=17.3),
+    'B': dict(bore=6.5, out_d=5.8, out_len=20.0, disc_bore=17.6),
+    'C': dict(bore=6.8, out_d=5.6, out_len=22.0, disc_bore=17.9),
+}
+DEFAULT = 'B'          # the one the URDF meshes and the drawing use
+BORE = VARIANTS[DEFAULT]['bore']
+OUT_D = VARIANTS[DEFAULT]['out_d']
+OUT_LEN = VARIANTS[DEFAULT]['out_len']
+DISC_BORE = VARIANTS[DEFAULT]['disc_bore']
 SHOULDER_D = 20.0
 SLOTS = 32             # 32 x 1.77 mm slots at mid-radius: prints cleanly with a 0.4 nozzle
 SLOT_IN_D, SLOT_OUT_D = 30.0, 42.0
@@ -98,7 +112,7 @@ X0 = GAP
 # The hub used to sit on the last HUB_DEPTH mm of the motor shaft, its face at SHAFT_OUT - HUB_DEPTH.
 # It now starts SHIFT further out, on the extender's own shaft.
 X_BODY_END = SHAFT_OUT - HUB_DEPTH + SHIFT
-X_END = X_BODY_END + HUB_DEPTH
+X_END = X_BODY_END + OUT_LEN
 DISC_X = DISC_X0 + DISC_T / 2          # disc mid-plane
 BEAM_Z = (SLOT_IN_D + SLOT_OUT_D) / 4  # beam crosses the middle of the slot ring, above the shaft
 FACE_Z = BEAM_Z + LM_BEAM_H            # module hangs upside down: component face towards the disc
@@ -131,24 +145,25 @@ def cone(d0, d1, length, start):
     return cq.Workplane(obj=cq.Solid.makeCone(d0 / 2, d1 / 2, length, cq.Vector(*start), cq.Vector(1, 0, 0)))
 
 
-def extender():
+def extender(bore=BORE, out_d=OUT_D, out_len=OUT_LEN):
+    x_end = X_BODY_END + out_len
     e = cyl(BODY_D, X_BODY_END - 2 - X0, (X0, 0, 0))
     # shoulder the disc is glued against; 45 deg underside so it prints standing up without support
     sh = (SHOULDER_D - BODY_D) / 2
     e = e.union(cone(BODY_D, SHOULDER_D, sh, (SHOULDER_X0, 0, 0))).union(cyl(SHOULDER_D, 1, (DISC_X0 - 1, 0, 0)))
     # body tapers to a 12 mm face for the wheel hub to sit on. The taper stays inside the body:
     # anything wider than the shaft past X_BODY_END would stop the hub short of its full depth.
-    e = e.union(cone(BODY_D, 12, 2.0, (X_BODY_END - 2, 0, 0))).union(cyl(OUT_D, HUB_DEPTH, (X_BODY_END, 0, 0)))
-    e = e.cut(box(X_BODY_END + 2, X_END + 1, OUT_D / 2 - OUT_FLAT, 10, -10, 10))        # flat for the wheel screw
+    e = e.union(cone(BODY_D, 12, 2.0, (X_BODY_END - 2, 0, 0))).union(cyl(out_d, out_len, (X_BODY_END, 0, 0)))
+    e = e.cut(box(X_BODY_END + 2, x_end + 1, out_d / 2 - OUT_FLAT, 10, -10, 10))        # flat for the wheel screw
     # socket for the motor shaft, open on the wall side
-    e = e.cut(cyl(BORE, SHAFT_OUT - X0 + 0.5, (X0 - 0.1, 0, 0)))
+    e = e.cut(cyl(bore, SHAFT_OUT - X0 + 0.5, (X0 - 0.1, 0, 0)))
     for x, d in SET_SCREWS:                                    # two set screws, 90 deg apart
         e = e.cut(cyl(SET_PILOT, BODY_D, (x, 0, 0), d))
     return e
 
 
-def disc():
-    d = cyl(DISC_D, DISC_T, (DISC_X0, 0, 0)).cut(cyl(DISC_BORE, DISC_T + 2, (DISC_X0 - 1, 0, 0)))
+def disc(disc_bore=DISC_BORE):
+    d = cyl(DISC_D, DISC_T, (DISC_X0, 0, 0)).cut(cyl(disc_bore, DISC_T + 2, (DISC_X0 - 1, 0, 0)))
     pitch = 360 / SLOTS
     for i in range(SLOTS):
         a0, a1 = math.radians(i * pitch - pitch / 4), math.radians(i * pitch + pitch / 4)
@@ -239,7 +254,15 @@ def main(out_dir):
     ext, dsc, hol = extender(), disc(), holder()
     motor, sensor, wheel, wall = proxies()
     hol_r, sensor_r = right_hand(hol, sensor)
-    for name, wp in (('Shaft Extender', ext), ('Encoder Disc', dsc), ('Encoder Holder Left', hol), ('Encoder Holder Right', hol_r)):
+    parts = [('Encoder Holder Left', hol), ('Encoder Holder Right', hol_r)]
+    print('fit iterations (mm):')
+    print('   size  motor bore  wheel pin D x long  extender long  disc bore')
+    for k, v in VARIANTS.items():
+        parts += [(f'Shaft Extender {k}', extender(v['bore'], v['out_d'], v['out_len'])),
+                  (f'Encoder Disc {k}', disc(v['disc_bore']))]
+        print(f"   {k}     {v['bore']:5.1f}       {v['out_d']:4.1f} x {v['out_len']:4.1f}         "
+              f"{X_BODY_END + v['out_len'] - X0:5.1f}        {v['disc_bore']:5.1f}")
+    for name, wp in parts:
         cq.exporters.export(wp, str(out / f'{name}.step'))
         # print orientation, all with +X up: extender stands on its wall end, disc lies flat,
         # bracket lies on its plate with the shelf and ribs standing up

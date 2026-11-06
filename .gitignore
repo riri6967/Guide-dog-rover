@@ -30,3 +30,5 @@ desktop.ini
 __pycache__/
 *.pyc
 .venv/
+# ...and the extender fit-iteration prints, so they can be downloaded straight from GitHub
+!cad/stl/*.stl

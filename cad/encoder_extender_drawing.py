@@ -62,7 +62,7 @@ def extender_section(ax):
     note(ax, DISC_X + 3, DISC_D / 2 + 2.5, 'disc (part 2)')
     ax.plot([-WALL_T - 6, X_END + 6], [0, 0], ls='-.', color='#888', lw=0.6, zorder=1)
     note(ax, X_BODY_END + 1, r_b + 12, f'taper {BODY_D:g} -> 12\nover 2 (hub seat)', fontsize=7.5)
-    dim(ax, (X_BODY_END, 11), (X_END, 11), f'wheel pin {HUB_DEPTH:g} long', off=(0, 2))
+    dim(ax, (X_BODY_END, 11), (X_END, 11), f'wheel pin {OUT_LEN:g} long', off=(0, 2))
     # diameters
     dim(ax, (X0 + 2.3, -BORE / 2), (X0 + 2.3, BORE / 2), f'bore {BORE:g}', off=(-1.4, 0), rot=90, size=7.5)
     dim(ax, (SHOULDER_X0 - 0.5, -r_s), (SHOULDER_X0 - 0.5, r_s), f'shoulder {SHOULDER_D:g}\n(45 deg)', off=(-0.5, r_s + 2.5), size=7.5)
@@ -156,12 +156,12 @@ def notes(fig):
     text = f"""MEASURED (from you)
   motor shaft D {SHAFT_D:g}, {SHAFT_OUT:g} out of the wall
   wheel hub hole about 7 -> pin {OUT_D:g}
-  wheel hub depth {HUB_DEPTH:g}
+  wheel hub depth {HUB_DEPTH:g} (pin {OUT_LEN:g})
 
 PRINT CLEARANCES
   bore {BORE:g} on a {SHAFT_D:g} shaft (+{BORE - SHAFT_D:.1f})
   pin {OUT_D:g} for a 7 hole (-{7 - OUT_D:.1f})
-  (opened up after the first print was too tight)
+  (size {DEFAULT}; A/B/C fit iterations in encoder_extender.py)
   disc bore {DISC_BORE:g} on the {BODY_D:g} body
   set screw pilots {SET_PILOT:g} (M1.7)
 
